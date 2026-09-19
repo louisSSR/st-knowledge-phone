@@ -1,6 +1,6 @@
 {
   "name": "st-knowledge-phone",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "devDependencies": { "typescript": "6.0.3" },

@@ -45,6 +45,27 @@ export function openDatabase(): Promise<IDBDatabase> {
   });
 }
 
+/** Clear this extension's data atomically without waiting for other tabs to close. */
+export async function clearDatabase(): Promise<void> {
+  const database = await openDatabase();
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const names = Array.from(database.objectStoreNames);
+      const transaction = database.transaction(names, 'readwrite');
+      transaction.oncomplete = () => resolve();
+      transaction.onabort = () => reject(transaction.error ?? new Error('清理本地知识库的事务已中止'));
+      try {
+        for (const name of names) transaction.objectStore(name).clear();
+      } catch (error) {
+        transaction.abort();
+        reject(error);
+      }
+    });
+  } finally {
+    database.close();
+  }
+}
+
 export class PhoneStorage {
   private database: Promise<IDBDatabase> | undefined;
   private disposed = false;

@@ -40,6 +40,29 @@ export function openDatabase() {
         opening.onblocked = () => { blocked = true; reject(new Error('知识库升级被其他页面占用，请关闭旧页面后重试')); };
     });
 }
+/** Clear this extension's data atomically without waiting for other tabs to close. */
+export async function clearDatabase() {
+    const database = await openDatabase();
+    try {
+        await new Promise((resolve, reject) => {
+            const names = Array.from(database.objectStoreNames);
+            const transaction = database.transaction(names, 'readwrite');
+            transaction.oncomplete = () => resolve();
+            transaction.onabort = () => reject(transaction.error ?? new Error('清理本地知识库的事务已中止'));
+            try {
+                for (const name of names)
+                    transaction.objectStore(name).clear();
+            }
+            catch (error) {
+                transaction.abort();
+                reject(error);
+            }
+        });
+    }
+    finally {
+        database.close();
+    }
+}
 export class PhoneStorage {
     database;
     disposed = false;
