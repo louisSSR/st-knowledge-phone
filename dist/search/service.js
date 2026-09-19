@@ -16,8 +16,10 @@ export class SearchService {
         }
         const results = replies.flatMap(reply => reply.results).sort((left, right) => right.score - left.score);
         const unique = new Map(results.map(result => [`${result.packId}\0${result.entry.id}`, result]));
+        const notice = [...replies.map(reply => reply.notice).filter(Boolean), ...outcomes.flatMap((outcome, index) => outcome.status === 'rejected' ? [`${this.providers[index].name}：${outcome.reason instanceof Error ? outcome.reason.message : '检索失败'}`] : [])].join('；');
         return { results: [...unique.values()].slice(0, Math.min(12, Math.max(1, request.limit ?? 12))),
             total: replies.reduce((total, reply) => total + reply.total, 0),
-            suggestions: [...new Set(replies.flatMap(reply => reply.suggestions))].slice(0, 6) };
+            suggestions: [...new Set(replies.flatMap(reply => reply.suggestions))].slice(0, 6),
+            ...(notice ? { notice } : {}) };
     }
 }

@@ -7,7 +7,7 @@ export function searchForm(ctx: ViewContext, home = false): HTMLFormElement {
   const input = el('input');
   input.type = 'search';
   input.name = 'query';
-  input.placeholder = '查一条规则，认识一个地方…';
+  input.placeholder = '输入条目名称或关键词…';
   input.setAttribute('aria-label', '搜索离线知识库');
   input.dataset.focusKey = 'query';
   input.autocomplete = 'off';
@@ -51,26 +51,32 @@ export function homeView(ctx: ViewContext): HTMLElement {
   status.append(offline, el('span', '', 'VOL. 01 / 随身阅览'));
   page.append(status, el('div', 'eyebrow', 'A LITTLE WINDOW TO YOUR WORLD'));
   page.append(el('h2', 'welcome', '好奇心，随身携带。'));
-  page.append(el('p', 'intro', '在故事的此时此地，找到恰好用得上的知识。'));
-  page.append(worldCard(ctx), searchForm(ctx, true), sectionHeading('从一个小问题开始', '点击即可检索'));
-  const shortcuts = el('div', 'shortcuts');
-  for (const [symbol, label, query] of [['♧', '扑克牌怎么玩', '扑克牌怎么玩'], ['⌖', '逛逛涩谷', '涩谷'], ['✧', '找一点秋装灵感', '秋装']]) {
-    const shortcut = button('', () => ctx.search(query!), 'shortcut');
-    shortcut.append(el('span', 'shortcut-symbol', symbol), document.createTextNode(label!));
-    shortcuts.append(shortcut);
+  page.append(el('p', 'intro', '从已有知识库查找原文，沿文中的名词继续探索。'));
+  page.append(worldCard(ctx), searchForm(ctx, true));
+  const keywords = [...new Set(ctx.state.chat.context.recentKeywords.map(value => value.trim()).filter(Boolean))].slice(0, 6);
+  if (keywords.length) {
+    page.append(sectionHeading('聊天中提到的话题', '点击查原文'));
+    const shortcuts = el('div', 'shortcuts');
+    for (const query of keywords) {
+      const shortcut = button(query, () => ctx.search(query), 'shortcut');
+      shortcut.style.overflowWrap = 'anywhere';
+      shortcuts.append(shortcut);
+    }
+    page.append(shortcuts);
   }
-  page.append(shortcuts);
-  const installed = ctx.state.packs.length;
+  const connected = ctx.state.archives.find(archive => archive.connected);
   const library = button('', () => ctx.run(ctx.controller.navigate('library')), 'library-note');
   const copy = el('span');
-  copy.append(el('strong', '', installed ? '你的随身书架已就绪' : '先给书架添一点知识'));
-  copy.append(el('small', '', installed ? `已安装 ${installed} 个资料包 · 内容保存在本浏览器` : '安装原创演示包，或导入自己的离线资料。'));
+  copy.style.minWidth = '0';
+  copy.style.overflowWrap = 'anywhere';
+  copy.append(el('strong', '', connected ? '本地知识库已连接' : '连接你的本地知识库'));
+  copy.append(el('small', '', connected ? `${connected.name || connected.fileName} · 读取原文` : '选择已下载的 .zim 文件，开始检索原文。'));
   const arrow = el('i', 'arrow');
   arrow.append(icon('arrow'));
   library.append(icon('library'), copy, arrow);
   page.append(library);
   const footer = el('div', 'home-footnote');
-  footer.append(el('span', '', '只查资料 · 不代写故事'), el('span', '', '本地保存 · 无联网检索'));
+  footer.append(el('span', '', '原文检索 · 不生成答案'), el('span', '', '本地读取 · 无联网检索'));
   page.append(footer);
   return page;
 }

@@ -1,6 +1,16 @@
-# 原创演示知识包
+# 开发样本与历史摘录
 
-本页说明原创演示包。真实来源的中文百科摘录见[棋牌与基础科普](wikipedia-zh-starter/README.md)、[自然地理与生活文化](wikipedia-zh-general/README.md)，采集与验收工具见 [corpus](../corpus/README.md)。来源与许可分别标注。
+正式资料路线已改为成熟知识库的原文检索与来源内导航，见[知识来源约定](../docs/KNOWLEDGE-SOURCE-POLICY.md)。本目录现有文件只保留用于开发、回归测试和历史复现，均已从 `manifest.json` 的正式推荐目录撤下；当前正式目录为空。这次调整不删除用户已经导入的资料。
+
+| 保留文件 | 内容 | 用途与限制 |
+| --- | --- | --- |
+| `original-demo.pack.json` | 17 条原创示范文字 | 开发 fixture，不能作为正式知识来源 |
+| `wikipedia-zh-starter/` | 13 篇、24 段、2 包 | 历史 TextExtracts 摘录，不能视为完整原文或成熟百科库 |
+| `wikipedia-zh-general/` | 92 篇、137 段、7 包 | 历史 TextExtracts 摘录，不能视为完整原文或成熟百科库 |
+
+各批历史来源与许可说明保留在[棋牌与基础科普](wikipedia-zh-starter/README.md)、[自然地理与生活文化](wikipedia-zh-general/README.md)。其中的制作、测速和验收记录描述当时的实验，不构成现行推荐。旧采集工具说明见 [corpus](../corpus/README.md)。
+
+## 原创样本的测试范围
 
 `original-demo.pack.json` 是离线演示包；`sources/original-demo.source.json` 是可读的本地资料源。所有正文为本项目原创示范文字，采用 CC0-1.0；没有抓取外部网页，没有第三方图片或角色素材。
 
@@ -12,6 +22,6 @@
 
 验收说明留在本文件，不混入过去可见的资料正文：2008 搜索「Pocket」只能得到纸面终端；搜索「2025」结果和联想均为零；将日期改为 2025-02-01 后才可找到星盒 Pocket 2025。2008 服饰与地点条目也不提及晚于当时的版本或开发对照样本。未来信息放入带 knownFrom 的独立条目。发生于 2008 但 2012 才披露的旧事应隐藏；2008 已公开的 2009 赛事预告可见。
 
-构建自己的包：先运行 `npm run build`，再运行 `node scripts/knowledge-builder.mjs ./my-source.json ./my-pack.pack.json`。输入为本地 JSON，含 manifest 与 entries；每个 entry 采用 `src/core/types.ts` 的 KnowledgeEntry 字段，另加 `content` 纯文本。builder 自动计算 entryCount 和标准化全文索引，验证所有引用与索引正文一致，拒绝覆盖输出文件。也可使用此目录的 source 文件作为格式范例。限单包 10 MB / 5000 条；导入器再次校验。
+复现测试包时，先运行 `npm run build`，再运行 `node scripts/knowledge-builder.mjs ./my-source.json ./my-pack.pack.json`。输入为本地 JSON，含 manifest 与 entries；每个 entry 采用 `src/core/types.ts` 的 KnowledgeEntry 字段，另加 `content` 纯文本。builder 自动计算 entryCount 和标准化全文索引，验证所有引用与索引正文一致，拒绝覆盖输出文件。此目录的 source 文件仅为格式范例。限单包 10 MB / 5000 条；导入器再次校验。打包成功不表示内容符合正式来源约定。
 
-`manifest.json` 仅为人工可读的随附包目录。运行时不会从这个目录文件自动安装包。
+`manifest.json` 仅为人工可读的正式随附资料目录，当前 `packs` 为空；运行时不会从它自动安装或卸载包。已安装旧包应依照来源约定显示用途标签，保留用户主动查阅和移除的权利。

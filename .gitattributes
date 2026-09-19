@@ -1,2 +1,6 @@
 # Collection receipts hash the exact serialized pack bytes, including LF endings.
 *.pack.json text eol=lf
+
+# Preserve pinned upstream binary and JavaScript hashes across Windows checkouts.
+vendor/libzim/libzim-wasm.js -text
+*.wasm -text

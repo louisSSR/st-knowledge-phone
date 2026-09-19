@@ -1,6 +1,7 @@
 import type { PackManifest, SearchRequest } from '../core/types.js';
 import { openDatabase, STORE_NAMES, type StoredEntry, type StoredIndex } from '../library/storage.js';
 import { searchCorpus, type SearchCorpus } from './rank.js';
+import { isRetiredPack } from '../library/source-policy.js';
 
 function read<T>(operation: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -23,7 +24,7 @@ async function loadCorpora(): Promise<SearchCorpus[]> {
     const documents = new Map(indexes.map(index => [index.packId, index.documents]));
     const grouped = new Map<string, StoredEntry[]>();
     for (const entry of entries) { const group = grouped.get(entry.packId) ?? []; group.push(entry); grouped.set(entry.packId, group); }
-    return manifests.map(manifest => ({ packId: manifest.id, packName: manifest.name,
+    return manifests.filter(manifest => !isRetiredPack(manifest.id)).map(manifest => ({ packId: manifest.id, packName: manifest.name,
       entries: (grouped.get(manifest.id) ?? []).map(record => record.entry), documents: documents.get(manifest.id) ?? {} }));
   } finally { database.close(); }
 }

@@ -1,5 +1,6 @@
 import { openDatabase, STORE_NAMES } from '../library/storage.js';
 import { searchCorpus } from './rank.js';
+import { isRetiredPack } from '../library/source-policy.js';
 function read(operation) {
     return new Promise((resolve, reject) => {
         operation.onsuccess = () => resolve(operation.result);
@@ -24,7 +25,7 @@ async function loadCorpora() {
             group.push(entry);
             grouped.set(entry.packId, group);
         }
-        return manifests.map(manifest => ({ packId: manifest.id, packName: manifest.name,
+        return manifests.filter(manifest => !isRetiredPack(manifest.id)).map(manifest => ({ packId: manifest.id, packName: manifest.name,
             entries: (grouped.get(manifest.id) ?? []).map(record => record.entry), documents: documents.get(manifest.id) ?? {} }));
     }
     finally {

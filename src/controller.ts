@@ -4,13 +4,17 @@ import { PhoneStorage } from './library/storage.js';
 import { MAX_PACK_BYTES, parsePack } from './library/pack.js';
 import { isVisible } from './search/filters.js';
 import { SearchService } from './search/service.js';
+import { ZimProvider, archiveVisible } from './providers/zim.js';
+import { isRetiredPack } from './library/source-policy.js';
 import { LocalLibraryProvider } from './providers/local.js';
 import { chatStorageKey, defaultChat, normalizeChat, normalizeSettings, searchContext, visibleHistory, worldline } from './settings/settings.js';
 
 export class Controller implements PhoneController {
   private storage = new PhoneStorage();
   private local = new LocalLibraryProvider();
-  private service = new SearchService([this.local]);
+  private zim = new ZimProvider();
+  private archiveRevision = 0;
+  private service = new SearchService([this.zim, this.local]);
   private listeners = new Set<(state: PhoneState) => void>();
   private unsubscribe: (() => void) | undefined;
   private active = false;
@@ -27,7 +31,7 @@ export class Controller implements PhoneController {
     const chat = defaultChat();
     this.state = {
       ready: false, busy: false, notice: '', hostLabel: host.label, chatKey: '', settings: normalizeSettings(),
-      chat, context: searchContext(chat, ''), packs: [], query: '', types: [], results: [], total: 0, suggestions: [],
+      chat, context: searchContext(chat, ''), packs: [], archives: [], query: '', types: [], results: [], total: 0, suggestions: [],
       page: 'home', reader: null, history: [], bookmarks: [],
     };
   }
@@ -53,6 +57,8 @@ export class Controller implements PhoneController {
       if (!this.initialized) {
         this.state.settings = normalizeSettings(await this.storage.getValue<Settings>('settings'));
         this.state.packs = await this.storage.listPacks();
+        const archives = await this.storage.getValue<PhoneState['archives']>('archives');
+        this.state.archives = Array.isArray(archives) ? archives.map(item => ({ ...item, connected: false })) : [];
         await this.switchChat(this.host.snapshot());
         if (this.disposed) return;
         this.unsubscribe = this.host.subscribe((kind, snapshot) => {
@@ -82,6 +88,7 @@ export class Controller implements PhoneController {
     } catch (error) { this.error(error); }
   }
   private clearResults(): void {
+    this.zim.cancelSearch();
     this.requestId++; this.state.results = []; this.state.suggestions = []; this.state.total = 0;
     this.state.reader = null; this.state.busy = false;
   }
@@ -142,7 +149,9 @@ export class Controller implements PhoneController {
       const response = await this.service.search({ query: this.state.query, context: this.state.context, types, offset, limit: 12 });
       if (id !== this.requestId || !this.active || key !== this.state.chatKey) return;
       this.state.results = response.results; this.state.total = response.total; this.state.suggestions = response.suggestions;
-      this.state.busy = false;
+      this.state.archives = this.state.archives.map(item => ({ ...item, connected: this.zim.connected(item.id) }));
+      this.state.busy = false; this.state.notice = response.notice || '';
+      if (this.state.archives.length && !this.state.archives.some(item => item.connected)) this.state.notice = '请到知库重新选择 .zim 文件以恢复连接；不会重新下载或复制资料。';
       if (record && this.state.query) await this.recordHistory();
       if (id === this.requestId) this.emit();
     } catch (error) { if (id === this.requestId) this.error(error); }
@@ -160,6 +169,10 @@ export class Controller implements PhoneController {
     const key = this.state.chatKey;
     const id = ++this.requestId;
     try {
+      if (result.packId.startsWith('zim:')) {
+        await this.readArchivePath(result.packId, result.entry.id); return;
+      }
+      if (isRetiredPack(result.packId)) throw new Error('此旧演示或摘录包已退出知识来源，请选择成熟资料库。');
       const entry = await this.storage.getEntry(result.packId, result.entry.id);
       if (id !== this.requestId || key !== this.state.chatKey) return;
       if (!entry || !isVisible(entry, this.state.context)) throw new Error('这份资料不在当前世界时间或地点内，或知识包已卸载。');
@@ -174,7 +187,60 @@ export class Controller implements PhoneController {
       if (id === this.requestId) this.emit();
     } catch (error) { if (id === this.requestId) this.error(error); }
   }
-  closeReader(): void { this.requestId++; this.state.reader = null; this.emit(); }
+  async attachArchive(file: File): Promise<void> {
+    const revision = ++this.archiveRevision;
+    this.clearResults(); this.state.busy = true; this.state.notice = '正在打开库内索引，不复制整库…'; this.emit();
+    try {
+      const info = await this.zim.attach(file);
+      if (this.disposed || revision !== this.archiveRevision) return;
+      this.clearResults();
+      this.state.archives = [info, ...this.state.archives.filter(item => item.id !== info.id).map(item => ({ ...item, connected: false }))].slice(0, 12);
+      await this.storage.setValue('archives', this.state.archives.map(item => ({ ...item, connected: false })));
+      this.state.notice = `已连接 ${info.articleCount.toLocaleString()} 篇原文。刷新页面后需重新选择同一文件。`;
+      if (!archiveVisible(info, this.state.context)) this.state.notice += ' 当前严格时间线不允许使用这份快照，请在设置中选择现代查阅或自由查阅。';
+      this.state.busy = false; this.emit();
+    } catch (error) { if (revision === this.archiveRevision) this.error(error); }
+  }
+  async detachArchive(id: string): Promise<void> {
+    if (this.zim.connected(id)) { this.archiveRevision++; this.zim.detach(); this.clearResults(); }
+    this.state.archives = this.state.archives.filter(item => item.id !== id);
+    await this.storage.setValue('archives', this.state.archives.map(item => ({ ...item, connected: false })));
+    this.state.notice = '已移除连接记录，磁盘文件与收藏没有删除。'; this.emit();
+  }
+  async readArchivePath(packId: string, path: string): Promise<void> {
+    const id = ++this.requestId, key = this.state.chatKey;
+    const hashAt = path.indexOf('#');
+    const hash = hashAt < 0 ? '' : path.slice(hashAt);
+    if (hashAt >= 0) path = path.slice(0, hashAt);
+    try {
+      const archive = this.state.archives.find(item => item.id === packId);
+      if (!archive || !archiveVisible(archive, this.state.context)) throw new Error('这份资料库快照不在当前世界时间内，或尚未连接。');
+      this.state.busy = true; this.state.notice = ''; this.emit();
+      const page = await this.zim.read(packId, path);
+      if (id !== this.requestId || !this.active || key !== this.state.chatKey) return;
+      if (!/^(text\/html|application\/xhtml\+xml)/i.test(page.mimeType)) throw new Error('此链接不是可阅读词条。图片等资源仅在原文中显示。');
+      const content = new TextDecoder().decode(page.data);
+      const result = this.zim.resultForPath(path);
+      const template = document.createElement('template'); template.innerHTML = content;
+      const parsed = template.content;
+      result.entry.title = parsed.querySelector('h1')?.textContent?.trim() || parsed.querySelector('title')?.textContent?.trim() || result.entry.title;
+      const canonical = parsed.querySelector('link[rel="canonical"]')?.getAttribute('href');
+      if (canonical && /^https?:\/\//i.test(canonical)) result.entry.source.url = canonical;
+      this.state.reader = { result, content, format: 'html', path, hash };
+      const history = this.history.find(row => row.query === this.state.query && row.worldline === worldline(this.state.context));
+      if (history) {
+        history.viewed = [...new Set([...history.viewed, `${packId}/${path}`])].slice(0, 20);
+        await this.storage.setValue(chatStorageKey(key, 'history'), this.history);
+      }
+      if (id === this.requestId) { this.state.busy = false; this.emit(); }
+    } catch (error) { if (id === this.requestId) this.error(error); }
+  }
+  async readArchiveResource(packId: string, path: string): Promise<{ mimeType: string; data: Uint8Array }> {
+    const archive = this.state.archives.find(item => item.id === packId);
+    if (!archive || !archiveVisible(archive, this.state.context)) throw new Error('当前世界时间不允许读取此资源。');
+    return this.zim.read(packId, path);
+  }
+  closeReader(): void { this.requestId++; this.state.reader = null; this.state.busy = false; this.emit(); }
   private async changeLibrary(action: () => Promise<void>): Promise<void> {
     this.state.busy = true; this.state.notice = ''; this.emit();
     try {
@@ -193,11 +259,7 @@ export class Controller implements PhoneController {
     });
   }
   async installSample(): Promise<void> {
-    await this.changeLibrary(async () => {
-      const response = await fetch(new URL('../packs/original-demo.pack.json', import.meta.url));
-      if (!response.ok) throw new Error('随附示范知识包读取失败，请检查扩展目录。');
-      await this.storage.install(parsePack(await response.json()));
-    });
+    throw new Error('原创演示包已退出知识来源，请选择现成 ZIM 资料库。');
   }
   async uninstall(id: string): Promise<void> { await this.changeLibrary(() => this.storage.uninstall(id)); }
   async toggleBookmark(result: SearchResult): Promise<void> {
@@ -206,11 +268,11 @@ export class Controller implements PhoneController {
     const revision = this.chatRevision;
     try {
       const key = `${result.packId}/${result.entry.id}`;
-      if (!isVisible(result.entry, this.state.context)) throw new Error('当前时间线无法收藏这份资料。');
+      if (isRetiredPack(result.packId) || !isVisible(result.entry, this.state.context)) throw new Error('当前时间线无法收藏这份资料。');
       const exists = this.state.bookmarks.some(bookmark => bookmark.key === key);
       if (!exists && this.state.bookmarks.length >= 200) throw new Error('初版每个聊天最多收藏 200 条，请先移除部分收藏。');
       const bookmarks = exists ? this.state.bookmarks.filter(bookmark => bookmark.key !== key) : [
-        ...this.state.bookmarks, { schemaVersion: 1 as const, key, packId: result.packId, entryId: result.entry.id, createdAt: Date.now() },
+        ...this.state.bookmarks, { schemaVersion: 1 as const, key, packId: result.packId, entryId: result.entry.id, createdAt: Date.now(), ...(result.packId.startsWith('zim:') ? { result } : {}) },
       ];
       this.state.bookmarks = bookmarks; this.emit();
       await this.storage.setValue(chatStorageKey(chatKey, 'bookmarks'), bookmarks);
@@ -223,6 +285,11 @@ export class Controller implements PhoneController {
     const context = this.state.context;
     try {
       const rows = await Promise.all(this.state.bookmarks.slice(0, 200).map(async bookmark => {
+        if (isRetiredPack(bookmark.packId)) return null;
+        if (bookmark.packId.startsWith('zim:')) {
+          const result = bookmark.result;
+          return result && isVisible(result.entry, context) ? result : null;
+        }
         const entry = await this.storage.getEntry(bookmark.packId, bookmark.entryId);
         const pack = this.state.packs.find(item => item.id === bookmark.packId);
         return entry && pack && isVisible(entry, context) ? { entry, packId: pack.id, packName: pack.name, score: 0 } : null;
@@ -254,6 +321,7 @@ export class Controller implements PhoneController {
   pause(): void { this.active = false; this.clearResults(); this.local.pause(); }
   dispose(): void {
     this.disposed = true; this.active = false; this.requestId++; this.chatRevision++;
+    this.archiveRevision++; this.zim.detach();
     this.unsubscribe?.(); this.local.dispose(); this.storage.dispose(); this.host.dispose(); this.listeners.clear();
   }
 }

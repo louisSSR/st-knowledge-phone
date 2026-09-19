@@ -21,8 +21,12 @@ export interface SearchContext {
 export interface SearchRequest {
   query: string; context: SearchContext; types?: EntryType[]; offset?: number; limit?: number;
 }
-export interface SearchResult { entry: KnowledgeEntry; packId: string; packName: string; score: number; }
-export interface SearchResponse { results: SearchResult[]; total: number; suggestions: string[]; }
+export interface SearchResult { entry: KnowledgeEntry; packId: string; packName: string; score: number; reason?: string; }
+export interface SearchResponse { results: SearchResult[]; total: number; suggestions: string[]; notice?: string; }
+export interface ArchiveInfo {
+  id: string; name: string; fileName: string; size: number; articleCount: number;
+  date?: string; dateSource?: string; connected: boolean;
+}
 export interface SearchProvider {
   id: string; name: string; isAvailable(): Promise<boolean>;
   search(request: SearchRequest): Promise<SearchResponse>;
@@ -39,7 +43,7 @@ export interface HistoryItem {
   schemaVersion: 1; id: string; query: string; worldDate: string | null; worldline: string;
   source: 'manual'; viewed: string[]; createdAt: number;
 }
-export interface Bookmark { schemaVersion: 1; key: string; packId: string; entryId: string; createdAt: number; }
+export interface Bookmark { schemaVersion: 1; key: string; packId: string; entryId: string; createdAt: number; result?: SearchResult; }
 export interface HostSnapshot { chatKey: string; messages: string[]; label: string; }
 export interface HostAdapter {
   label: string; snapshot(): HostSnapshot;
@@ -48,10 +52,10 @@ export interface HostAdapter {
 }
 export interface PhoneState {
   ready: boolean; busy: boolean; notice: string; hostLabel: string; chatKey: string;
-  settings: Settings; chat: ChatSettings; context: SearchContext; packs: PackManifest[];
+  settings: Settings; chat: ChatSettings; context: SearchContext; packs: PackManifest[]; archives: ArchiveInfo[];
   query: string; types: EntryType[]; results: SearchResult[]; total: number; suggestions: string[];
   page: 'home' | 'search' | 'library' | 'bookmarks' | 'history' | 'settings';
-  reader: { result: SearchResult; content: string } | null;
+  reader: { result: SearchResult; content: string; format?: 'html'; path?: string; hash?: string } | null;
   history: HistoryItem[]; bookmarks: Bookmark[];
 }
 export interface PhoneController {
@@ -60,6 +64,9 @@ export interface PhoneController {
   navigate(page: PhoneState['page'], offset?: number): Promise<void>;
   search(query: string, types?: EntryType[], offset?: number): Promise<void>;
   read(result: SearchResult): Promise<void>; closeReader(): void;
+  attachArchive(file: File): Promise<void>; detachArchive(id: string): Promise<void>;
+  readArchivePath(packId: string, path: string): Promise<void>;
+  readArchiveResource(packId: string, path: string): Promise<{ mimeType: string; data: Uint8Array }>;
   install(file: File): Promise<void>; installSample(): Promise<void>; uninstall(id: string): Promise<void>;
   toggleBookmark(result: SearchResult): Promise<void>; clearHistory(): Promise<void>;
   saveSettings(settings: Settings, chat: ChatSettings): Promise<void>;

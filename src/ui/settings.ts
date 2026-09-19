@@ -77,10 +77,10 @@ function offlineSetting(): HTMLElement {
   toggle.type = 'button';
   toggle.disabled = true;
   toggle.setAttribute('role', 'switch');
-  toggle.setAttribute('aria-label', '在线模型增强，v0.1 不提供启用');
+  toggle.setAttribute('aria-label', '在线模型增强，不提供启用');
   toggle.setAttribute('aria-checked', 'false');
   row.append(toggle);
-  group.append(row, el('p', 'settings-caption', 'v0.1 只使用离线资料包，不联网搜索，也不会调用模型或上传聊天。'));
+  group.append(row, el('p', 'settings-caption', '使用本地资料库的原有索引，不调用模型，也不上传聊天。大库快照不等于历史版本，严格时间线按快照日期保守过滤。'));
   return group;
 }
 

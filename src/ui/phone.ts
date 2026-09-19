@@ -62,6 +62,10 @@ export function mountPhone(shadow: ShadowRoot, controller: PhoneController, onCl
   let pendingState: PhoneState | null = null;
   let readerOrigin: { focus: ReturnType<typeof captureFocus>; scroll: number; page: PhoneState['page'] } | null = null;
   let resetScroll = false;
+  let activeReader: ReturnType<typeof readerView> | null = null;
+  let activeReaderContent = '';
+  let activeReaderPath: string | undefined;
+  let activeReaderHash: string | undefined;
   const run = (task: Promise<unknown>): void => {
     localError = '';
     task.catch(error => {
@@ -102,9 +106,21 @@ export function mountPhone(shadow: ShadowRoot, controller: PhoneController, onCl
     notice.textContent = localError || state.notice;
     content.setAttribute('aria-busy', String(state.busy || !state.ready));
     const ctx: ViewContext = { state, controller, offset, run, search, navigate };
-    content.replaceChildren();
-    if (state.busy || !state.ready) content.append(el('div', 'loading', state.ready ? '正在整理资料…' : '正在打开你的书架…'));
-    content.append(state.reader ? readerView(ctx) : views[state.page](ctx));
+    const preserveReader = Boolean(activeReader && state.reader?.format === 'html' && !changedView
+      && state.chatKey === renderedChat && state.reader.content === activeReaderContent && state.reader.path === activeReaderPath && state.reader.hash === activeReaderHash);
+    if (preserveReader) activeReader!.update(ctx);
+    else {
+      activeReader?.dispose(); activeReader = null;
+      content.replaceChildren();
+      if (state.busy || !state.ready) content.append(el('div', 'loading', state.ready ? '正在整理资料…' : '正在打开你的书架…'));
+      if (state.reader) {
+        activeReader = readerView(ctx);
+        activeReaderContent = state.reader.content;
+        activeReaderPath = state.reader.path;
+        activeReaderHash = state.reader.hash;
+        content.append(activeReader.element);
+      } else content.append(views[state.page](ctx));
+    }
     renderNavigation(nav, state, controller, run, () => { offset = 0; });
     if (!changedView && state.chatKey === renderedChat) restoreDraft(content, draft, state.query !== renderedQuery);
     content.scrollTop = scroll;
@@ -140,6 +156,7 @@ export function mountPhone(shadow: ShadowRoot, controller: PhoneController, onCl
   return { dispose(): void {
     disposed = true;
     unsubscribe();
+    activeReader?.dispose(); activeReader = null;
     shadow.removeEventListener('keydown', keydown);
     shadow.removeEventListener('keyup', isolate);
     shadow.removeEventListener('keypress', isolate);

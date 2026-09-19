@@ -1,6 +1,7 @@
 import type { EntryType, KnowledgeEntry, SearchResult } from '../core/types.js';
 import type { ViewContext } from './view-types.js';
 import { button, el, emptyState, iconButton } from './dom.js';
+import { isRetiredPack } from '../library/source-policy.js';
 import { searchForm } from './home.js';
 
 interface CardRenderer { label: string; detail(entry: KnowledgeEntry): string[]; }
@@ -21,7 +22,7 @@ export const cardRenderers: Record<EntryType, CardRenderer> = {
   product: { label: '商品', detail: entry => metadata(entry, ['brand', 'category', 'price']) },
   person: { label: '人物', detail: entry => metadata(entry, ['occupation', 'nationality']) },
   place: { label: '地点', detail: located },
-  article: { label: '知识短文', detail: entry => entry.tags.slice(0, 3) },
+  article: { label: '原文词条', detail: entry => entry.tags.slice(0, 3) },
 };
 
 export function bookmarked(ctx: ViewContext, result: SearchResult): boolean {
@@ -36,7 +37,9 @@ function resultCard(ctx: ViewContext, result: SearchResult): HTMLElement {
   open.dataset.focusKey = `result:${result.packId}:${entry.id}`;
   open.setAttribute('aria-label', `阅读：${entry.title}`);
   open.append(el('span', 'result-kind', `${renderer.label} / 离线资料`));
-  open.append(el('h3', '', entry.title), el('p', '', entry.summary));
+  open.append(el('h3', '', entry.title));
+  if (entry.summary) open.append(el('p', '', entry.summary));
+  if (result.reason) open.append(el('span', 'result-detail', result.reason));
   const details = renderer.detail(entry).slice(0, 3).join(' · ');
   if (details) open.append(el('span', 'result-detail', details));
   const source = el('span', 'result-source');
@@ -88,15 +91,15 @@ function pagination(ctx: ViewContext, bookmarks = false): HTMLElement {
 export function searchView(ctx: ViewContext): HTMLElement {
   const page = el('div');
   page.append(searchForm(ctx), filters(ctx));
-  if (!ctx.state.packs.length && !ctx.state.busy) {
-    page.append(emptyState('先为书架添一点知识', '安装一个资料包后，就能浏览全部资料或输入关键词检索。', button('前往知库', () => ctx.navigate('library'), 'button primary')));
+  if (!ctx.state.archives.length && !ctx.state.packs.some(pack => !isRetiredPack(pack.id)) && !ctx.state.busy) {
+    page.append(emptyState('先为书架添一点知识', '连接现成的 ZIM 资料库，即可使用库内索引查词和阅读原文。', button('前往知库', () => ctx.navigate('library'), 'button primary')));
     return page;
   }
   const meta = el('div', 'results-meta');
-  meta.append(el('span', '', `${ctx.state.query ? '找到' : '当前世界共有'} ${ctx.state.total} 条资料`), el('span', '', ctx.state.context.strictTimeline ? '已按当前世界筛选' : '自由查阅'));
+  meta.append(el('span', '', `${ctx.state.query ? '当前检索结果' : '可展示'} ${ctx.state.total} 条`), el('span', '', ctx.state.context.strictTimeline ? '已按当前世界筛选' : '自由查阅'));
   page.append(meta);
   if (ctx.state.results.length) page.append(resultList(ctx));
-  else if (!ctx.state.busy) page.append(emptyState('这次还没找到', '试试更短的关键词，或检查世界日期、地点与已安装的资料包。'));
+  else if (!ctx.state.busy) page.append(emptyState('这次还没找到', '这个库可能没有该词条。试试名词本身，检查库的覆盖范围、连接状态和快照时间；不会用相似但无关的文章充数。'));
   if (ctx.state.suggestions.length) {
     const suggestions = el('div', 'suggestions');
     suggestions.setAttribute('aria-label', '相关搜索');
