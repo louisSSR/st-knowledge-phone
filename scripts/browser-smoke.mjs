@@ -20,6 +20,13 @@ const done = name => { checks.push(name); console.log(`PASS ${name}`); };
 async function ready() { await page.locator('.content[aria-busy="false"]').waitFor(); }
 async function nav(label) { await page.getByRole('navigation', { name: '终端导航' }).getByRole('button', { name: label, exact: true }).click(); await ready(); }
 async function search(query) { await nav('搜索'); await page.getByRole('searchbox', { name: '搜索离线知识库' }).fill(query); await page.getByRole('button', { name: '开始搜索' }).click(); await ready(); }
+async function insideViewport(locator, label) {
+  const bounds = await locator.boundingBox();
+  const viewport = page.viewportSize();
+  assert.ok(bounds && bounds.width > 0 && bounds.height > 0 && bounds.x >= -1 && bounds.y >= -1
+    && bounds.x + bounds.width <= viewport.width + 1 && bounds.y + bounds.height <= viewport.height + 1,
+  `${label} must stay inside ${JSON.stringify(viewport)}: ${JSON.stringify(bounds)}`);
+}
 try {
   await page.goto(base);
   await page.getByRole('button', { name: '打开掌上知库' }).click(); await ready();
@@ -80,6 +87,20 @@ try {
   assert.equal(requests.length, requestCount); done('offline search and reader send no network requests');
   await context.setOffline(false);
   await page.getByRole('button', { name: '掌上知库，返回首页' }).click();
+  // Real ST applies a transform to html, which can have zero layout height on narrow screens.
+  // Checking only horizontal overflow missed a dialog centered above the visible viewport.
+  await page.addStyleTag({ content: 'html{transform:translateZ(0);perspective:1000px;height:0}body{height:100dvh;margin:0}' });
+  for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }, { width: 320, height: 568 }]) {
+    await page.setViewportSize(viewport);
+    await insideViewport(page.locator('.phone'), 'phone');
+    await insideViewport(page.locator('.topbar'), 'header');
+    await insideViewport(page.getByRole('button', { name: '关闭掌上知库' }), 'close button');
+    await insideViewport(page.locator('.bottom-nav'), 'navigation');
+    const backdrop = await page.locator('.backdrop').boundingBox();
+    assert.equal(backdrop.height, viewport.height);
+    assert.equal(backdrop.width, viewport.width);
+  }
+  done('transformed zero-height host keeps dialog, header and close button in viewport');
   await page.setViewportSize({ width: 390, height: 844 });
   assert.ok(await page.locator('.phone').evaluate(el => el.scrollWidth <= el.clientWidth));
   await page.screenshot({ path: path.join(evidence, 'mobile-home.png') });
@@ -87,6 +108,10 @@ try {
   assert.ok(await page.locator('.phone').evaluate(el => el.scrollWidth <= el.clientWidth));
   await nav('设置'); assert.ok(await page.locator('.content').evaluate(el => el.scrollWidth <= el.clientWidth)); done('390px and 320px mobile layouts fit');
   await page.keyboard.press('Escape'); await page.getByRole('button', { name: '打开掌上知库' }).waitFor();
+  await insideViewport(page.getByRole('button', { name: '打开掌上知库' }), 'launcher on transformed host');
+  await page.locator('#preview-chat').click();
+  await page.keyboard.press('Escape');
+  done('closed transformed-host launcher remains reachable and lets host clicks through');
   await page.getByRole('button', { name: '打开掌上知库' }).click(); await ready(); done('Escape close and reopen');
   await nav('知库'); await page.getByRole('button', { name: '移除', exact: true }).click();
   await page.getByRole('button', { name: '确认移除', exact: true }).click(); await ready();
