@@ -34,7 +34,7 @@ SillyTavern 浏览器扩展。连接成熟的离线知识库，精确查词、�
 
 v0.1 的原创规则演示与 105 篇 Wikipedia 摘录已整体退出正式搜索、推荐与目录。它们是开发测试资产，不能作为完整科普资料交付；更新不会擅自删除用户已安装的数据或收藏。自定义 JSON 格式保留在知库的高级区，单包限 10 MB。
 
-[资料来源政策](docs/KNOWLEDGE-SOURCE-POLICY.md) · [现成库与验收来源](docs/ZIM-SOURCES.md)
+[v0.2.0 验收与边界](docs/ACCEPTANCE-v0.2.0.md) · [资料来源政策](docs/KNOWLEDGE-SOURCE-POLICY.md) · [现成库与验收来源](docs/ZIM-SOURCES.md)
 
 ## 开发与验证
 

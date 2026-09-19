@@ -15,6 +15,16 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 1000
 const page = await context.newPage();
 page.setDefaultTimeout(25_000);
 const errors = [], requests = [], blocked = [], checks = [];
+const backgroundRequests = [];
+const hostSaveStacks = [];
+const cdp = await context.newCDPSession(page);
+await cdp.send('Network.enable');
+cdp.on('Network.requestWillBeSent', event => {
+  if (new URL(event.request.url).pathname !== '/api/settings/save') return;
+  const frames = []; let stack = event.initiator.stack;
+  while (stack) { frames.push(...stack.callFrames.map(item => ({ functionName: item.functionName, url: item.url }))); stack = stack.parent; }
+  hostSaveStacks.push(frames);
+});
 let baseline = 0;
 page.on('pageerror', error => errors.push(String(error)));
 page.on('request', request => requests.push(request.url()));
@@ -27,7 +37,7 @@ const ready = () => page.locator('.content[aria-busy="false"]').waitFor({ timeou
 const nav = async name => { await page.getByRole('navigation', { name: '终端导航' }).getByRole('button', { name, exact: true }).click(); await ready(); };
 const search = async query => { await nav('搜索'); await page.getByRole('searchbox').fill(query); await page.getByRole('button', { name: '开始搜索' }).click(); await ready(); };
 const attach = async () => { await nav('知库'); await page.getByLabel('选择本地 ZIM 知识库').setInputFiles(file); await ready(); await page.getByText('已连接 · 本地文件', { exact: true }).waitFor(); };
-const frame = () => page.frameLocator('iframe');
+const frame = () => page.frameLocator('.archive-reader iframe');
 const open = async title => { await page.getByRole('button', { name: `阅读：${title}`, exact: true }).click(); await ready(); await frame().locator('body').waitFor(); };
 try {
   await page.goto(base);
@@ -62,7 +72,7 @@ try {
   await frame().locator('body').getByText('Ante（前注）', { exact: false }).first().waitFor();
   const original = await frame().locator('body').innerText();
   assert.match(original, /Creative Commons Attribution-Share Alike 4.0/); assert.ok(original.length > 400);
-  assert.equal(await page.locator('iframe').getAttribute('sandbox'), 'allow-same-origin');
+  assert.equal(await page.locator('.archive-reader iframe').getAttribute('sandbox'), 'allow-same-origin');
   assert.equal(await frame().locator('script,form,object,embed').count(), 0);
   done('poker original links to source glossary; terms, attribution and script-free sandbox are preserved');
   await page.getByRole('button', { name: '收藏这一页', exact: true }).click(); await ready();
@@ -83,7 +93,15 @@ try {
   await search('扑克'); await open('扑克');
   await frame().getByRole('link', { name: '术语表', exact: true }).click(); await ready();
   await frame().locator('body').getByText('Ante（前注）', { exact: false }).first().waitFor();
-  assert.equal(requests.filter(url => /^https?:/.test(url)).length, requests.slice(0, before).filter(url => /^https?:/.test(url)).length);
+  const newHTTP = requests.slice(before).filter(url => /^https?:/.test(url));
+  for (const url of newHTTP) {
+    const parsed = new URL(url);
+    const stack = hostSaveStacks.at(-1) || [];
+    const hostSave = host && parsed.origin === new URL(base).origin && parsed.pathname === '/api/settings/save'
+      && stack.some(item => /\/script\.js(?:$|\?)/.test(item.url)) && !stack.some(item => item.url.includes('st-knowledge-phone'));
+    assert.ok(hostSave, `Unexpected HTTP request during offline reading: ${url}; stack=${JSON.stringify(stack)}`);
+    backgroundRequests.push({ path: parsed.pathname, source: 'SillyTavern core settings save, outside extension', stack });
+  }
   done('offline indexed search, original reading and glossary navigation make no HTTP requests');
   await context.setOffline(false);
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -103,7 +121,7 @@ try {
   }
   assert.equal(blocked.length, 0); assert.deepEqual(errors.slice(baseline), []);
   await writeFile(path.join(evidence, host ? 'host-acceptance.json' : 'preview-acceptance.json'), JSON.stringify({ capturedAt: new Date().toISOString(), status: 'passed', base, checks,
-    baselineErrors: errors.slice(0, baseline), newErrors: errors.slice(baseline), modelCalls: blocked.length,
+    baselineErrors: errors.slice(0, baseline), newErrors: errors.slice(baseline), modelCalls: blocked.length, backgroundRequests,
     limitations: ['No 14 GB library test', 'Mobile viewport emulation, not a physical mobile device', 'Isolated browser profile; archive selection is not transferred to other browsers'] }, null, 2));
   console.log(`PASS ${checks.length} ZIM UI checks`);
 } catch (error) {
