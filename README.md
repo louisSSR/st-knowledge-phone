@@ -4,7 +4,7 @@
 
 ## 安装
 
-要求 SillyTavern **1.18.0 或更高版本**，以及支持 ES Modules、module Worker、IndexedDB、Shadow DOM 和 structuredClone 的浏览器。源码合约已核对 1.18.0；真实宿主安装验收尚待完成。
+要求 SillyTavern **1.18.0 或更高版本**，以及支持 ES Modules、module Worker、IndexedDB、Shadow DOM 和 structuredClone 的浏览器。已在本机真实 SillyTavern 1.18.0 完成安装与运行检查，见[实机验收记录](docs/REAL-HOST-ACCEPTANCE.md)；其他版本和手机真机仍须单独验证。
 
 在 SillyTavern 的「扩展 → 安装扩展」中粘贴：
 
