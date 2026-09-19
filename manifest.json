@@ -1,0 +1,18 @@
+{
+  "display_name": "掌上知库 · Knowledge Phone",
+  "loading_order": 10,
+  "dependencies": [],
+  "js": "index.js",
+  "author": "Knowledge Phone contributors",
+  "version": "0.1.0",
+  "homePage": "https://github.com/louisSSR/st-knowledge-phone",
+  "auto_update": false,
+  "hooks": {
+    "activate": "onActivate",
+    "enable": "onEnable",
+    "disable": "onDisable",
+    "clean": "onClean",
+    "delete": "onDelete"
+  },
+  "minimum_client_version": "1.18.0"
+}

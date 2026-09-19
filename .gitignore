@@ -1,0 +1,9 @@
+node_modules/
+evidence/
+delivery/
+NEXT.md
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db

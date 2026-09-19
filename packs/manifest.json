@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "schemaVersion": 1,
+      "id": "knowledge-phone-original-demo",
+      "name": "掌上知库 · 原创演示包",
+      "version": "0.1.0",
+      "description": "17 条原创纯文本示例：六种扑克牌简化桌规、虚构涩谷地点与服饰、2008 / 2012 / 2025 时间线 fixture。非现实百科或购物资料。",
+      "entryCount": 17,
+      "license": "CC0-1.0；本项目原创示范文字。",
+      "createdAt": "2026-09-19",
+      "file": "original-demo.pack.json"
+    }
+  ]
+}

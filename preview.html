@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>掌上知库 · 初版预览</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#101219;color:#ebe6e0;font:16px/1.7 system-ui,"Microsoft YaHei",sans-serif}
+  main{max-width:720px;margin:12vh 8vw;padding-right:120px}small{color:#b2a4cc;letter-spacing:.25em}h1{font-size:clamp(36px,5vw,62px);line-height:1.2;font-weight:550;margin:24px 0}p{max-width:500px;color:#aaa8b6}label{display:block;margin-top:36px;font-size:13px;color:#aaa8b6}
+  select,button{border:1px solid #4d455e;background:#211c2c;color:#eee6dc;border-radius:10px;padding:12px;margin:8px 8px 0 0;font:inherit}select:focus-visible,button:focus-visible{outline:3px solid #c8abef}aside{margin-top:48px;font-size:13px;color:#81818f}code{color:#c7b4e0}
+  @media(max-width:600px){main{margin:10vh 24px;padding:0}h1{font-size:40px}}
+</style>
+<main>
+  <small>KNOWLEDGE PHONE / 0.1</small>
+  <h1>把知识，放进<br>故事的时间里。</h1>
+  <p>一个离线运行的掌上知识终端。资料留在本机，故事拥有自己的时间。</p>
+  <p>点击右下角「掌上知库」，在「知库」安装随附示范包，即可体验搜索、阅读与收藏。</p>
+  <label for="preview-chat">预览聊天 · 可验证世界线隔离</label>
+  <select id="preview-chat"><option value="demo-2008">东京 · 2008 年</option><option value="demo-2025">现代 · 2025 年</option><option value="demo-empty">尚未识别时间</option></select>
+  <button id="preview-reset" type="button">重新打开扩展</button>
+  <aside>这是独立浏览器预览；不会连接或修改 SillyTavern。<br>资料包、收藏与设置保存在此预览地址的本机浏览器中。</aside>
+</main>
+<script type="module" src="./dist/preview.js"></script>
+</html>
