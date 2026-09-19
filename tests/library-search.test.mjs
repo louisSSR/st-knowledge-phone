@@ -60,6 +60,19 @@ test('autumn clothing shortcut finds period-visible data without future fixture 
   assert.deepEqual(future.suggestions, ['星盒 Pocket 2025 · 未来演示']);
 });
 
+test('bare article titles stay searchable and card-game overviews exclude unrelated board games', () => {
+  const article = { ...find('poker-texas'), id: 'poker-article', title: '扑克牌', type: 'article', aliases: [], tags: ['纸牌'] };
+  const chess = { ...find('poker-texas'), id: 'chess-rule', title: '国际象棋', aliases: ['西洋棋'], tags: ['棋类'] };
+  const mixed = [...corpus, { packId: 'encyclopedia', packName: '百科', entries: [article, chess], documents: {
+    [article.id]: buildDocument(article, '扑克牌的起源与牌面。'), [chess.id]: buildDocument(chess, '象棋的规则。'),
+  } }];
+  assert.equal(parseQuery('扑克牌').ruleOverview, false);
+  assert.equal(searchCorpus(mixed, { query: '扑克牌', context }).results[0].entry.id, article.id);
+  const overview = searchCorpus(mixed, { query: '扑克牌怎么玩', context });
+  assert.equal(overview.total, 6);
+  assert.ok(overview.results.every(result => ![article.id, chess.id].includes(result.entry.id)));
+});
+
 test('2008 hard filters remove future titles from results and autocomplete', () => {
   const reply = search('Pocket');
   assert.deepEqual(reply.results.map(result => result.entry.id), ['pocket-2008']);

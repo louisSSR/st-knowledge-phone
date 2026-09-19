@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.1.0",
   "modules": 30,
-  "bytes": 109070,
-  "gzipBytes": 37134,
+  "bytes": 109290,
+  "gzipBytes": 37232,
   "note": "Sum of all JS modules; startup is smaller because controller/UI/worker are lazy loaded."
 }

@@ -34,6 +34,8 @@ export function searchCorpus(corpora, request) {
             const document = corpus.documents[entry.id];
             if (typeof document !== 'string')
                 continue;
+            if (ruleOverview && !/(?:扑克牌|扑克|纸牌|撲克牌|撲克|紙牌|card games?)/iu.test([entry.title, ...entry.aliases, ...entry.tags].join(' ')))
+                continue;
             const score = scoreEntry(entry, document, query, tokens);
             if (score > 0)
                 results.push({ entry, packId: corpus.packId, packName: corpus.packName, score });

@@ -7,3 +7,5 @@ NEXT.md
 *.log
 .DS_Store
 Thumbs.db
+corpus/.cache/
+corpus/output/

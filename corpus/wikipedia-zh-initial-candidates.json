@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "wikipedia-zh-initial-candidates",
+  "name": "中文百科 · 初次采集候选（含待复核页）",
+  "articles": [
+    {
+      "title": "扑克牌",
+      "type": "article",
+      "tags": [
+        "棋牌",
+        "纸牌"
+      ],
+      "aliases": [
+        "撲克牌"
+      ]
+    },
+    {
+      "title": "斗地主",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "扑克牌"
+      ]
+    },
+    {
+      "title": "德州扑克",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "扑克牌"
+      ],
+      "aliases": [
+        "德州撲克"
+      ]
+    },
+    {
+      "title": "桥牌",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "扑克牌"
+      ],
+      "aliases": [
+        "橋牌"
+      ]
+    },
+    {
+      "title": "二十一点",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "扑克牌"
+      ],
+      "aliases": [
+        "二十一點"
+      ]
+    },
+    {
+      "title": "国际象棋",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "棋类"
+      ],
+      "aliases": [
+        "国际象棋",
+        "西洋棋"
+      ]
+    },
+    {
+      "title": "象棋",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "棋类"
+      ]
+    },
+    {
+      "title": "围棋",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "棋类"
+      ],
+      "aliases": [
+        "圍棋"
+      ]
+    },
+    {
+      "title": "五子棋",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "棋类"
+      ]
+    },
+    {
+      "title": "黑白棋",
+      "type": "game_rule",
+      "tags": [
+        "棋牌",
+        "棋类"
+      ]
+    },
+    {
+      "title": "太阳系",
+      "type": "article",
+      "tags": [
+        "科普",
+        "天文"
+      ],
+      "aliases": [
+        "太陽系"
+      ]
+    },
+    {
+      "title": "月球",
+      "type": "article",
+      "tags": [
+        "科普",
+        "天文"
+      ],
+      "aliases": [
+        "月亮"
+      ]
+    },
+    {
+      "title": "日食",
+      "type": "article",
+      "tags": [
+        "科普",
+        "天文"
+      ]
+    },
+    {
+      "title": "月食",
+      "type": "article",
+      "tags": [
+        "科普",
+        "天文"
+      ]
+    },
+    {
+      "title": "光合作用",
+      "type": "article",
+      "tags": [
+        "科普",
+        "生物"
+      ]
+    },
+    {
+      "title": "水循环",
+      "type": "article",
+      "tags": [
+        "科普",
+        "地理"
+      ],
+      "aliases": [
+        "水循環"
+      ]
+    },
+    {
+      "title": "彩虹",
+      "type": "article",
+      "tags": [
+        "科普",
+        "天气"
+      ]
+    },
+    {
+      "title": "地震",
+      "type": "article",
+      "tags": [
+        "科普",
+        "地理"
+      ]
+    },
+    {
+      "title": "火山",
+      "type": "article",
+      "tags": [
+        "科普",
+        "地理"
+      ]
+    },
+    {
+      "title": "潮汐",
+      "type": "article",
+      "tags": [
+        "科普",
+        "地理"
+      ]
+    }
+  ]
+}

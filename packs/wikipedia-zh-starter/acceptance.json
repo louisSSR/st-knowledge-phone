@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "verifiedAt": "2026-09-19T17:02:41.673Z",
+  "summary": {
+    "packs": 2,
+    "articles": 13,
+    "entries": 24,
+    "reconstructedCharacters": 108201,
+    "searchQueries": 15
+  },
+  "checks": [
+    {
+      "name": "采集报告完整成功",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-starter-001.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-starter-002.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：扑克牌",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：扑克牌",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：二十一點",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：二十一點",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：二十一点",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：國際象棋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：國際象棋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：国际象棋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：围棋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：围棋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：五子棋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：五子棋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：黑白棋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：黑白棋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：太阳系",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：太阳系",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：月球",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：月球",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：日食",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：日食",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：月食",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：月食",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：水循环",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：水循环",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：地震",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：地震",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：火山",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：火山",
+      "status": "passed"
+    },
+    {
+      "name": "报告与知识包条目一一对应",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "这是离线技术验收，不是逐条事实核查、真实 SillyTavern 运行验收或用户最终验收。",
+    "校验重组文本与采集报告中的 SHA-256 一致；未重新联网比对上游页面，也不能证明采集器记录的原始 extract 哈希。",
+    "采集日期是保守的知识可见起点；当前快照不代表任何历史时点的百科内容。"
+  ]
+}

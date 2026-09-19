@@ -11,6 +11,28 @@
       "license": "CC0-1.0；本项目原创示范文字。",
       "createdAt": "2026-09-19",
       "file": "original-demo.pack.json"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "wikipedia-zh-starter-001",
+      "name": "中文百科 · 棋牌与基础科普 · 1",
+      "version": "2026-09-19T17-02-40-800Z",
+      "description": "中文维基百科纯文本摘录。当前采集快照；可能省略图片、表格、公式或模板，不保证事实正确或历史时点可知。保留来源、作者历史与 CC BY-SA 4.0 许可。",
+      "entryCount": 18,
+      "license": "CC BY-SA 4.0 · https://creativecommons.org/licenses/by-sa/4.0/",
+      "createdAt": "2026-09-19",
+      "file": "wikipedia-zh-starter/wikipedia-zh-starter-001.pack.json"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "wikipedia-zh-starter-002",
+      "name": "中文百科 · 棋牌与基础科普 · 2",
+      "version": "2026-09-19T17-02-40-800Z",
+      "description": "中文维基百科纯文本摘录。当前采集快照；可能省略图片、表格、公式或模板，不保证事实正确或历史时点可知。保留来源、作者历史与 CC BY-SA 4.0 许可。",
+      "entryCount": 6,
+      "license": "CC BY-SA 4.0 · https://creativecommons.org/licenses/by-sa/4.0/",
+      "createdAt": "2026-09-19",
+      "file": "wikipedia-zh-starter/wikipedia-zh-starter-002.pack.json"
     }
   ]
 }

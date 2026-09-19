@@ -1,4 +1,4 @@
-# 掌上知库 · Knowledge Phone v0.1
+# 掌上知库 · Knowledge Phone v0.1.1
 
 零后端、零必需第三方插件的 SillyTavern 掌上知识终端。按当前聊天的世界日期与地点搜索本地知识包，不调用模型、不上传聊天，默认严格时间线。
 
@@ -25,6 +25,17 @@ https://github.com/louisSSR/st-knowledge-phone.git
 - 历史按聊天与世界线隔离，收藏按聊天保存；关闭手机终止搜索 Worker。
 
 附带 17 条原创演示资料，其中包括六种纸牌玩法。商店、品牌、商品、赛事与历史事件是虚构演示数据；牌戏是简化教学规则。它们用于体验和验证功能，不是真实百科或竞技裁判规则。
+
+另有真实来源的[中文百科首批资料包](packs/wikipedia-zh-starter/README.md)，从中文维基百科采集棋牌与基础科普纯文本摘录，保留来源与 CC BY-SA 4.0 归因。下载其中的 `.pack.json` 后逐个导入，将世界时间设为「现代模式 · 今天」即可查阅。最新摘录不会出现在 2008 年的严格世界线。
+
+维护者可使用[批量采集与验收脚本](corpus/README.md)继续制作：
+
+```sh
+npm run corpus:collect -- --out corpus/output/batch-001
+npm run corpus:verify -- corpus/output/batch-001
+```
+
+需要 Node.js 24+。脚本按明确清单限速下载、缓存、校验、去重和分包；普通使用者不需要运行它。
 
 ## 世界时间
 

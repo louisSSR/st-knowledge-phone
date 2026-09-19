@@ -1,12 +1,14 @@
 {
   "name": "st-knowledge-phone",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "devDependencies": { "typescript": "6.0.3" },
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "preview": "node scripts/serve.mjs"
+    "preview": "node scripts/serve.mjs",
+    "corpus:collect": "node scripts/collect-wikipedia.mjs",
+    "corpus:verify": "node scripts/verify-collection.mjs"
   }
 }

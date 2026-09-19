@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "generatedAt": "2026-09-19T17:02:40.800Z",
+  "requested": 13,
+  "articles": [
+    {
+      "pageId": 3430388,
+      "title": "扑克牌",
+      "requestedTitles": [
+        "扑克牌"
+      ],
+      "retrievedAt": "2026-09-19T16:54:00.851Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%89%91%E5%85%8B%E7%89%8C",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%89%91%E5%85%8B%E7%89%8C&action=history",
+      "observedRevisionId": 93911126,
+      "observedRevisionAt": "2026-08-16T05:21:58Z",
+      "extractSha256": "0d8265ce63d280145a03b4d27fd2657ad40a88e0c1d2722cb40c023a6221c8d6",
+      "normalizedSha256": "5b68aceb16411b7ac82d52bb2b7df5c8a82b2402984ba74b604e110c253c5d81",
+      "normalizedCharacters": 2089,
+      "entryIds": [
+        "wiki-zh-3430388-001"
+      ]
+    },
+    {
+      "pageId": 144844,
+      "title": "二十一點",
+      "requestedTitles": [
+        "二十一点"
+      ],
+      "retrievedAt": "2026-09-19T16:54:09.778Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%8D%81%E4%B8%80%E9%BB%9E",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%8C%E5%8D%81%E4%B8%80%E9%BB%9E&action=history",
+      "observedRevisionId": 91644772,
+      "observedRevisionAt": "2026-02-23T16:02:53Z",
+      "extractSha256": "18314b7500ac77f01e947c5af0022fe31bcc76fe07a3145131e0bc60f6849f6d",
+      "normalizedSha256": "ef8b9fb9a352b2d7f5366d18fe0a0844f2d6ccb9bc6b59730defe0af5242d3ac",
+      "normalizedCharacters": 4170,
+      "entryIds": [
+        "wiki-zh-144844-001"
+      ]
+    },
+    {
+      "pageId": 7573,
+      "title": "國際象棋",
+      "requestedTitles": [
+        "国际象棋"
+      ],
+      "retrievedAt": "2026-09-19T16:54:12.558Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9C%8B%E9%9A%9B%E8%B1%A1%E6%A3%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%9C%8B%E9%9A%9B%E8%B1%A1%E6%A3%8B&action=history",
+      "observedRevisionId": 93876342,
+      "observedRevisionAt": "2026-08-13T08:59:30Z",
+      "extractSha256": "b187e13cea6f94d269d0ac0661b7a858a52f513a0f672e43145eeac7f2e11ddc",
+      "normalizedSha256": "a10419e1034472d38f99128b8638268b40ab2e2fd824eef36f1239dd04f5161e",
+      "normalizedCharacters": 5468,
+      "entryIds": [
+        "wiki-zh-7573-001"
+      ]
+    },
+    {
+      "pageId": 2165,
+      "title": "围棋",
+      "requestedTitles": [
+        "围棋"
+      ],
+      "retrievedAt": "2026-09-19T16:54:17.947Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9B%B4%E6%A3%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%9B%B4%E6%A3%8B&action=history",
+      "observedRevisionId": 94110560,
+      "observedRevisionAt": "2026-08-30T18:07:29Z",
+      "extractSha256": "3228c4f936726dbab5f7be0bebdd55117f77435e35c99cc30c8eedbd94aa11ce",
+      "normalizedSha256": "ed6b34486d9efb648134bb2da5a1eca3b451171a1be6d800d1832e9132411e59",
+      "normalizedCharacters": 10650,
+      "entryIds": [
+        "wiki-zh-2165-001",
+        "wiki-zh-2165-002"
+      ]
+    },
+    {
+      "pageId": 19624,
+      "title": "五子棋",
+      "requestedTitles": [
+        "五子棋"
+      ],
+      "retrievedAt": "2026-09-19T16:54:19.995Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%94%E5%AD%90%E6%A3%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%94%E5%AD%90%E6%A3%8B&action=history",
+      "observedRevisionId": 94173529,
+      "observedRevisionAt": "2026-09-03T09:28:29Z",
+      "extractSha256": "5f20f5c4d82adc528f92af802d678f3fdd1c2650d2d9abcc486e06e9c267f313",
+      "normalizedSha256": "948f1d85cf5193ffa333eccb2db62590ec5fc28a9f3c3cf573545c29e331caff",
+      "normalizedCharacters": 4564,
+      "entryIds": [
+        "wiki-zh-19624-001"
+      ]
+    },
+    {
+      "pageId": 25194,
+      "title": "黑白棋",
+      "requestedTitles": [
+        "黑白棋"
+      ],
+      "retrievedAt": "2026-09-19T16:54:22.070Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%BB%91%E7%99%BD%E6%A3%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%BB%91%E7%99%BD%E6%A3%8B&action=history",
+      "observedRevisionId": 93218315,
+      "observedRevisionAt": "2026-06-27T04:53:11Z",
+      "extractSha256": "852533a47c6d45027b3f543e50ecbc2fcd3b538b2d34220fff2d05e67d470c40",
+      "normalizedSha256": "257bb4acfde55fcb1d89cce09c872235bd0aed4ec4e8fe30e7737b8e4b38eb26",
+      "normalizedCharacters": 4454,
+      "entryIds": [
+        "wiki-zh-25194-001"
+      ]
+    },
+    {
+      "pageId": 2315,
+      "title": "太阳系",
+      "requestedTitles": [
+        "太阳系"
+      ],
+      "retrievedAt": "2026-09-19T16:54:25.079Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%A4%AA%E9%98%B3%E7%B3%BB",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%A4%AA%E9%98%B3%E7%B3%BB&action=history",
+      "observedRevisionId": 94163737,
+      "observedRevisionAt": "2026-09-02T20:01:58Z",
+      "extractSha256": "c9e3d2e204f059f0cddb3cedc8f4de70e7db673e76b67ed779baccf3c145e3eb",
+      "normalizedSha256": "c1d049a3b3a3c2efca502aca7188016541593042f266bff44a086f84653e3505",
+      "normalizedCharacters": 20851,
+      "entryIds": [
+        "wiki-zh-2315-001",
+        "wiki-zh-2315-002",
+        "wiki-zh-2315-003",
+        "wiki-zh-2315-004"
+      ]
+    },
+    {
+      "pageId": 3376,
+      "title": "月球",
+      "requestedTitles": [
+        "月球"
+      ],
+      "retrievedAt": "2026-09-19T16:54:27.853Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9C%88%E7%90%83",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%9C%88%E7%90%83&action=history",
+      "observedRevisionId": 93975656,
+      "observedRevisionAt": "2026-08-21T00:51:12Z",
+      "extractSha256": "8b50b36c20cf863784920506997b6303b811159e300d673614fef6254d66fc77",
+      "normalizedSha256": "f9ffe8c83845fa60a13814d5b2a34fa79cb66cabfc230f31e917bbd256e0b2ea",
+      "normalizedCharacters": 19812,
+      "entryIds": [
+        "wiki-zh-3376-001",
+        "wiki-zh-3376-002",
+        "wiki-zh-3376-003",
+        "wiki-zh-3376-004"
+      ]
+    },
+    {
+      "pageId": 18501,
+      "title": "日食",
+      "requestedTitles": [
+        "日食"
+      ],
+      "retrievedAt": "2026-09-19T16:54:30.608Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%97%A5%E9%A3%9F",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E9%A3%9F&action=history",
+      "observedRevisionId": 93280030,
+      "observedRevisionAt": "2026-07-01T18:09:59Z",
+      "extractSha256": "384f0f53a8541d6f12ac188b49a1a1fd49610eb55cbd49d0404e425419411546",
+      "normalizedSha256": "10d1526cb3274f4722d3bd420e6b9159aec99b898a3764af00307864ccc4ad04",
+      "normalizedCharacters": 11153,
+      "entryIds": [
+        "wiki-zh-18501-001",
+        "wiki-zh-18501-002"
+      ]
+    },
+    {
+      "pageId": 18509,
+      "title": "月食",
+      "requestedTitles": [
+        "月食"
+      ],
+      "retrievedAt": "2026-09-19T16:54:32.640Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9C%88%E9%A3%9F",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%9C%88%E9%A3%9F&action=history",
+      "observedRevisionId": 92849469,
+      "observedRevisionAt": "2026-05-30T04:26:53Z",
+      "extractSha256": "1012a6bc3eaa10079f3215247ed0ceca0e49f577c44549e9478ae14935cfcdf0",
+      "normalizedSha256": "09d17f5f5725a06160b2eb7b043abe4a13c3d3982535d70fcf246977abaa2cbe",
+      "normalizedCharacters": 1906,
+      "entryIds": [
+        "wiki-zh-18509-001"
+      ]
+    },
+    {
+      "pageId": 506891,
+      "title": "水循环",
+      "requestedTitles": [
+        "水循环"
+      ],
+      "retrievedAt": "2026-09-19T16:54:37.016Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%B0%B4%E5%BE%AA%E7%8E%AF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%B0%B4%E5%BE%AA%E7%8E%AF&action=history",
+      "observedRevisionId": 93586144,
+      "observedRevisionAt": "2026-07-21T10:12:34Z",
+      "extractSha256": "37fe3fdd95da5952a5e9df2da4475e40ac8ba89fddd8b46013789d082dba0a3e",
+      "normalizedSha256": "e273de843d41636fb425090d94a9372464275778e84eddfe3fe9d226f90c90bf",
+      "normalizedCharacters": 5165,
+      "entryIds": [
+        "wiki-zh-506891-001"
+      ]
+    },
+    {
+      "pageId": 9854,
+      "title": "地震",
+      "requestedTitles": [
+        "地震"
+      ],
+      "retrievedAt": "2026-09-19T16:54:41.671Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9C%B0%E9%9C%87",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%9C%B0%E9%9C%87&action=history",
+      "observedRevisionId": 91053040,
+      "observedRevisionAt": "2026-01-10T04:26:37Z",
+      "extractSha256": "71ac9fe27b3c8bafe461e359275f1cc8e203d3c1d6c2355d15b5998fd81f0546",
+      "normalizedSha256": "9650626fa4a41cbd413c3f9f8355012fa1c109c64fca1a1800c4467aad6d314a",
+      "normalizedCharacters": 6077,
+      "entryIds": [
+        "wiki-zh-9854-001",
+        "wiki-zh-9854-002"
+      ]
+    },
+    {
+      "pageId": 10650,
+      "title": "火山",
+      "requestedTitles": [
+        "火山"
+      ],
+      "retrievedAt": "2026-09-19T16:54:44.032Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%81%AB%E5%B1%B1",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%81%AB%E5%B1%B1&action=history",
+      "observedRevisionId": 94173037,
+      "observedRevisionAt": "2026-09-03T08:58:16Z",
+      "extractSha256": "5e420a9e11ea604a7071a5154c6fd2b547993828cf0fec79a8f5e6457b766824",
+      "normalizedSha256": "d7bb53dd7297da40664ae76fef7a47e633f43621ee73babed237164b2aff8f7d",
+      "normalizedCharacters": 11842,
+      "entryIds": [
+        "wiki-zh-10650-001",
+        "wiki-zh-10650-002",
+        "wiki-zh-10650-003"
+      ]
+    }
+  ],
+  "duplicates": [],
+  "failures": [],
+  "packs": [
+    {
+      "file": "wikipedia-zh-starter-001.pack.json",
+      "sha256": "691bd8bcc6c68c1c4449245b7656a24afdfc1a141c2e90987bee99260c486d3a",
+      "bytes": 514392,
+      "entryCount": 18
+    },
+    {
+      "file": "wikipedia-zh-starter-002.pack.json",
+      "sha256": "f13969e6d436cfe3461b86cedd3993bf563b0dd64b52276b4cd8f29e27841f53",
+      "bytes": 146495,
+      "entryCount": 6
+    }
+  ],
+  "rightsEvidence": {
+    "retrievedAt": "2026-09-19T16:53:58.793Z",
+    "responseSha256": "e113e25ced1ad609affcd45e846e0fe125dc28f2c5c5592d54b9bfb5a1e97ca0",
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "rightsinfo": {
+          "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh",
+          "text": "Creative Commons Attribution-Share Alike 4.0"
+        }
+      }
+    }
+  }
+}
