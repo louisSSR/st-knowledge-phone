@@ -1,4 +1,4 @@
-# 掌上知库 · Knowledge Phone v0.1.2
+# 掌上知库 · Knowledge Phone v0.1.3
 
 零后端、零必需第三方插件的 SillyTavern 掌上知识终端。按当前聊天的世界日期与地点搜索本地知识包，不调用模型、不上传聊天，默认严格时间线。
 
@@ -28,14 +28,15 @@ https://github.com/louisSSR/st-knowledge-phone.git
 
 另有真实来源的[中文百科首批资料包](packs/wikipedia-zh-starter/README.md)，从中文维基百科采集棋牌与基础科普纯文本摘录，保留来源与 CC BY-SA 4.0 归因。下载其中的 `.pack.json` 后逐个导入，将世界时间设为「现代模式 · 今天」即可查阅。最新摘录不会出现在 2008 年的严格世界线。
 
+新增[自然地理与生活文化资料包](packs/wikipedia-zh-general/README.md)：92 篇、137 段、7 包。从 100 篇候选中隔离 8 篇，保留来源与许可，已完成技术校验、内容抽样及真实酒馆导入与搜索抽查。
+
 维护者可使用[批量采集与验收脚本](corpus/README.md)继续制作：
 
 ```sh
-npm run corpus:collect -- --out corpus/output/batch-001
-npm run corpus:verify -- corpus/output/batch-001
+npm run corpus:harvest -- --concurrency 3
 ```
 
-需要 Node.js 24+。脚本按明确清单限速下载、缓存、校验、去重和分包；普通使用者不需要运行它。
+需要 Node.js 24+。一条命令按 100 篇明确清单完成下载、缓存、失败项隔离、分包和技术校验，终端显示可导入的 `ready/` 目录。重复运行复用缓存；服务器要求等待时所有下载一起冷却。默认串行，命令中的 `--concurrency 3` 显式启用受限并发。普通使用者不需要运行采集脚本。
 
 ## 世界时间
 

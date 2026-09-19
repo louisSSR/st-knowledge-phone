@@ -1,24 +1,34 @@
 # 批量采集与验收
 
-这是维护者在电脑上运行的资料制作工具。酒馆端只导入生成的 `.pack.json`，搜索和阅读时不联网、不调用模型。默认清单包含从 20 篇候选中筛出的 13 篇中文百科摘录；原候选保留在 `wikipedia-zh-initial-candidates.json`，其中 7 篇暂缓收录，原因见[内容抽查报告](../packs/wikipedia-zh-starter/CONTENT-REVIEW.md)。可在 `wikipedia-zh-starter.json` 的 `articles` 中调整，每批最多 100 篇，不跟随网页链接递归抓取。
+这是维护者在电脑上运行的资料制作工具。酒馆端只导入生成的 `.pack.json`，搜索和阅读时不联网、不调用模型。一键脚本默认采集 `wikipedia-zh-general.json` 的 **100 篇**自然地理与生活文化资料；可编辑清单，每批最多 100 篇，不跟随网页链接递归抓取。旧的 13 篇入门包清单保留在 `wikipedia-zh-starter.json`。
 
 ## 运行
 
 需要 Node.js 24 或更新版本。在仓库根目录运行：
 
 ```sh
-npm run corpus:collect -- --out corpus/output/batch-001
-npm run corpus:verify -- corpus/output/batch-001
+npm run corpus:harvest -- --concurrency 3
 ```
 
-仓库已包含 `dist/`，无需为采集安装额外依赖。修改过 TypeScript 时先构建。输出目录须为新批次目录；不要覆盖历史报告。只有 `report.json` 和 `acceptance.json` 均为 `passed` 才进入内容抽查和浏览器验收。
+无需安装额外依赖。脚本自动创建新的批次目录，并完成下载、缓存、失败项隔离、分包和独立技术校验。终端输出 `ready/` 路径，其中 `.pack.json` 可导入掌上知库；只有通过校验才会生成该目录。再次运行同一命令会复用缓存。
+
+可选参数：`--config 清单.json`、`--out 新目录`、`--cache 缓存目录`、`--offline`、`--concurrency 1|2|3`。默认串行；上面的命令显式启用最多 3 个并发任务。单次命令不会持续后台监控或自动上传。
+
+`receipt.json` 分别记录原请求数、通过数、质量隔离数和网络待重试数；`quarantine.json` 保留具体原因。`partial` 表示只有筛出的部分通过，不能当成整批通过。退出码：0 全部技术通过、2 部分通过、1 失败。技术通过后仍应抽查内容；不能把结构校验当作逐条事实审查。
+
+保留需要“任一失败即不出包”行为的低层命令：
+
+```sh
+npm run corpus:collect -- --out corpus/output/strict-001 --concurrency 3
+npm run corpus:verify -- corpus/output/strict-001
+```
 
 如当前网络无法直接连接维基百科，可使用你已有的 HTTP 代理。Node.js 24 的代理示例（PowerShell，端口换为自己的代理）：
 
 ```powershell
 $env:HTTPS_PROXY = 'http://127.0.0.1:你的端口'
 $env:NODE_USE_ENV_PROXY = '1'
-npm run corpus:collect -- --out corpus/output/batch-001
+npm run corpus:harvest -- --concurrency 3
 ```
 
 这只影响当前终端进程，不修改系统代理。工具不要求账号、Cookie、API Key 或聊天内容。
@@ -26,11 +36,12 @@ npm run corpus:collect -- --out corpus/output/batch-001
 ## 缓存、更新与失败
 
 - 默认读取 `corpus/.cache/wikipedia-zh/` 的原始响应缓存，并沿用原采集日期。缓存和临时输出不提交到 Git。
-- 中断后用新的 `--out` 目录重跑，已经成功的条目不会再次下载。`--refresh` 显式重新采集；`--offline` 仅从缓存重建，缺缓存就失败。
-- 请求间隔至少 1.1 秒，每次超时 30 秒，最多 3 次尝试。识别 HTTP 429/5xx 和 HTTP 200 的 `maxlag` 错误，遵守 `Retry-After`；等待要求超过 60 秒或重试耗尽仍被限流时停止整批，不改抓下一篇来绕过等待。
+- 中断后重跑，已下载的条目不会再次下载；未通过内容检查的有界响应也会缓存，避免反复抓取同一坏质量页面，但不会进入资料包。`--offline` 完全不联网，缺缓存记为待重试。需要更新来源时可用低层 `corpus:collect --refresh`；坏缓存须显式刷新。
+- 同源请求全局起发间隔至少 500ms，实际网络等待可重叠，同一标题只发一次。每次超时 30 秒，最多 3 次尝试。识别 HTTP 429/5xx 和 HTTP 200 的 `maxlag` 错误，所有任务共同遵守 `Retry-After`；等待要求超过 60 秒或重试耗尽仍被限流时停止派发。已在途的成功响应可留缓存；未完成项记为待重试。
 - 单次响应上限 2 MiB，单篇 200–250000 字符。缺失页、消歧义页、章节重定向、API 警告、坏缓存、重复页面内容冲突、未渲染的 TeX 公式均列为失败。表格缺失和上标扁平化仍须抽查；机器通过不等于内容通过。
-- 任一条目失败，本批不输出知识包。成功内容留在缓存，失败原因保存在报告中；修正清单后用新目录续跑。站点许可检查不通过时会在抓正文前直接停止。
+- 一键脚本将质量不合格与网络未完成分开，筛出候选后仅用缓存重新建包并校验；校验失败不给出 `ready/`。低层采集命令仍保留任一失败不出包的严格行为。站点许可检查不通过时会在抓正文前停止。
 - 普通重定向按 pageid 合并，保留请求标题作为搜索别名。不同页面正文完全相同会失败，要求人工检查，避免误合并不同来源。
+- 明确的悬空表格指引会自动隔离。配置条目可加 `reviewHold` 写下人工复核暂缓原因；该项不下载、不打包，保留在隔离清单中。删除该字段之前先处理其原因。
 
 ## 输出和来源
 
@@ -55,10 +66,18 @@ npm run corpus:collect -- --out corpus/output/batch-001
 
 本工具解决小批量资料制作，不代表当前检索器适合整个维基百科或 GB 级语料。
 
+## 速度实测
+
+2026-09-20 在相同机器和代理网络上，用同样 8 篇全文、两套独立空缓存对比：旧版串行 **22.00 秒**，新版显式 3 并发 **6.38 秒**，本次约 **3.45 倍**。两次正文 SHA-256 逐篇一致，均通过独立校验。该结果不是缓存命中成绩，也不是固定速度承诺；上游缓存、网络和服务器限流会改变耗时。
+
+100 篇全新候选实跑（缓存命中 0）共 101 个请求，65.3 秒完成下载及初步建包验收。抽查后最终筛为 92 篇、137 段、7 包；从缓存重建与校验约 0.9 秒，零下载。成品和排除原因见[本批资料包](../packs/wikipedia-zh-general/README.md)。
+
+Action API 建议串行，因此程序默认并发为 1；需要缩短网络等待时可显式选择 2 或 3。全文 TextExtracts 不支持多篇批量返回，脚本没有把摘要冒充全文。上述速度来自调度和自动流水线，不是取消来源校验。
+
 ## 官方依据
 
 - [TextExtracts 摘录范围](https://www.mediawiki.org/wiki/Extension:TextExtracts)
 - [Action API Query 与版本限制](https://www.mediawiki.org/wiki/API:Query)
-- [API 礼仪](https://www.mediawiki.org/wiki/API:Etiquette)、[maxlag](https://www.mediawiki.org/wiki/Manual:Maxlag_parameter)
+- [API 礼仪](https://www.mediawiki.org/wiki/API:Etiquette)、[总体速率与并发建议](https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits)、[maxlag](https://www.mediawiki.org/wiki/Manual:Maxlag_parameter)
 - [内容复用](https://www.mediawiki.org/wiki/Wikimedia_APIs/Content_reuse)、[使用条款第 7 节](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/en#7._Licensing_of_Content)
 - [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)

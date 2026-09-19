@@ -1,0 +1,1776 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "generatedAt": "2026-09-19T19:21:30.038Z",
+  "requested": 92,
+  "articles": [
+    {
+      "pageId": 3182,
+      "title": "猫",
+      "requestedTitles": [
+        "猫"
+      ],
+      "retrievedAt": "2026-09-19T19:14:02.168Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8C%AB",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8C%AB&action=history",
+      "observedRevisionId": 93679470,
+      "observedRevisionAt": "2026-07-28T11:57:28Z",
+      "extractSha256": "ad8c7695a68992252e70fcbc5caf6763e19a6d78df0349bf5eff0b53316ca4fd",
+      "normalizedSha256": "b8e4a0a40ca59ba8614c9d3a53bd6137f58b68e47daf4d5d55cfd3ab07105898",
+      "normalizedCharacters": 17576,
+      "entryIds": [
+        "wiki-zh-3182-001",
+        "wiki-zh-3182-002",
+        "wiki-zh-3182-003",
+        "wiki-zh-3182-004"
+      ]
+    },
+    {
+      "pageId": 4769,
+      "title": "犬",
+      "requestedTitles": [
+        "狗"
+      ],
+      "retrievedAt": "2026-09-19T19:14:04.138Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8A%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8A%AC&action=history",
+      "observedRevisionId": 94437225,
+      "observedRevisionAt": "2026-09-19T06:57:10Z",
+      "extractSha256": "5589641eb62793e28919ba241368e6cc518c75adbe9667ada03a4681f6779e0c",
+      "normalizedSha256": "7f9ca4e451420353379fbe01d454855f7223f825bf01a7a24158603bf22299c6",
+      "normalizedCharacters": 11636,
+      "entryIds": [
+        "wiki-zh-4769-001",
+        "wiki-zh-4769-002"
+      ]
+    },
+    {
+      "pageId": 39564,
+      "title": "马",
+      "requestedTitles": [
+        "家马"
+      ],
+      "retrievedAt": "2026-09-19T19:14:02.679Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%A9%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%A9%AC&action=history",
+      "observedRevisionId": 94087281,
+      "observedRevisionAt": "2026-08-29T02:55:32Z",
+      "extractSha256": "bf98f20741cda3eb20fead32616aeb0d13f24893e37e7335695bceef6f7e9b56",
+      "normalizedSha256": "1546e57a307302a1696fcca2a71a6ed81d0f591587fac2e56230f12f1c62bbe1",
+      "normalizedCharacters": 2905,
+      "entryIds": [
+        "wiki-zh-39564-001"
+      ]
+    },
+    {
+      "pageId": 660650,
+      "title": "牛",
+      "requestedTitles": [
+        "牛"
+      ],
+      "retrievedAt": "2026-09-19T19:14:03.277Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%89%9B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%89%9B&action=history",
+      "observedRevisionId": 93540122,
+      "observedRevisionAt": "2026-07-19T04:43:02Z",
+      "extractSha256": "9b972e18c0460b3751a85158651e0786fc37d6eca37dd9fc452ec3fd828667b1",
+      "normalizedSha256": "21be9b8074c872c360e268c078fa761213ba097de5fef2f4453437a8602c2678",
+      "normalizedCharacters": 2972,
+      "entryIds": [
+        "wiki-zh-660650-001"
+      ]
+    },
+    {
+      "pageId": 51312,
+      "title": "綿羊",
+      "requestedTitles": [
+        "绵羊"
+      ],
+      "retrievedAt": "2026-09-19T19:14:03.604Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%B6%BF%E7%BE%8A",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%B6%BF%E7%BE%8A&action=history",
+      "observedRevisionId": 94384133,
+      "observedRevisionAt": "2026-09-16T04:13:51Z",
+      "extractSha256": "67d1f0384d5f67c98b9d55dbefe604a30b4b72d6d7136e524cba491d77f31494",
+      "normalizedSha256": "3a0971a42cacfb2f1541cff227819469fc9431834b5bfad66de87d31cfef420d",
+      "normalizedCharacters": 3176,
+      "entryIds": [
+        "wiki-zh-51312-001"
+      ]
+    },
+    {
+      "pageId": 148366,
+      "title": "家山羊",
+      "requestedTitles": [
+        "山羊"
+      ],
+      "retrievedAt": "2026-09-19T19:14:04.437Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%AE%B6%E5%B1%B1%E7%BE%8A",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%AE%B6%E5%B1%B1%E7%BE%8A&action=history",
+      "observedRevisionId": 93128153,
+      "observedRevisionAt": "2026-06-19T11:16:07Z",
+      "extractSha256": "76ca044ea70ef03489c785df6679fd8e41d5679728f8df473d577bf2a36fbe8d",
+      "normalizedSha256": "ada45f64881fb0b66300afbcd46ff90f173f6e19a60c60d024c07a51d431bbdb",
+      "normalizedCharacters": 1620,
+      "entryIds": [
+        "wiki-zh-148366-001"
+      ]
+    },
+    {
+      "pageId": 263939,
+      "title": "家豬",
+      "requestedTitles": [
+        "猪"
+      ],
+      "retrievedAt": "2026-09-19T19:14:04.957Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%AE%B6%E8%B1%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%AE%B6%E8%B1%AC&action=history",
+      "observedRevisionId": 94168098,
+      "observedRevisionAt": "2026-09-03T02:50:20Z",
+      "extractSha256": "60fc99381dbaa417e1b00ee6fa273d42e97f707d33ee707f9a45108a7a0bbaeb",
+      "normalizedSha256": "a92c8cf0874806b4781b6ff523e30269b1e06d08d6a5bddb760bc903821225ff",
+      "normalizedCharacters": 5900,
+      "entryIds": [
+        "wiki-zh-263939-001"
+      ]
+    },
+    {
+      "pageId": 723938,
+      "title": "家兔",
+      "requestedTitles": [
+        "家兔"
+      ],
+      "retrievedAt": "2026-09-19T19:14:05.590Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%AE%B6%E5%85%94",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%AE%B6%E5%85%94&action=history",
+      "observedRevisionId": 94168006,
+      "observedRevisionAt": "2026-09-03T02:43:28Z",
+      "extractSha256": "47a801b6cafc6fd7cfeb70599bcc7618d402a29cb5f8bba319009fd0de0d288e",
+      "normalizedSha256": "2ed74f619d7dfadf53f8033f6a700135c722bfe73a38b71aaf22a8f8ddea3845",
+      "normalizedCharacters": 5833,
+      "entryIds": [
+        "wiki-zh-723938-001"
+      ]
+    },
+    {
+      "pageId": 15554,
+      "title": "鸡",
+      "requestedTitles": [
+        "鸡"
+      ],
+      "retrievedAt": "2026-09-19T19:14:14.198Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%B8%A1",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%B8%A1&action=history",
+      "observedRevisionId": 94273072,
+      "observedRevisionAt": "2026-09-10T04:13:20Z",
+      "extractSha256": "e5b5dae14738248363bd67be0707c52012bf6cfbd7c4fbbc145cff9ad3f746a7",
+      "normalizedSha256": "63027b52f2bef36ffb0c8458370b00c9dec15c67eefeabf82e52e048a90d4be8",
+      "normalizedCharacters": 5160,
+      "entryIds": [
+        "wiki-zh-15554-001"
+      ]
+    },
+    {
+      "pageId": 116833,
+      "title": "鸭",
+      "requestedTitles": [
+        "鸭"
+      ],
+      "retrievedAt": "2026-09-19T19:14:08.051Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%B8%AD",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%B8%AD&action=history",
+      "observedRevisionId": 89295923,
+      "observedRevisionAt": "2025-09-26T11:11:55Z",
+      "extractSha256": "866dc18d899ea16539ee731977d0226d8f9b57fc4637eb3e389b9698eb965e3d",
+      "normalizedSha256": "b3dff01524be688cdf6e399b4c702e99ba2e82f10722f1b7307e003a4b466c7d",
+      "normalizedCharacters": 1100,
+      "entryIds": [
+        "wiki-zh-116833-001"
+      ]
+    },
+    {
+      "pageId": 64174,
+      "title": "鹅",
+      "requestedTitles": [
+        "鹅"
+      ],
+      "retrievedAt": "2026-09-19T19:14:09.282Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%B9%85",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%B9%85&action=history",
+      "observedRevisionId": 93989338,
+      "observedRevisionAt": "2026-08-22T02:30:31Z",
+      "extractSha256": "a7b3c507e069335ef42e71b99395e011e1992c1fe076e847543baa1700239d96",
+      "normalizedSha256": "ef279083dd568b73ed39dc7f138322ea12eb823bfe014957eb155f4880338199",
+      "normalizedCharacters": 1780,
+      "entryIds": [
+        "wiki-zh-64174-001"
+      ]
+    },
+    {
+      "pageId": 88311,
+      "title": "鸽属",
+      "requestedTitles": [
+        "鸽"
+      ],
+      "retrievedAt": "2026-09-19T19:14:13.641Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%B8%BD%E5%B1%9E",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%B8%BD%E5%B1%9E&action=history",
+      "observedRevisionId": 87686926,
+      "observedRevisionAt": "2025-06-10T15:47:05Z",
+      "extractSha256": "618ef6afd2b08bce1e61ce1582e6ded7595067e500f3c0fc43b11058fcfd85d7",
+      "normalizedSha256": "7a5fe47cba5b0cef18064a412b6309b28842e1fb3b8723bf09029d785dcd98a7",
+      "normalizedCharacters": 2244,
+      "entryIds": [
+        "wiki-zh-88311-001"
+      ]
+    },
+    {
+      "pageId": 308464,
+      "title": "大熊猫",
+      "requestedTitles": [
+        "大熊猫"
+      ],
+      "retrievedAt": "2026-09-19T19:14:12.548Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%86%8A%E7%8C%AB",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%A4%A7%E7%86%8A%E7%8C%AB&action=history",
+      "observedRevisionId": 92571185,
+      "observedRevisionAt": "2026-05-07T19:36:50Z",
+      "extractSha256": "0e63d79a6057c00ab97fb925660230af4dde5d84877155e5929c8874fbfea8f9",
+      "normalizedSha256": "ee20bb8f76e8beec14eab69ed9595ff4a3365ecd6e1feec449110d9032ab8f6d",
+      "normalizedCharacters": 10791,
+      "entryIds": [
+        "wiki-zh-308464-001",
+        "wiki-zh-308464-002"
+      ]
+    },
+    {
+      "pageId": 42191,
+      "title": "虎",
+      "requestedTitles": [
+        "虎"
+      ],
+      "retrievedAt": "2026-09-19T19:14:14.275Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%99%8E",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%99%8E&action=history",
+      "observedRevisionId": 93598149,
+      "observedRevisionAt": "2026-07-21T19:20:06Z",
+      "extractSha256": "60c32829faed78a72038aa6f76b3ecb4880151ed4e5f4e3b40fd0c42fa045a5d",
+      "normalizedSha256": "969eca4995a0259021df86b39a631dd43ad582168a4eff130f3be7a42a6ef530",
+      "normalizedCharacters": 16561,
+      "entryIds": [
+        "wiki-zh-42191-001",
+        "wiki-zh-42191-002",
+        "wiki-zh-42191-003"
+      ]
+    },
+    {
+      "pageId": 55603,
+      "title": "狮",
+      "requestedTitles": [
+        "狮"
+      ],
+      "retrievedAt": "2026-09-19T19:14:17.465Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8B%AE",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8B%AE&action=history",
+      "observedRevisionId": 93475510,
+      "observedRevisionAt": "2026-07-15T06:55:20Z",
+      "extractSha256": "3f0de2ac675aeb92f7675c72f300ee3c8c9af727eb23b051587e76d9867197e2",
+      "normalizedSha256": "8df84e547c0d0d39d5a9dff358e155882fdeeea0a2fcc69c6ee847931e80abd9",
+      "normalizedCharacters": 8684,
+      "entryIds": [
+        "wiki-zh-55603-001",
+        "wiki-zh-55603-002"
+      ]
+    },
+    {
+      "pageId": 6273950,
+      "title": "长颈鹿",
+      "requestedTitles": [
+        "长颈鹿"
+      ],
+      "retrievedAt": "2026-09-19T19:14:15.746Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%95%BF%E9%A2%88%E9%B9%BF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%95%BF%E9%A2%88%E9%B9%BF&action=history",
+      "observedRevisionId": 93127624,
+      "observedRevisionAt": "2026-06-19T10:23:57Z",
+      "extractSha256": "4922c2f3f8c1a99602192a4cd165aeb48118a92ce32e98ef191ab2cd57c4fc44",
+      "normalizedSha256": "db0ae87f34fff0ff5e589f4ea9840e57786fe50d24d7e395c4d39670257da261",
+      "normalizedCharacters": 12749,
+      "entryIds": [
+        "wiki-zh-6273950-001",
+        "wiki-zh-6273950-002",
+        "wiki-zh-6273950-003"
+      ]
+    },
+    {
+      "pageId": 149281,
+      "title": "斑馬",
+      "requestedTitles": [
+        "斑马"
+      ],
+      "retrievedAt": "2026-09-19T19:14:15.657Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%96%91%E9%A6%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%96%91%E9%A6%AC&action=history",
+      "observedRevisionId": 94353573,
+      "observedRevisionAt": "2026-09-14T08:43:08Z",
+      "extractSha256": "514c20dd5aec2695b68d10e51e2aea45206234523b8cade909b849c8e6b59457",
+      "normalizedSha256": "1ecd55313d5e55a8ee29cc1728d65f8a30d5914f41496878bf9b06365728bfe1",
+      "normalizedCharacters": 3895,
+      "entryIds": [
+        "wiki-zh-149281-001"
+      ]
+    },
+    {
+      "pageId": 138618,
+      "title": "企鵝",
+      "requestedTitles": [
+        "企鹅"
+      ],
+      "retrievedAt": "2026-09-19T19:14:17.317Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BC%81%E9%B5%9D",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BC%81%E9%B5%9D&action=history",
+      "observedRevisionId": 94388853,
+      "observedRevisionAt": "2026-09-16T09:53:47Z",
+      "extractSha256": "ab79ad4a622fb18bb7cfb2ca42ce5b47b835a05c0b2ba9fd40b70c956cc59831",
+      "normalizedSha256": "a6450ba51f689903361c43f72e9f97aeddc0c25b2d1f2654474aa6464cd143ff",
+      "normalizedCharacters": 5091,
+      "entryIds": [
+        "wiki-zh-138618-001"
+      ]
+    },
+    {
+      "pageId": 2834977,
+      "title": "蜜蜂屬",
+      "requestedTitles": [
+        "蜜蜂"
+      ],
+      "retrievedAt": "2026-09-19T19:14:18.073Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%9C%9C%E8%9C%82%E5%B1%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%9C%9C%E8%9C%82%E5%B1%AC&action=history",
+      "observedRevisionId": 93120613,
+      "observedRevisionAt": "2026-06-18T20:50:04Z",
+      "extractSha256": "a2a7081455b398a71a1457ae5b79cca334fb7fef81a2200a77d6f95cab0d3f1e",
+      "normalizedSha256": "19ffd2d92c3cf8c72c1d1a602a51637507ebe7c6ccf63cd200394931185637de",
+      "normalizedCharacters": 9072,
+      "entryIds": [
+        "wiki-zh-2834977-001",
+        "wiki-zh-2834977-002"
+      ]
+    },
+    {
+      "pageId": 32558,
+      "title": "小麦",
+      "requestedTitles": [
+        "小麦"
+      ],
+      "retrievedAt": "2026-09-19T19:14:19.220Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%B0%8F%E9%BA%A6",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%B0%8F%E9%BA%A6&action=history",
+      "observedRevisionId": 94170246,
+      "observedRevisionAt": "2026-09-03T05:34:44Z",
+      "extractSha256": "511693361ff4f14f5fd9f6f9d97034bd8a2fed0735ddf95c976097fc51fac374",
+      "normalizedSha256": "b87e6f4eb2d4681563196209d88536adc07cb2f71a46f6a0dd11a2695fe73065",
+      "normalizedCharacters": 6685,
+      "entryIds": [
+        "wiki-zh-32558-001",
+        "wiki-zh-32558-002"
+      ]
+    },
+    {
+      "pageId": 39251,
+      "title": "玉米",
+      "requestedTitles": [
+        "玉米"
+      ],
+      "retrievedAt": "2026-09-19T19:14:19.405Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E7%B1%B3",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8E%89%E7%B1%B3&action=history",
+      "observedRevisionId": 93861789,
+      "observedRevisionAt": "2026-08-12T07:56:15Z",
+      "extractSha256": "5478acd3beadf3dedd3838a37e681333ef9c4217a9c8b056a09fe7bae75d08d7",
+      "normalizedSha256": "cccaaea198d6669e172ce468adc785e63a9e856a8cf112303cae3717a3e7f4d4",
+      "normalizedCharacters": 3174,
+      "entryIds": [
+        "wiki-zh-39251-001"
+      ]
+    },
+    {
+      "pageId": 34509,
+      "title": "大豆",
+      "requestedTitles": [
+        "大豆"
+      ],
+      "retrievedAt": "2026-09-19T19:14:20.897Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E8%B1%86",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%A4%A7%E8%B1%86&action=history",
+      "observedRevisionId": 93591712,
+      "observedRevisionAt": "2026-07-21T13:57:52Z",
+      "extractSha256": "6911c967c1e6823e891259b3784693d71c4faa1281189376721f016757c1ed82",
+      "normalizedSha256": "5583afc97479439f8b73e5039f281348c23128785907b984d6311c8624974fc4",
+      "normalizedCharacters": 5726,
+      "entryIds": [
+        "wiki-zh-34509-001"
+      ]
+    },
+    {
+      "pageId": 95393,
+      "title": "马铃薯",
+      "requestedTitles": [
+        "马铃薯"
+      ],
+      "retrievedAt": "2026-09-19T19:14:20.642Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%A9%AC%E9%93%83%E8%96%AF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%A9%AC%E9%93%83%E8%96%AF&action=history",
+      "observedRevisionId": 94181478,
+      "observedRevisionAt": "2026-09-03T19:01:29Z",
+      "extractSha256": "8cdc6a8e76f77d8578fc2c477475f32f6666d10f1f836a3f531f42a7a72b94f4",
+      "normalizedSha256": "11b49e611dfb18ee2e143b9898e255ea951cb03b82be434db2590d4605215c25",
+      "normalizedCharacters": 3680,
+      "entryIds": [
+        "wiki-zh-95393-001"
+      ]
+    },
+    {
+      "pageId": 120371,
+      "title": "番薯",
+      "requestedTitles": [
+        "番薯"
+      ],
+      "retrievedAt": "2026-09-19T19:14:21.409Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%95%AA%E8%96%AF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%95%AA%E8%96%AF&action=history",
+      "observedRevisionId": 93559014,
+      "observedRevisionAt": "2026-07-20T13:33:08Z",
+      "extractSha256": "eac32495214a6a3ddef1eef02beb90a6e4bbf184f9f77a29ae20afb036495a3e",
+      "normalizedSha256": "739f59df1775f562e6476b2541af1c1f30506e8c77b60149b3639315a624c37b",
+      "normalizedCharacters": 3344,
+      "entryIds": [
+        "wiki-zh-120371-001"
+      ]
+    },
+    {
+      "pageId": 100389,
+      "title": "番茄",
+      "requestedTitles": [
+        "番茄"
+      ],
+      "retrievedAt": "2026-09-19T19:14:21.656Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%95%AA%E8%8C%84",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%95%AA%E8%8C%84&action=history",
+      "observedRevisionId": 93828886,
+      "observedRevisionAt": "2026-08-09T18:05:04Z",
+      "extractSha256": "a9bb37930e97c863b258b82e914b483a6a158dcb3b5c8988e12a38425057881d",
+      "normalizedSha256": "bddb6ccb2d50618787f562782812a93297679b4fd378a663a545afd9ecc557f0",
+      "normalizedCharacters": 3072,
+      "entryIds": [
+        "wiki-zh-100389-001"
+      ]
+    },
+    {
+      "pageId": 143213,
+      "title": "胡萝卜",
+      "requestedTitles": [
+        "胡萝卜"
+      ],
+      "retrievedAt": "2026-09-19T19:14:23.855Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%83%A1%E8%90%9D%E5%8D%9C",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%83%A1%E8%90%9D%E5%8D%9C&action=history",
+      "observedRevisionId": 93999769,
+      "observedRevisionAt": "2026-08-22T15:24:27Z",
+      "extractSha256": "ccea38cdb6f42b456d739c7e8512acad1442e69493f30fbf0547c86d8501a96b",
+      "normalizedSha256": "e6233b5190fc1a5c76927c098b47c1a348781b576159cc6b71b9981272800663",
+      "normalizedCharacters": 2148,
+      "entryIds": [
+        "wiki-zh-143213-001"
+      ]
+    },
+    {
+      "pageId": 7850,
+      "title": "苹果",
+      "requestedTitles": [
+        "苹果"
+      ],
+      "retrievedAt": "2026-09-19T19:14:22.900Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%8B%B9%E6%9E%9C",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%8B%B9%E6%9E%9C&action=history",
+      "observedRevisionId": 93928083,
+      "observedRevisionAt": "2026-08-17T13:35:06Z",
+      "extractSha256": "9fdc58110a9b0ad7a18710eb66ac8f0cbcc8e439a5d5404caf2a53a902ad87ad",
+      "normalizedSha256": "5ce060dc7f4277df6ef89c4a91f17bc19b2d91afea43bbe19d2026dd912fb407",
+      "normalizedCharacters": 6231,
+      "entryIds": [
+        "wiki-zh-7850-001",
+        "wiki-zh-7850-002"
+      ]
+    },
+    {
+      "pageId": 55834,
+      "title": "香蕉",
+      "requestedTitles": [
+        "香蕉"
+      ],
+      "retrievedAt": "2026-09-19T19:14:23.408Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%A6%99%E8%95%89",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%A6%99%E8%95%89&action=history",
+      "observedRevisionId": 93859268,
+      "observedRevisionAt": "2026-08-12T04:11:38Z",
+      "extractSha256": "5efd76d12555aa74f9adfb64d39f3d13400feb5ca8f289241aaae3446258fb07",
+      "normalizedSha256": "78a8f3487744239838b60079af510b9c3c328f11874e3f57abde87ef6f6ffd76",
+      "normalizedCharacters": 642,
+      "entryIds": [
+        "wiki-zh-55834-001"
+      ]
+    },
+    {
+      "pageId": 8061,
+      "title": "葡萄",
+      "requestedTitles": [
+        "葡萄"
+      ],
+      "retrievedAt": "2026-09-19T19:14:23.833Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%91%A1%E8%90%84",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%91%A1%E8%90%84&action=history",
+      "observedRevisionId": 93452964,
+      "observedRevisionAt": "2026-07-14T03:50:09Z",
+      "extractSha256": "96d64dc4d56cecd18914730c1fc059f5c40758644fdee578f69ad66d1ed37ddf",
+      "normalizedSha256": "f83129f71e87036204aca80f889bc53d0042d0994dac4fea53b3d13be08e6ca8",
+      "normalizedCharacters": 3742,
+      "entryIds": [
+        "wiki-zh-8061-001"
+      ]
+    },
+    {
+      "pageId": 46058,
+      "title": "茶树",
+      "requestedTitles": [
+        "茶树"
+      ],
+      "retrievedAt": "2026-09-19T19:14:25.755Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%8C%B6%E6%A0%91",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%8C%B6%E6%A0%91&action=history",
+      "observedRevisionId": 94447112,
+      "observedRevisionAt": "2026-09-19T19:09:10Z",
+      "extractSha256": "597e45f79317538d59d0833a54d5fe42b0f0748882d8aa2e194de33ff11d5ac9",
+      "normalizedSha256": "486d73528def8bfc5e0b458c345e50fdcb453da7f67c7bbed89bc1225a3e9afb",
+      "normalizedCharacters": 1266,
+      "entryIds": [
+        "wiki-zh-46058-001"
+      ]
+    },
+    {
+      "pageId": 5878043,
+      "title": "竹",
+      "requestedTitles": [
+        "竹"
+      ],
+      "retrievedAt": "2026-09-19T19:14:25.104Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%AB%B9",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%AB%B9&action=history",
+      "observedRevisionId": 93410564,
+      "observedRevisionAt": "2026-07-11T05:52:56Z",
+      "extractSha256": "c8b076b620d108b7855e2eb175a1383bb4e51578e0a4018ed8bf89cf4a5c5370",
+      "normalizedSha256": "a9aec79e5a94e7eacefb7e4ca270c530404b9940b6ac76fd9349f8a231e1e867",
+      "normalizedCharacters": 6738,
+      "entryIds": [
+        "wiki-zh-5878043-001",
+        "wiki-zh-5878043-002"
+      ]
+    },
+    {
+      "pageId": 133996,
+      "title": "松屬",
+      "requestedTitles": [
+        "松属"
+      ],
+      "retrievedAt": "2026-09-19T19:14:25.954Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9D%BE%E5%B1%AC",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%9D%BE%E5%B1%AC&action=history",
+      "observedRevisionId": 91517031,
+      "observedRevisionAt": "2026-02-13T19:28:01Z",
+      "extractSha256": "f9c4dbbda9d0c4ef3e3700b0dd9d7778ebe79b1255207e42aab72828ea43c02a",
+      "normalizedSha256": "2f85e14ee54496739926026f5eeb8b676139427fdc2a3dcc6e81b6c9902bdb23",
+      "normalizedCharacters": 11632,
+      "entryIds": [
+        "wiki-zh-133996-001",
+        "wiki-zh-133996-002"
+      ]
+    },
+    {
+      "pageId": 471,
+      "title": "亚洲",
+      "requestedTitles": [
+        "亚洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:27.250Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%9A%E6%B4%B2&action=history",
+      "observedRevisionId": 94227473,
+      "observedRevisionAt": "2026-09-07T05:52:59Z",
+      "extractSha256": "5e7127ca5be3fa66058d8686c0c6f4636c35b94e19cb514ce566707b473b3532",
+      "normalizedSha256": "8fd3319a2f0284d711c5fbc344480e2ff99a268b26eab4bda99ce1f406ed0f3e",
+      "normalizedCharacters": 10867,
+      "entryIds": [
+        "wiki-zh-471-001",
+        "wiki-zh-471-002"
+      ]
+    },
+    {
+      "pageId": 1728,
+      "title": "欧洲",
+      "requestedTitles": [
+        "欧洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:28.067Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%AC%A7%E6%B4%B2&action=history",
+      "observedRevisionId": 94311884,
+      "observedRevisionAt": "2026-09-12T07:05:36Z",
+      "extractSha256": "f4ccede0d621bd80ed056a21d502122c9df2db9f692c44275da99d8040876307",
+      "normalizedSha256": "cc5ae0aae5821c002d932314dc1de2a480bb123b352b133b90354f8d2f5da545",
+      "normalizedCharacters": 11944,
+      "entryIds": [
+        "wiki-zh-1728-001",
+        "wiki-zh-1728-002"
+      ]
+    },
+    {
+      "pageId": 2394,
+      "title": "非洲",
+      "requestedTitles": [
+        "非洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:28.021Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%9D%9E%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%9D%9E%E6%B4%B2&action=history",
+      "observedRevisionId": 93926842,
+      "observedRevisionAt": "2026-08-17T11:43:08Z",
+      "extractSha256": "6189f6eef3e5b162ed26ddbe002cc3253942101e7f2fac51873b0e976ea90a9f",
+      "normalizedSha256": "717e191f71f9cedeb3199bd46cc039c4cf134cfd8e5d673615af17d21c6cbfa6",
+      "normalizedCharacters": 5811,
+      "entryIds": [
+        "wiki-zh-2394-001"
+      ]
+    },
+    {
+      "pageId": 3420,
+      "title": "北美洲",
+      "requestedTitles": [
+        "北美洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:28.427Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8C%97%E7%BE%8E%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8C%97%E7%BE%8E%E6%B4%B2&action=history",
+      "observedRevisionId": 94175726,
+      "observedRevisionAt": "2026-09-03T12:06:02Z",
+      "extractSha256": "242a81149bc5705ada8c96fbc415d2bdf48dc02ca99d36cef9a829d95c9bee72",
+      "normalizedSha256": "ccc0d4e9c728b35fbc21362cb9528c87b3044addbcd3f437c2591ad98a085763",
+      "normalizedCharacters": 2536,
+      "entryIds": [
+        "wiki-zh-3420-001"
+      ]
+    },
+    {
+      "pageId": 3639,
+      "title": "南美洲",
+      "requestedTitles": [
+        "南美洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:29.251Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E7%BE%8E%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8D%97%E7%BE%8E%E6%B4%B2&action=history",
+      "observedRevisionId": 93064458,
+      "observedRevisionAt": "2026-06-14T12:35:50Z",
+      "extractSha256": "aba0cfe9e596733d93af38765a99e318330fa001f612ff48faaa4ecfcf353a20",
+      "normalizedSha256": "c18c8da1ddd48c4821dc5ba6f8084adcb97967de7d5e2e3325c1d3823ffe2320",
+      "normalizedCharacters": 5035,
+      "entryIds": [
+        "wiki-zh-3639-001"
+      ]
+    },
+    {
+      "pageId": 3202,
+      "title": "大洋洲",
+      "requestedTitles": [
+        "大洋洲"
+      ],
+      "retrievedAt": "2026-09-19T19:14:29.676Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%B4%8B%E6%B4%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%A4%A7%E6%B4%8B%E6%B4%B2&action=history",
+      "observedRevisionId": 93218604,
+      "observedRevisionAt": "2026-06-27T05:22:14Z",
+      "extractSha256": "365b66f11a9290c093249c463153d21ff594fcafc6c4053492d4af89b47d1d71",
+      "normalizedSha256": "a26a35bb6b5428e30afa51755ccd87f4eb8f2f7eb07831a1c9992bda37c288cc",
+      "normalizedCharacters": 2193,
+      "entryIds": [
+        "wiki-zh-3202-001"
+      ]
+    },
+    {
+      "pageId": 16415,
+      "title": "大西洋",
+      "requestedTitles": [
+        "大西洋"
+      ],
+      "retrievedAt": "2026-09-19T19:14:31.403Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E8%A5%BF%E6%B4%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%A4%A7%E8%A5%BF%E6%B4%8B&action=history",
+      "observedRevisionId": 93137497,
+      "observedRevisionAt": "2026-06-20T06:42:30Z",
+      "extractSha256": "881fd25d71a6f37a624b9a39db28e02440a8a5bdb029e6325f54718e8525f71f",
+      "normalizedSha256": "c0e5804c9f124f8e131545cd9fcc44a601ac5131e32221dfbc88b38fdbd6fee0",
+      "normalizedCharacters": 6554,
+      "entryIds": [
+        "wiki-zh-16415-001",
+        "wiki-zh-16415-002"
+      ]
+    },
+    {
+      "pageId": 16406,
+      "title": "北冰洋",
+      "requestedTitles": [
+        "北冰洋"
+      ],
+      "retrievedAt": "2026-09-19T19:14:32.524Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8C%97%E5%86%B0%E6%B4%8B",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8C%97%E5%86%B0%E6%B4%8B&action=history",
+      "observedRevisionId": 92296747,
+      "observedRevisionAt": "2026-04-16T02:21:55Z",
+      "extractSha256": "8d4752a04f4723bfdf2d5fc0e7d4486e118d2ac043bf289a48e533a5b0726ac2",
+      "normalizedSha256": "2051e952cf97e48790c6f536392acf2eb4205855e9ef71ea68d93c81c3ee48ab",
+      "normalizedCharacters": 3763,
+      "entryIds": [
+        "wiki-zh-16406-001"
+      ]
+    },
+    {
+      "pageId": 7482,
+      "title": "喜马拉雅山脉",
+      "requestedTitles": [
+        "喜马拉雅山脉"
+      ],
+      "retrievedAt": "2026-09-19T19:14:32.991Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%96%9C%E9%A9%AC%E6%8B%89%E9%9B%85%E5%B1%B1%E8%84%89",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%96%9C%E9%A9%AC%E6%8B%89%E9%9B%85%E5%B1%B1%E8%84%89&action=history",
+      "observedRevisionId": 94127389,
+      "observedRevisionAt": "2026-08-31T22:15:32Z",
+      "extractSha256": "193af97c019cae986070513d3c84a661f2e27f34ea0e19c31af969b9d57d2f9d",
+      "normalizedSha256": "6aa74f5b65729d002c629781587b69915c80dac80e830bb14758f8e817c55e55",
+      "normalizedCharacters": 6228,
+      "entryIds": [
+        "wiki-zh-7482-001",
+        "wiki-zh-7482-002"
+      ]
+    },
+    {
+      "pageId": 1439,
+      "title": "长江",
+      "requestedTitles": [
+        "长江"
+      ],
+      "retrievedAt": "2026-09-19T19:14:34.903Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%95%BF%E6%B1%9F",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%95%BF%E6%B1%9F&action=history",
+      "observedRevisionId": 94386981,
+      "observedRevisionAt": "2026-09-16T07:39:21Z",
+      "extractSha256": "9052590c68925b4832cb4a82fff0bb818b1281019ba477720eace1704adf21fc",
+      "normalizedSha256": "119af14121b27f97d4f8330e103e63f90a5b823908bf146dd13f7727404ab703",
+      "normalizedCharacters": 12679,
+      "entryIds": [
+        "wiki-zh-1439-001",
+        "wiki-zh-1439-002",
+        "wiki-zh-1439-003"
+      ]
+    },
+    {
+      "pageId": 22294,
+      "title": "尼罗河",
+      "requestedTitles": [
+        "尼罗河"
+      ],
+      "retrievedAt": "2026-09-19T19:14:35.145Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%B0%BC%E7%BD%97%E6%B2%B3",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%B0%BC%E7%BD%97%E6%B2%B3&action=history",
+      "observedRevisionId": 94170947,
+      "observedRevisionAt": "2026-09-03T06:22:35Z",
+      "extractSha256": "3517c905c315e08fb98307cec11b1fab7f3affd838ff1f05fc64f5d3818e84a7",
+      "normalizedSha256": "e6741340b416e95bfeed13b79b2de2dc1ef2098a5be4ea825f14103bce31336d",
+      "normalizedCharacters": 3241,
+      "entryIds": [
+        "wiki-zh-22294-001"
+      ]
+    },
+    {
+      "pageId": 66050,
+      "title": "亚马逊河",
+      "requestedTitles": [
+        "亚马孙河"
+      ],
+      "retrievedAt": "2026-09-19T19:14:35.706Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E9%A9%AC%E9%80%8A%E6%B2%B3",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%9A%E9%A9%AC%E9%80%8A%E6%B2%B3&action=history",
+      "observedRevisionId": 93679544,
+      "observedRevisionAt": "2026-07-28T12:04:24Z",
+      "extractSha256": "1e9637489750cb865f203824d1fd7464e279f4875d314a7c182db644e2244e71",
+      "normalizedSha256": "b93dbb94d004a5a8a7c8ddf2b70d9abc572019be32bd73a09370395fc5403634",
+      "normalizedCharacters": 4338,
+      "entryIds": [
+        "wiki-zh-66050-001"
+      ]
+    },
+    {
+      "pageId": 38920,
+      "title": "撒哈拉沙漠",
+      "requestedTitles": [
+        "撒哈拉沙漠"
+      ],
+      "retrievedAt": "2026-09-19T19:14:36.340Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%92%92%E5%93%88%E6%8B%89%E6%B2%99%E6%BC%A0",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%92%92%E5%93%88%E6%8B%89%E6%B2%99%E6%BC%A0&action=history",
+      "observedRevisionId": 92848429,
+      "observedRevisionAt": "2026-05-30T02:33:59Z",
+      "extractSha256": "d376d2eab2feab7909f5245736eb03bb5ac6a47d80e159b8fc309f036593326e",
+      "normalizedSha256": "27ebf50824f05b0937d24d6ecf8fb8c7069b10f521f92bc6a7c64622b6401083",
+      "normalizedCharacters": 3055,
+      "entryIds": [
+        "wiki-zh-38920-001"
+      ]
+    },
+    {
+      "pageId": 24611,
+      "title": "热带雨林",
+      "requestedTitles": [
+        "热带雨林"
+      ],
+      "retrievedAt": "2026-09-19T19:14:36.678Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%83%AD%E5%B8%A6%E9%9B%A8%E6%9E%97",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%83%AD%E5%B8%A6%E9%9B%A8%E6%9E%97&action=history",
+      "observedRevisionId": 94315717,
+      "observedRevisionAt": "2026-09-12T11:44:01Z",
+      "extractSha256": "7842d6a7e4adfd1c6d5ccdccf491864129ce2b02ecc29880a0ec4dece3aaf8c1",
+      "normalizedSha256": "dbf9394d3479808ec9f1fe34b2428bce14eee8f44b4a3ce67fb2fb04753ee716",
+      "normalizedCharacters": 4541,
+      "entryIds": [
+        "wiki-zh-24611-001"
+      ]
+    },
+    {
+      "pageId": 389100,
+      "title": "珊瑚礁",
+      "requestedTitles": [
+        "珊瑚礁"
+      ],
+      "retrievedAt": "2026-09-19T19:14:37.536Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8F%8A%E7%91%9A%E7%A4%81",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8F%8A%E7%91%9A%E7%A4%81&action=history",
+      "observedRevisionId": 94398918,
+      "observedRevisionAt": "2026-09-17T00:40:50Z",
+      "extractSha256": "4b119cafe2349e4a96cf92b06ed3afaeddd029022d45259830c0755ff7214ada",
+      "normalizedSha256": "73940fd093f5b6709b8901c45e416c31098f6dedab074df3fe9bb4a2d10e670c",
+      "normalizedCharacters": 6235,
+      "entryIds": [
+        "wiki-zh-389100-001",
+        "wiki-zh-389100-002"
+      ]
+    },
+    {
+      "pageId": 101341,
+      "title": "纸",
+      "requestedTitles": [
+        "纸"
+      ],
+      "retrievedAt": "2026-09-19T19:14:37.703Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%BA%B8",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%BA%B8&action=history",
+      "observedRevisionId": 93999866,
+      "observedRevisionAt": "2026-08-22T15:32:27Z",
+      "extractSha256": "9cdf0708736d3bfb142f4b2c880c2f8dd30391af3b722c539e669c4417487b9c",
+      "normalizedSha256": "f9405c15c8bee97ecb37c7673bb1388e3e25906de587286c32f1ec963cbc2c06",
+      "normalizedCharacters": 5852,
+      "entryIds": [
+        "wiki-zh-101341-001"
+      ]
+    },
+    {
+      "pageId": 68653,
+      "title": "铅笔",
+      "requestedTitles": [
+        "铅笔"
+      ],
+      "retrievedAt": "2026-09-19T19:14:38.308Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%93%85%E7%AC%94",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%93%85%E7%AC%94&action=history",
+      "observedRevisionId": 92886682,
+      "observedRevisionAt": "2026-06-01T09:32:05Z",
+      "extractSha256": "349a74a01456aeeb04d10856ea04029cab03edc5f123e7f4d07e1436493fd030",
+      "normalizedSha256": "582b30393edc3cdfbb93f282dd1693e9f8478f1f829a9bc2282c4a6eec88fc46",
+      "normalizedCharacters": 2154,
+      "entryIds": [
+        "wiki-zh-68653-001"
+      ]
+    },
+    {
+      "pageId": 68780,
+      "title": "鋼筆",
+      "requestedTitles": [
+        "钢笔"
+      ],
+      "retrievedAt": "2026-09-19T19:14:38.903Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%8B%BC%E7%AD%86",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%8B%BC%E7%AD%86&action=history",
+      "observedRevisionId": 93974312,
+      "observedRevisionAt": "2026-08-20T20:44:33Z",
+      "extractSha256": "6ca1e0496ff393640fd6f62657a135a2ee244edfc2c639cbffa1285dc279e9a2",
+      "normalizedSha256": "c781c0772687fb3b0c9e1483927e2b50734986b794b53eb4431111d31e820790",
+      "normalizedCharacters": 5085,
+      "entryIds": [
+        "wiki-zh-68780-001"
+      ]
+    },
+    {
+      "pageId": 86660,
+      "title": "橡皮擦",
+      "requestedTitles": [
+        "橡皮擦"
+      ],
+      "retrievedAt": "2026-09-19T19:14:39.417Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%A9%A1%E7%9A%AE%E6%93%A6",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%A9%A1%E7%9A%AE%E6%93%A6&action=history",
+      "observedRevisionId": 93403542,
+      "observedRevisionAt": "2026-07-10T17:25:44Z",
+      "extractSha256": "adf24e6601b4c8a71fd4fc7c82d0f7f17b7e6ea6a6066b11a3c0ad78d3bbd19b",
+      "normalizedSha256": "22243d9853e9726fa81654b5845c581c72ce5586b3ae0246562a2c10f6bf52f4",
+      "normalizedCharacters": 2187,
+      "entryIds": [
+        "wiki-zh-86660-001"
+      ]
+    },
+    {
+      "pageId": 64446,
+      "title": "图书",
+      "requestedTitles": [
+        "书籍"
+      ],
+      "retrievedAt": "2026-09-19T19:14:39.885Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9B%BE%E4%B9%A6",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%9B%BE%E4%B9%A6&action=history",
+      "observedRevisionId": 93803352,
+      "observedRevisionAt": "2026-08-07T13:09:50Z",
+      "extractSha256": "46d94a27f47ba9a6e15f5a5ea9758f5073ae7ad8dcbbb917ece847ed00e6c902",
+      "normalizedSha256": "4396f6b8275ce35ee95aa729ec47fe1784cfd7020a5ada5362e53b4716cb4bd1",
+      "normalizedCharacters": 4161,
+      "entryIds": [
+        "wiki-zh-64446-001"
+      ]
+    },
+    {
+      "pageId": 144616,
+      "title": "傘",
+      "requestedTitles": [
+        "雨伞"
+      ],
+      "retrievedAt": "2026-09-19T19:14:40.236Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%82%98",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%82%98&action=history",
+      "observedRevisionId": 94049437,
+      "observedRevisionAt": "2026-08-26T06:02:08Z",
+      "extractSha256": "930ea3632b944f0aaf3fe9d37d9bea0ee8418feb34a2cfd89e91441f7caf4a2a",
+      "normalizedSha256": "95bc55d2f1aa3c200a354148d67d485cd5eece247b87f6448b7f4cc044f0a2d1",
+      "normalizedCharacters": 1404,
+      "entryIds": [
+        "wiki-zh-144616-001"
+      ]
+    },
+    {
+      "pageId": 86694,
+      "title": "自行車",
+      "requestedTitles": [
+        "自行车"
+      ],
+      "retrievedAt": "2026-09-19T19:14:41.184Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%87%AA%E8%A1%8C%E8%BB%8A",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%87%AA%E8%A1%8C%E8%BB%8A&action=history",
+      "observedRevisionId": 94041919,
+      "observedRevisionAt": "2026-08-25T14:18:13Z",
+      "extractSha256": "182491ad955580e0b05c933fb6badaf6d30f1d54e951f24233b392c9565c0423",
+      "normalizedSha256": "0297f3a5c01047d0b897b6aaf08eb768a14920a48357d902d707ae3a70e9cd94",
+      "normalizedCharacters": 8674,
+      "entryIds": [
+        "wiki-zh-86694-001",
+        "wiki-zh-86694-002"
+      ]
+    },
+    {
+      "pageId": 72676,
+      "title": "輪椅",
+      "requestedTitles": [
+        "轮椅"
+      ],
+      "retrievedAt": "2026-09-19T19:14:41.289Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%BC%AA%E6%A4%85",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%BC%AA%E6%A4%85&action=history",
+      "observedRevisionId": 93553041,
+      "observedRevisionAt": "2026-07-20T06:27:29Z",
+      "extractSha256": "4483c75c7451f15b8096071361b807307cec3d5b7e6748fb0866e22ab1e1694a",
+      "normalizedSha256": "fb1a002e9cddcba892e8823c142017e96dca219b8df3656350f4b7ba3ba3413c",
+      "normalizedCharacters": 1440,
+      "entryIds": [
+        "wiki-zh-72676-001"
+      ]
+    },
+    {
+      "pageId": 185812,
+      "title": "眼鏡",
+      "requestedTitles": [
+        "眼镜"
+      ],
+      "retrievedAt": "2026-09-19T19:14:42.797Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%9C%BC%E9%8F%A1",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%9C%BC%E9%8F%A1&action=history",
+      "observedRevisionId": 93878632,
+      "observedRevisionAt": "2026-08-13T13:02:38Z",
+      "extractSha256": "9b23948e9e803c93df0941eae91c12edc2bcc5bad4f81663ce6a4bcb515e243f",
+      "normalizedSha256": "72d9c5285dcfa56cdbbd297cd3965eade0cdd92803f7d27f03a44c767fde0e7d",
+      "normalizedCharacters": 7229,
+      "entryIds": [
+        "wiki-zh-185812-001",
+        "wiki-zh-185812-002"
+      ]
+    },
+    {
+      "pageId": 119740,
+      "title": "牙刷",
+      "requestedTitles": [
+        "牙刷"
+      ],
+      "retrievedAt": "2026-09-19T19:14:42.294Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%89%99%E5%88%B7",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%89%99%E5%88%B7&action=history",
+      "observedRevisionId": 88908882,
+      "observedRevisionAt": "2025-08-27T15:09:41Z",
+      "extractSha256": "c212fdeb08e557d67e1f9bcd92165f5788bfad9fe3c55b4271d06082c1e028ed",
+      "normalizedSha256": "36eee834d7d889395fcb1cb894f0887aff3214f7f11af4caeeb81f10ec7549a7",
+      "normalizedCharacters": 1650,
+      "entryIds": [
+        "wiki-zh-119740-001"
+      ]
+    },
+    {
+      "pageId": 642565,
+      "title": "毛巾",
+      "requestedTitles": [
+        "毛巾"
+      ],
+      "retrievedAt": "2026-09-19T19:14:42.883Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%AF%9B%E5%B7%BE",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%AF%9B%E5%B7%BE&action=history",
+      "observedRevisionId": 92421285,
+      "observedRevisionAt": "2026-04-26T07:58:16Z",
+      "extractSha256": "6bb31917aaab3c86edb71fe08e52044f16dc66fc54f4a62d91187e2e9d516adf",
+      "normalizedSha256": "327c66898c315732a351b8561be5d88cdf2d258544fdc40157ba81698e442449",
+      "normalizedCharacters": 422,
+      "entryIds": [
+        "wiki-zh-642565-001"
+      ]
+    },
+    {
+      "pageId": 286259,
+      "title": "肥皂",
+      "requestedTitles": [
+        "肥皂"
+      ],
+      "retrievedAt": "2026-09-19T19:14:43.248Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%82%A5%E7%9A%82",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%82%A5%E7%9A%82&action=history",
+      "observedRevisionId": 94213386,
+      "observedRevisionAt": "2026-09-06T05:46:48Z",
+      "extractSha256": "d1be44fbea75db3e34b2037fe27540969f845bb9114365e231db374db74c3c39",
+      "normalizedSha256": "c4bbf5673bcaf7b1a81a1a870342a04a97ccb07a70fc52ad5705db2f73534daf",
+      "normalizedCharacters": 3322,
+      "entryIds": [
+        "wiki-zh-286259-001"
+      ]
+    },
+    {
+      "pageId": 20027,
+      "title": "筷子",
+      "requestedTitles": [
+        "筷子"
+      ],
+      "retrievedAt": "2026-09-19T19:14:43.963Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%AD%B7%E5%AD%90",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%AD%B7%E5%AD%90&action=history",
+      "observedRevisionId": 92711502,
+      "observedRevisionAt": "2026-05-19T04:00:05Z",
+      "extractSha256": "7486ff976523a630f990d42f815b4a886f9ca47ff49ad368742e6851b75cc5e3",
+      "normalizedSha256": "84bd00045fce5ef09b5e908f21a24f1284c410160da8bc507206d01d8bf4c702",
+      "normalizedCharacters": 4542,
+      "entryIds": [
+        "wiki-zh-20027-001"
+      ]
+    },
+    {
+      "pageId": 207337,
+      "title": "碗",
+      "requestedTitles": [
+        "碗"
+      ],
+      "retrievedAt": "2026-09-19T19:14:44.269Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%A2%97",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%A2%97&action=history",
+      "observedRevisionId": 82248173,
+      "observedRevisionAt": "2024-04-12T20:21:40Z",
+      "extractSha256": "20e0f914493036911b67182192457ed834e7bb2e642a4e33af9fd79f0a9b9480",
+      "normalizedSha256": "3210aa9f38f20c82a4533b301c94b5157e6b7b1abf3d4a4859c15879d1a9f7e7",
+      "normalizedCharacters": 379,
+      "entryIds": [
+        "wiki-zh-207337-001"
+      ]
+    },
+    {
+      "pageId": 229006,
+      "title": "杯",
+      "requestedTitles": [
+        "杯"
+      ],
+      "retrievedAt": "2026-09-19T19:14:45.054Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9D%AF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%9D%AF&action=history",
+      "observedRevisionId": 91337964,
+      "observedRevisionAt": "2026-01-31T08:47:37Z",
+      "extractSha256": "379f7e15c2a5436cf5c0644999be8fb98e69d18ff0c6f0cc59b47b06d80e2235",
+      "normalizedSha256": "c124171d4fb04cd563e74dc9bfaa58323fa6b5a4cf8b76e11dceb9b1481398c0",
+      "normalizedCharacters": 688,
+      "entryIds": [
+        "wiki-zh-229006-001"
+      ]
+    },
+    {
+      "pageId": 2976050,
+      "title": "背包",
+      "requestedTitles": [
+        "背包"
+      ],
+      "retrievedAt": "2026-09-19T19:14:45.315Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%83%8C%E5%8C%85",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%83%8C%E5%8C%85&action=history",
+      "observedRevisionId": 92955519,
+      "observedRevisionAt": "2026-06-05T07:56:48Z",
+      "extractSha256": "f915c2c31f952b1691b03d5686fc81ec5459a46547c72570565b44c6ce97781f",
+      "normalizedSha256": "bfe9ce6761c321c01ad44dc51b8f3a4dff7d44d6d5261ca4c78282ee66f794e0",
+      "normalizedCharacters": 1804,
+      "entryIds": [
+        "wiki-zh-2976050-001"
+      ]
+    },
+    {
+      "pageId": 332145,
+      "title": "拉鏈",
+      "requestedTitles": [
+        "拉链"
+      ],
+      "retrievedAt": "2026-09-19T19:14:47.185Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%8B%89%E9%8F%88",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%8B%89%E9%8F%88&action=history",
+      "observedRevisionId": 93350886,
+      "observedRevisionAt": "2026-07-07T06:58:52Z",
+      "extractSha256": "46cdcdc512f4e35ff60171e808b08023ae1781b8e542c3acec0d98130ed6c15b",
+      "normalizedSha256": "84e981c013a1b34974fbb369c9c91051ab76fec7a4cf4a5490169246b9d94bdf",
+      "normalizedCharacters": 1561,
+      "entryIds": [
+        "wiki-zh-332145-001"
+      ]
+    },
+    {
+      "pageId": 11713,
+      "title": "书法",
+      "requestedTitles": [
+        "书法"
+      ],
+      "retrievedAt": "2026-09-19T19:14:46.369Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%B9%A6%E6%B3%95",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%B9%A6%E6%B3%95&action=history",
+      "observedRevisionId": 94272033,
+      "observedRevisionAt": "2026-09-10T03:00:56Z",
+      "extractSha256": "b4cc8293ab7bcb34dbe00475d85affdbcaf37e23f8c371d2cb68a96a2eef39a3",
+      "normalizedSha256": "454822600ea10ac940c9062af4b8771bfce3aa1c7a0ae2141378f659fde8acc9",
+      "normalizedCharacters": 4136,
+      "entryIds": [
+        "wiki-zh-11713-001"
+      ]
+    },
+    {
+      "pageId": 3795245,
+      "title": "剪纸",
+      "requestedTitles": [
+        "剪纸"
+      ],
+      "retrievedAt": "2026-09-19T19:14:46.968Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%89%AA%E7%BA%B8",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%89%AA%E7%BA%B8&action=history",
+      "observedRevisionId": 93516198,
+      "observedRevisionAt": "2026-07-17T09:39:54Z",
+      "extractSha256": "38a04a7d947ae05b794ddf6a0d624ab2a3ffb5eecd66ae0dd70052f75afccfa5",
+      "normalizedSha256": "ad00d2092a192fd61a80eb81fdd923cb6bf6b90b049f1633b0231784c4be5afb",
+      "normalizedCharacters": 497,
+      "entryIds": [
+        "wiki-zh-3795245-001"
+      ]
+    },
+    {
+      "pageId": 18537,
+      "title": "京剧",
+      "requestedTitles": [
+        "京剧"
+      ],
+      "retrievedAt": "2026-09-19T19:14:47.569Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%AC%E5%89%A7",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%AC%E5%89%A7&action=history",
+      "observedRevisionId": 94152948,
+      "observedRevisionAt": "2026-09-02T06:51:11Z",
+      "extractSha256": "e0b277c3191fe6ee4ef860f259e94e23cd1afbb5ebe492bea86e15aeaf127d3c",
+      "normalizedSha256": "bfa336c06bc382cb34e5898c535fd8bddc5b914026b53b9e79a0a14eecbdcac7",
+      "normalizedCharacters": 9890,
+      "entryIds": [
+        "wiki-zh-18537-001",
+        "wiki-zh-18537-002"
+      ]
+    },
+    {
+      "pageId": 1291526,
+      "title": "茶文化",
+      "requestedTitles": [
+        "茶文化"
+      ],
+      "retrievedAt": "2026-09-19T19:14:49.060Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%8C%B6%E6%96%87%E5%8C%96",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%8C%B6%E6%96%87%E5%8C%96&action=history",
+      "observedRevisionId": 93181217,
+      "observedRevisionAt": "2026-06-24T01:15:58Z",
+      "extractSha256": "6640e02052ed21d5922e286c8d931d48bd6acd62f5b8edb50e1117713f36ad69",
+      "normalizedSha256": "1409b4b9acc10a52ea4f48e387badf674c7829579b59a3e709e5262be202346d",
+      "normalizedCharacters": 18908,
+      "entryIds": [
+        "wiki-zh-1291526-001",
+        "wiki-zh-1291526-002",
+        "wiki-zh-1291526-003",
+        "wiki-zh-1291526-004"
+      ]
+    },
+    {
+      "pageId": 3380598,
+      "title": "春節",
+      "requestedTitles": [
+        "春节"
+      ],
+      "retrievedAt": "2026-09-19T19:14:49.092Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%98%A5%E7%AF%80",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%98%A5%E7%AF%80&action=history",
+      "observedRevisionId": 94190718,
+      "observedRevisionAt": "2026-09-04T12:20:56Z",
+      "extractSha256": "8394086769ca918157c3b295d506e2a131521ba2d6ea61f7c10b0283ac535c05",
+      "normalizedSha256": "25caab55096ef8808d0d42349516c3b42a5e52b9362919276d1e5ab6ea270057",
+      "normalizedCharacters": 14794,
+      "entryIds": [
+        "wiki-zh-3380598-001",
+        "wiki-zh-3380598-002",
+        "wiki-zh-3380598-003"
+      ]
+    },
+    {
+      "pageId": 3621544,
+      "title": "中秋节",
+      "requestedTitles": [
+        "中秋节"
+      ],
+      "retrievedAt": "2026-09-19T19:14:49.141Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%B8%AD%E7%A7%8B%E8%8A%82",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E7%A7%8B%E8%8A%82&action=history",
+      "observedRevisionId": 94434747,
+      "observedRevisionAt": "2026-09-19T03:39:30Z",
+      "extractSha256": "eec7f07b39abfeeb5827fe759c1b0fc8a9a92ec31497892b725cc35f6de35a09",
+      "normalizedSha256": "6c712bf7bfd8ffb7ec1b69ac9fd745c6c756e90086a6311bba107805c0ccbe82",
+      "normalizedCharacters": 5287,
+      "entryIds": [
+        "wiki-zh-3621544-001"
+      ]
+    },
+    {
+      "pageId": 3495982,
+      "title": "端午节",
+      "requestedTitles": [
+        "端午节"
+      ],
+      "retrievedAt": "2026-09-19T19:14:52.914Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%AB%AF%E5%8D%88%E8%8A%82",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%AB%AF%E5%8D%88%E8%8A%82&action=history",
+      "observedRevisionId": 93889036,
+      "observedRevisionAt": "2026-08-14T09:39:53Z",
+      "extractSha256": "b28cbd7d5f1e91eb8e3bc9da27a8cc1d0e48b46cdcd3f0cc8b2dedf7728ffad7",
+      "normalizedSha256": "fb28bde781120ce2d00708f6e208359dfbad38733acecf1c2b6743d8171fc7c6",
+      "normalizedCharacters": 20780,
+      "entryIds": [
+        "wiki-zh-3495982-001",
+        "wiki-zh-3495982-002",
+        "wiki-zh-3495982-003",
+        "wiki-zh-3495982-004"
+      ]
+    },
+    {
+      "pageId": 3764068,
+      "title": "元宵节",
+      "requestedTitles": [
+        "元宵节"
+      ],
+      "retrievedAt": "2026-09-19T19:14:50.859Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%85%83%E5%AE%B5%E8%8A%82",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%85%83%E5%AE%B5%E8%8A%82&action=history",
+      "observedRevisionId": 94287850,
+      "observedRevisionAt": "2026-09-10T23:52:18Z",
+      "extractSha256": "ab134429f937403fe89981e4211b771610075f0765387c915c3697ea5a94c968",
+      "normalizedSha256": "83a28d33721986e54965865a137b2e3ce1b50e79593d33f652c9374dfb62cc10",
+      "normalizedCharacters": 6789,
+      "entryIds": [
+        "wiki-zh-3764068-001",
+        "wiki-zh-3764068-002"
+      ]
+    },
+    {
+      "pageId": 9441,
+      "title": "图书馆",
+      "requestedTitles": [
+        "图书馆"
+      ],
+      "retrievedAt": "2026-09-19T19:14:51.809Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9B%BE%E4%B9%A6%E9%A6%86",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%9B%BE%E4%B9%A6%E9%A6%86&action=history",
+      "observedRevisionId": 94289392,
+      "observedRevisionAt": "2026-09-11T01:56:15Z",
+      "extractSha256": "1848d803204e6097e3c3483b62b63060633c442468f1d7e962b6305f339418c9",
+      "normalizedSha256": "c2a41bf9e8526541d6d461d66e8f424344c8dfaf239808276a0f4080648f0c65",
+      "normalizedCharacters": 15637,
+      "entryIds": [
+        "wiki-zh-9441-001",
+        "wiki-zh-9441-002",
+        "wiki-zh-9441-003"
+      ]
+    },
+    {
+      "pageId": 2107,
+      "title": "博物馆",
+      "requestedTitles": [
+        "博物馆"
+      ],
+      "retrievedAt": "2026-09-19T19:14:52.092Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8D%9A%E7%89%A9%E9%A6%86",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8D%9A%E7%89%A9%E9%A6%86&action=history",
+      "observedRevisionId": 94312406,
+      "observedRevisionAt": "2026-09-12T07:43:58Z",
+      "extractSha256": "70232e946f9ad336d4c19d6093864f89ef2eb098992ee31a1a4314b14ed6d6d7",
+      "normalizedSha256": "c0508b9d94ac5fbbe1c6452114572c346cf4c37b71de52ac8ce5f0b531c95870",
+      "normalizedCharacters": 10289,
+      "entryIds": [
+        "wiki-zh-2107-001",
+        "wiki-zh-2107-002"
+      ]
+    },
+    {
+      "pageId": 50203,
+      "title": "印刷",
+      "requestedTitles": [
+        "印刷术"
+      ],
+      "retrievedAt": "2026-09-19T19:14:53.659Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8D%B0%E5%88%B7",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8D%B0%E5%88%B7&action=history",
+      "observedRevisionId": 92983325,
+      "observedRevisionAt": "2026-06-07T16:57:20Z",
+      "extractSha256": "a6141d940d38fb1212330547c6b0aaf36ade5057302870d71df2a0fc0b197c13",
+      "normalizedSha256": "4ad8572ed470af639c002a58cd257a5a372e972794d967beaa5347c4458bfb4f",
+      "normalizedCharacters": 4862,
+      "entryIds": [
+        "wiki-zh-50203-001"
+      ]
+    },
+    {
+      "pageId": 18618,
+      "title": "造纸术",
+      "requestedTitles": [
+        "造纸术"
+      ],
+      "retrievedAt": "2026-09-19T19:14:53.410Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%80%A0%E7%BA%B8%E6%9C%AF",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%80%A0%E7%BA%B8%E6%9C%AF&action=history",
+      "observedRevisionId": 94426264,
+      "observedRevisionAt": "2026-09-18T13:40:31Z",
+      "extractSha256": "6b70c84f5aec9f8b8aab9ead93fa432af9268f0974796b8cbb9cda4370b05d93",
+      "normalizedSha256": "d6dc80a780910d606b2e86975c47a4586e7057383456031c50d34c27e31f3fdd",
+      "normalizedCharacters": 4877,
+      "entryIds": [
+        "wiki-zh-18618-001"
+      ]
+    },
+    {
+      "pageId": 18615,
+      "title": "指南针",
+      "requestedTitles": [
+        "指南针"
+      ],
+      "retrievedAt": "2026-09-19T19:14:54.978Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%8C%87%E5%8D%97%E9%92%88",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%8C%87%E5%8D%97%E9%92%88&action=history",
+      "observedRevisionId": 92831709,
+      "observedRevisionAt": "2026-05-28T19:22:58Z",
+      "extractSha256": "2cc26ad88ae1753ac2705f43cffe50cbdeb68c26bb8317472aae66ea21c70609",
+      "normalizedSha256": "fdafaf916b1b7ac07c9b4c5316c2c4ba37c4b1acf32d8cdcfcd0f2421ae62eeb",
+      "normalizedCharacters": 4059,
+      "entryIds": [
+        "wiki-zh-18615-001"
+      ]
+    },
+    {
+      "pageId": 7069,
+      "title": "摄影",
+      "requestedTitles": [
+        "摄影"
+      ],
+      "retrievedAt": "2026-09-19T19:14:54.703Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%91%84%E5%BD%B1",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%91%84%E5%BD%B1&action=history",
+      "observedRevisionId": 92882468,
+      "observedRevisionAt": "2026-06-01T04:15:34Z",
+      "extractSha256": "430136573aff611b5a4488ecb12aa4df1004e9d9f614bb3add5e627b5476f092",
+      "normalizedSha256": "0b3811293d31b26b92ff86ee22c14e579cbc3028a2ce8241e4dd1deeae8088a6",
+      "normalizedCharacters": 7090,
+      "entryIds": [
+        "wiki-zh-7069-001",
+        "wiki-zh-7069-002"
+      ]
+    },
+    {
+      "pageId": 4695851,
+      "title": "陶瓷",
+      "requestedTitles": [
+        "陶瓷"
+      ],
+      "retrievedAt": "2026-09-19T19:14:55.140Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%99%B6%E7%93%B7",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E9%99%B6%E7%93%B7&action=history",
+      "observedRevisionId": 94056845,
+      "observedRevisionAt": "2026-08-26T17:19:16Z",
+      "extractSha256": "a9e1d87e1993ab04f91d5ebd8d703940301d9d259beb3717b3b509076e1c144c",
+      "normalizedSha256": "57f53415027f055acd74bcebf5b5b989188033493e64b9a9f60bb62abea95107",
+      "normalizedCharacters": 1974,
+      "entryIds": [
+        "wiki-zh-4695851-001"
+      ]
+    },
+    {
+      "pageId": 95486,
+      "title": "蝴蝶",
+      "requestedTitles": [
+        "蝴蝶"
+      ],
+      "retrievedAt": "2026-09-19T19:14:55.880Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%9D%B4%E8%9D%B6",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%9D%B4%E8%9D%B6&action=history",
+      "observedRevisionId": 92991192,
+      "observedRevisionAt": "2026-06-08T09:54:58Z",
+      "extractSha256": "fa2b66e8d537e545545a4a1913c5fd09c2517354b147ecd9a98412a81669eddb",
+      "normalizedSha256": "f00968989b39ff9e12d6d9f2dcfae9e3319b69e74889c2ef0f0ecc5c9885b3e3",
+      "normalizedCharacters": 8527,
+      "entryIds": [
+        "wiki-zh-95486-001",
+        "wiki-zh-95486-002"
+      ]
+    },
+    {
+      "pageId": 97858,
+      "title": "蚂蚁",
+      "requestedTitles": [
+        "蚂蚁"
+      ],
+      "retrievedAt": "2026-09-19T19:14:56.807Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%9A%82%E8%9A%81",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%9A%82%E8%9A%81&action=history",
+      "observedRevisionId": 94038018,
+      "observedRevisionAt": "2026-08-25T08:44:01Z",
+      "extractSha256": "3debf341cc2ba73746cdc7646cd5606355ff4c2b0ae037b6ac33142723a9a06d",
+      "normalizedSha256": "626e52e33d1c0b56ff980bd222b48162224f7baa268cf8ea7c41970c24f31c30",
+      "normalizedCharacters": 6391,
+      "entryIds": [
+        "wiki-zh-97858-001",
+        "wiki-zh-97858-002"
+      ]
+    },
+    {
+      "pageId": 179698,
+      "title": "蜻蜓",
+      "requestedTitles": [
+        "蜻蜓"
+      ],
+      "retrievedAt": "2026-09-19T19:14:57.300Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%9C%BB%E8%9C%93",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%9C%BB%E8%9C%93&action=history",
+      "observedRevisionId": 93815452,
+      "observedRevisionAt": "2026-08-08T15:11:15Z",
+      "extractSha256": "aad1005e9ed4173fde7eb5ad7613c3f08c4fdd355edf15fe336085a4152557b0",
+      "normalizedSha256": "da1ac4637859b64d81db66e7971a501c22ca335e15c8cce8c25b9faf50aefe8f",
+      "normalizedCharacters": 4137,
+      "entryIds": [
+        "wiki-zh-179698-001"
+      ]
+    },
+    {
+      "pageId": 198809,
+      "title": "螢火蟲",
+      "requestedTitles": [
+        "萤火虫"
+      ],
+      "retrievedAt": "2026-09-19T19:14:57.494Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%9E%A2%E7%81%AB%E8%9F%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%9E%A2%E7%81%AB%E8%9F%B2&action=history",
+      "observedRevisionId": 93120684,
+      "observedRevisionAt": "2026-06-18T21:04:01Z",
+      "extractSha256": "043c7cb8c2f1064f57b3e9a2664f97e7ec8278ed38e5c6cab979226dbb2b8ebb",
+      "normalizedSha256": "347a89e8f420b53df72aa5727c3c05d14e88e874d5747e7ddeff2ce8052bec8f",
+      "normalizedCharacters": 11224,
+      "entryIds": [
+        "wiki-zh-198809-001",
+        "wiki-zh-198809-002",
+        "wiki-zh-198809-003"
+      ]
+    },
+    {
+      "pageId": 129494,
+      "title": "八腕目",
+      "requestedTitles": [
+        "章鱼"
+      ],
+      "retrievedAt": "2026-09-19T19:14:58.287Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%85%AB%E8%85%95%E7%9B%AE",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%85%AB%E8%85%95%E7%9B%AE&action=history",
+      "observedRevisionId": 94414966,
+      "observedRevisionAt": "2026-09-17T23:38:18Z",
+      "extractSha256": "03868683fddbb75c8afdf1578b22fa542a97cbd338ad7d08d491615e228db7ef",
+      "normalizedSha256": "4daeca0286c29a27a82afd46c2df2a42df1e6f3448b6c077d5cb3c0e023e7f2f",
+      "normalizedCharacters": 12320,
+      "entryIds": [
+        "wiki-zh-129494-001",
+        "wiki-zh-129494-002",
+        "wiki-zh-129494-003"
+      ]
+    },
+    {
+      "pageId": 3335810,
+      "title": "十腕總目",
+      "requestedTitles": [
+        "乌贼"
+      ],
+      "retrievedAt": "2026-09-19T19:14:58.453Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8D%81%E8%85%95%E7%B8%BD%E7%9B%AE",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E5%8D%81%E8%85%95%E7%B8%BD%E7%9B%AE&action=history",
+      "observedRevisionId": 90946173,
+      "observedRevisionAt": "2026-01-01T15:12:05Z",
+      "extractSha256": "f2d26e2121c57ae8042dd8b4ba128220f87d97409dce436799b56585a4b20e05",
+      "normalizedSha256": "f8a3b1bd03158d31bff05b1e67395d7445be15a7cfffb0e0f3d297943434722e",
+      "normalizedCharacters": 1093,
+      "entryIds": [
+        "wiki-zh-3335810-001"
+      ]
+    },
+    {
+      "pageId": 10340,
+      "title": "海龟",
+      "requestedTitles": [
+        "海龟"
+      ],
+      "retrievedAt": "2026-09-19T19:14:58.857Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%B5%B7%E9%BE%9F",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%B5%B7%E9%BE%9F&action=history",
+      "observedRevisionId": 90554237,
+      "observedRevisionAt": "2025-12-07T08:07:50Z",
+      "extractSha256": "86c22903fb6a014191e96e0dd5b608ae64f5939b6327d2a6b122cf1ad8fdea8f",
+      "normalizedSha256": "32e8a125e493b92f00df826d5f7ccfc90dbcfc89f97e1deef99bd4570b2edc4a",
+      "normalizedCharacters": 953,
+      "entryIds": [
+        "wiki-zh-10340-001"
+      ]
+    },
+    {
+      "pageId": 36958,
+      "title": "海星",
+      "requestedTitles": [
+        "海星"
+      ],
+      "retrievedAt": "2026-09-19T19:14:59.502Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%B5%B7%E6%98%9F",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%B5%B7%E6%98%9F&action=history",
+      "observedRevisionId": 90067545,
+      "observedRevisionAt": "2025-11-18T03:35:13Z",
+      "extractSha256": "2942771ccf728f7fb731b1693b31210b2bac052878deee98d0a2a94c5f07e6eb",
+      "normalizedSha256": "b5ed3945467f90c44cc5c04effe43dd2d90695583244e3bd2b184ac6b859a7e6",
+      "normalizedCharacters": 1097,
+      "entryIds": [
+        "wiki-zh-36958-001"
+      ]
+    },
+    {
+      "pageId": 57642,
+      "title": "仙人掌",
+      "requestedTitles": [
+        "仙人掌"
+      ],
+      "retrievedAt": "2026-09-19T19:15:00.723Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BB%99%E4%BA%BA%E6%8E%8C",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BB%99%E4%BA%BA%E6%8E%8C&action=history",
+      "observedRevisionId": 93973824,
+      "observedRevisionAt": "2026-08-20T19:03:19Z",
+      "extractSha256": "8edff4f56fd0763bd049190863e3b896d438f2932a7f271eff8c8331f0e0211a",
+      "normalizedSha256": "600e9bfdd3ed0bd390550efef0de2102b9c1370669424342e1acd216e620d0fe",
+      "normalizedCharacters": 6429,
+      "entryIds": [
+        "wiki-zh-57642-001",
+        "wiki-zh-57642-002"
+      ]
+    },
+    {
+      "pageId": 65965,
+      "title": "莲",
+      "requestedTitles": [
+        "荷花"
+      ],
+      "retrievedAt": "2026-09-19T19:15:00.341Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E8%8E%B2",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E8%8E%B2&action=history",
+      "observedRevisionId": 92588959,
+      "observedRevisionAt": "2026-05-09T03:58:48Z",
+      "extractSha256": "a5430f05691b96b2aaf482b17a0940dc720114f200958c914e50a756d7a27a95",
+      "normalizedSha256": "891c0dd10ee7845a834f392269d8d80f83f954a9e8375e5b2fd89cb287cdd7e7",
+      "normalizedCharacters": 3845,
+      "entryIds": [
+        "wiki-zh-65965-001"
+      ]
+    },
+    {
+      "pageId": 29929,
+      "title": "玫瑰",
+      "requestedTitles": [
+        "玫瑰"
+      ],
+      "retrievedAt": "2026-09-19T19:15:00.953Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%AB%E7%91%B0",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E7%8E%AB%E7%91%B0&action=history",
+      "observedRevisionId": 93928985,
+      "observedRevisionAt": "2026-08-17T14:55:57Z",
+      "extractSha256": "a785a4a84bdb6eb1bad5fe1e76f5a1f7037fc57c229308765f58e107379901bc",
+      "normalizedSha256": "e9f5408d75803b98cbedbb43e096dfd78135ac847bd7efe4aa19c0c2620667da",
+      "normalizedCharacters": 2515,
+      "entryIds": [
+        "wiki-zh-29929-001"
+      ]
+    },
+    {
+      "pageId": 600817,
+      "title": "棉花",
+      "requestedTitles": [
+        "棉花"
+      ],
+      "retrievedAt": "2026-09-19T19:15:01.270Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%A3%89%E8%8A%B1",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E6%A3%89%E8%8A%B1&action=history",
+      "observedRevisionId": 94404199,
+      "observedRevisionAt": "2026-09-17T07:26:16Z",
+      "extractSha256": "4a8c0167e7ce904190e124a3b0a2a891d73433949b74420a46a89c6973acc7a9",
+      "normalizedSha256": "0a8713c12e8f9d0699b9ae7c4f4b5580715e107f2a6b5279e2fc2db6b46511d2",
+      "normalizedCharacters": 4372,
+      "entryIds": [
+        "wiki-zh-600817-001"
+      ]
+    },
+    {
+      "pageId": 1040336,
+      "title": "亚麻",
+      "requestedTitles": [
+        "亚麻"
+      ],
+      "retrievedAt": "2026-09-19T19:15:03.041Z",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E9%BA%BB",
+      "historyUrl": "https://zh.wikipedia.org/w/index.php?title=%E4%BA%9A%E9%BA%BB&action=history",
+      "observedRevisionId": 94400260,
+      "observedRevisionAt": "2026-09-17T02:25:02Z",
+      "extractSha256": "17d959c4da010f8ed54e135c210c6b79649d980c408dee3ffc100c1181cd0315",
+      "normalizedSha256": "9f500050c03c6872efceaeae90b94f8bfc7140e64f7568b919182705ac7d0981",
+      "normalizedCharacters": 1481,
+      "entryIds": [
+        "wiki-zh-1040336-001"
+      ]
+    }
+  ],
+  "duplicates": [],
+  "failures": [],
+  "packs": [
+    {
+      "file": "wikipedia-zh-general-001.pack.json",
+      "sha256": "1651927ab681546d7e1da8e6c90dc1057784464cf8e32ee3e5e94ea5ae7ec917",
+      "bytes": 517957,
+      "entryCount": 20
+    },
+    {
+      "file": "wikipedia-zh-general-002.pack.json",
+      "sha256": "803d9dd32596a40e44e24b84ed4e29f73ddbf7740b5c1b78356b2a4e0e5c7b09",
+      "bytes": 521797,
+      "entryCount": 23
+    },
+    {
+      "file": "wikipedia-zh-general-003.pack.json",
+      "sha256": "e0c2472ac5c5bdb0a6cf9ebae4e00099f4c8d565f2b9cb2c1840f62a29ae0383",
+      "bytes": 507918,
+      "entryCount": 21
+    },
+    {
+      "file": "wikipedia-zh-general-004.pack.json",
+      "sha256": "4015d2cb29406653966bd79db604c2f99b00bd24c848d017cdc2cf5125551fbe",
+      "bytes": 494912,
+      "entryCount": 26
+    },
+    {
+      "file": "wikipedia-zh-general-005.pack.json",
+      "sha256": "198975b149b648103889005abf215c5108b0e076023e5e910dbef6f093ab6d22",
+      "bytes": 489745,
+      "entryCount": 16
+    },
+    {
+      "file": "wikipedia-zh-general-006.pack.json",
+      "sha256": "a23d5c4d15f42e55d0228e24b42d962a5b7feef8b69f96a85cbc1c6728d68a7f",
+      "bytes": 515213,
+      "entryCount": 20
+    },
+    {
+      "file": "wikipedia-zh-general-007.pack.json",
+      "sha256": "384f4f332a0775decd91a0c9239b31afabfa705ca73cb50012dd6e606736c5a2",
+      "bytes": 191177,
+      "entryCount": 11
+    }
+  ],
+  "rightsEvidence": {
+    "retrievedAt": "2026-09-19T16:53:58.793Z",
+    "responseSha256": "e113e25ced1ad609affcd45e846e0fe125dc28f2c5c5592d54b9bfb5a1e97ca0",
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "rightsinfo": {
+          "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh",
+          "text": "Creative Commons Attribution-Share Alike 4.0"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "concurrency": 3,
+    "cacheHits": 92,
+    "downloaded": 0,
+    "reusedTitles": 0,
+    "requests": 0,
+    "durationMs": 620
+  }
+}

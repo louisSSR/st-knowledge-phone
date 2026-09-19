@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "id": "wikipedia-zh-general",
+  "name": "中文百科 · 自然地理与生活文化",
+  "articles": [
+    {
+      "title": "猫",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "狗",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "家马",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "牛",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "绵羊",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "山羊",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "猪",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "家兔",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "鸡",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "鸭",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "鹅",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "鸽",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "大熊猫",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "虎",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "狮",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "长颈鹿",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "斑马",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "海豚",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "企鹅",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "蜜蜂",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "稻",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "小麦",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "玉米",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "大豆",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "马铃薯",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "番薯",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "番茄",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "胡萝卜",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "苹果",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "香蕉",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "葡萄",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "茶树",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "竹",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "松属",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "向日葵",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "亚洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "欧洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "非洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "北美洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "南美洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "大洋洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "南极洲",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "太平洋",
+      "reviewHold": "抽查发现国家、属地与主要港口章节只剩空标题，暂缓至支持表格的采集方式复核。",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "大西洋",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "印度洋",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "北冰洋",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "喜马拉雅山脉",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "阿尔卑斯山脉",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "长江",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "黄河",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "尼罗河",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "亚马孙河",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "撒哈拉沙漠",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "热带雨林",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "珊瑚礁",
+      "type": "article",
+      "tags": [
+        "地理"
+      ]
+    },
+    {
+      "title": "纸",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "铅笔",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "钢笔",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "橡皮擦",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "书籍",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "雨伞",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "自行车",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "轮椅",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "眼镜",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "牙刷",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "毛巾",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "肥皂",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "筷子",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "碗",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "杯",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "背包",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "拉链",
+      "type": "article",
+      "tags": [
+        "生活用品"
+      ]
+    },
+    {
+      "title": "书法",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "剪纸",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "京剧",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "茶文化",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "春节",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "中秋节",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "端午节",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "元宵节",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "图书馆",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "博物馆",
+      "type": "article",
+      "tags": [
+        "文化"
+      ]
+    },
+    {
+      "title": "印刷术",
+      "type": "article",
+      "tags": [
+        "基础技术"
+      ]
+    },
+    {
+      "title": "造纸术",
+      "type": "article",
+      "tags": [
+        "基础技术"
+      ]
+    },
+    {
+      "title": "指南针",
+      "type": "article",
+      "tags": [
+        "基础技术"
+      ]
+    },
+    {
+      "title": "摄影",
+      "type": "article",
+      "tags": [
+        "基础技术"
+      ]
+    },
+    {
+      "title": "陶瓷",
+      "type": "article",
+      "tags": [
+        "基础技术"
+      ]
+    },
+    {
+      "title": "蝴蝶",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "蚂蚁",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "蜻蜓",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "萤火虫",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "章鱼",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "乌贼",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "海龟",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "海星",
+      "type": "article",
+      "tags": [
+        "动物"
+      ]
+    },
+    {
+      "title": "仙人掌",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "荷花",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "玫瑰",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "棉花",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    },
+    {
+      "title": "亚麻",
+      "type": "article",
+      "tags": [
+        "植物"
+      ]
+    }
+  ]
+}

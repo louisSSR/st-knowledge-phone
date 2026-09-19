@@ -1,6 +1,6 @@
 # 原创演示知识包
 
-本页说明原创演示包。真实来源的中文百科摘录见 [wikipedia-zh-starter](wikipedia-zh-starter/README.md)，采集与验收工具见 [corpus](../corpus/README.md)。两者的来源与许可分别标注。
+本页说明原创演示包。真实来源的中文百科摘录见[棋牌与基础科普](wikipedia-zh-starter/README.md)、[自然地理与生活文化](wikipedia-zh-general/README.md)，采集与验收工具见 [corpus](../corpus/README.md)。来源与许可分别标注。
 
 `original-demo.pack.json` 是离线演示包；`sources/original-demo.source.json` 是可读的本地资料源。所有正文为本项目原创示范文字，采用 CC0-1.0；没有抓取外部网页，没有第三方图片或角色素材。
 

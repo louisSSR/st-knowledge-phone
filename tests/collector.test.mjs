@@ -20,6 +20,22 @@ const build = (config, snapshots, options = {}) => buildCollection(config, snaps
 const allEntries = collection => collection.packs.flatMap(({ pack }) => pack.entries);
 const jsonResponse = (data, options) => new Response(JSON.stringify(data), options);
 
+test('dangling table references require review without rejecting ordinary geological prose', () => {
+  for (const reference of ['下表中只列出', '如下表所示：', '下表列出周邊國家', '下表是22座山']) {
+    assert.throws(() => validateSnapshot(snapshot('资料', { extract: prose + reference }), '资料'), /不含对应表格/);
+  }
+  assert.doesNotThrow(() => validateSnapshot(snapshot('资料', { extract: prose + '地下表层的构造。' }), '资料'));
+});
+
+test('explicit content review holds remain excluded even with an otherwise valid snapshot', () => {
+  const config = configFor(spec('暂缓页', { reviewHold: '关键列表丢失，等待复核' }));
+  const collection = build(config, [snapshot('暂缓页')]);
+  assert.equal(collection.report.status, 'failed');
+  assert.match(collection.report.failures[0].reason, /内容复核暂缓/);
+  assert.deepEqual(collection.packs, []);
+  assert.throws(() => validateConfig(configFor(spec('资料', { reviewHold: '' }))), /reviewHold/);
+});
+
 test('collector requires a bounded explicit article list and valid source fields', () => {
   assert.equal(validateConfig(configFor(spec('围棋'))).articles.length, 1);
   assert.throws(() => validateConfig(configFor()), /1–100/);

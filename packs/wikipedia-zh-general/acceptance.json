@@ -1,0 +1,888 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "verifiedAt": "2026-09-19T19:24:52.138Z",
+  "summary": {
+    "packs": 7,
+    "articles": 92,
+    "entries": 137,
+    "reconstructedCharacters": 522652,
+    "searchQueries": 116
+  },
+  "checks": [
+    {
+      "name": "采集报告完整成功",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-001.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-002.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-003.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-004.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-005.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-006.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "知识包完整性：wikipedia-zh-general-007.pack.json",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：猫",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：猫",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：犬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：犬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：狗",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：马",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：马",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：家马",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：牛",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：牛",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：綿羊",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：綿羊",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：绵羊",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：家山羊",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：家山羊",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：山羊",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：家豬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：家豬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：猪",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：家兔",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：家兔",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：鸡",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鸡",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：鸭",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鸭",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：鹅",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鹅",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：鸽属",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鸽属",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鸽",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：大熊猫",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：大熊猫",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：虎",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：虎",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：狮",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：狮",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：长颈鹿",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：长颈鹿",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：斑馬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：斑馬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：斑马",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：企鵝",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：企鵝",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：企鹅",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：蜜蜂屬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：蜜蜂屬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：蜜蜂",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：小麦",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：小麦",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：玉米",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：玉米",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：大豆",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：大豆",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：马铃薯",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：马铃薯",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：番薯",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：番薯",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：番茄",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：番茄",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：胡萝卜",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：胡萝卜",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：苹果",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：苹果",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：香蕉",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：香蕉",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：葡萄",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：葡萄",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：茶树",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：茶树",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：竹",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：竹",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：松屬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：松屬",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：松属",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：亚洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：亚洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：欧洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：欧洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：非洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：非洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：北美洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：北美洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：南美洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：南美洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：大洋洲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：大洋洲",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：大西洋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：大西洋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：北冰洋",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：北冰洋",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：喜马拉雅山脉",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：喜马拉雅山脉",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：长江",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：长江",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：尼罗河",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：尼罗河",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：亚马逊河",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：亚马逊河",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：亚马孙河",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：撒哈拉沙漠",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：撒哈拉沙漠",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：热带雨林",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：热带雨林",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：珊瑚礁",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：珊瑚礁",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：纸",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：纸",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：铅笔",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：铅笔",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：鋼筆",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：鋼筆",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：钢笔",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：橡皮擦",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：橡皮擦",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：图书",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：图书",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：书籍",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：傘",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：傘",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：雨伞",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：自行車",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：自行車",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：自行车",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：輪椅",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：輪椅",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：轮椅",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：眼鏡",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：眼鏡",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：眼镜",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：牙刷",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：牙刷",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：毛巾",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：毛巾",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：肥皂",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：肥皂",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：筷子",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：筷子",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：碗",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：碗",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：杯",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：杯",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：背包",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：背包",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：拉鏈",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：拉鏈",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：拉链",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：书法",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：书法",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：剪纸",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：剪纸",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：京剧",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：京剧",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：茶文化",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：茶文化",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：春節",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：春節",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：春节",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：中秋节",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：中秋节",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：端午节",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：端午节",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：元宵节",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：元宵节",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：图书馆",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：图书馆",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：博物馆",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：博物馆",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：印刷",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：印刷",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：印刷术",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：造纸术",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：造纸术",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：指南针",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：指南针",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：摄影",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：摄影",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：陶瓷",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：陶瓷",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：蝴蝶",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：蝴蝶",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：蚂蚁",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：蚂蚁",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：蜻蜓",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：蜻蜓",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：螢火蟲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：螢火蟲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：萤火虫",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：八腕目",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：八腕目",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：章鱼",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：十腕總目",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：十腕總目",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：乌贼",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：海龟",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：海龟",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：海星",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：海星",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：仙人掌",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：仙人掌",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：莲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：莲",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：荷花",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：玫瑰",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：玫瑰",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：棉花",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：棉花",
+      "status": "passed"
+    },
+    {
+      "name": "文章来源与重组：亚麻",
+      "status": "passed"
+    },
+    {
+      "name": "标题/别名检索：亚麻",
+      "status": "passed"
+    },
+    {
+      "name": "报告与知识包条目一一对应",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "这是离线技术验收，不是逐条事实核查、真实 SillyTavern 运行验收或用户最终验收。",
+    "校验重组文本与采集报告中的 SHA-256 一致；未重新联网比对上游页面，也不能证明采集器记录的原始 extract 哈希。",
+    "采集日期是保守的知识可见起点；当前快照不代表任何历史时点的百科内容。"
+  ]
+}

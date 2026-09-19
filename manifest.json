@@ -4,7 +4,7 @@
   "dependencies": [],
   "js": "index.js",
   "author": "Knowledge Phone contributors",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homePage": "https://github.com/louisSSR/st-knowledge-phone",
   "auto_update": false,
   "hooks": {
