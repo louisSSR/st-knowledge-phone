@@ -263,3 +263,14 @@ test('online bookmarks remain per chat and no historical source date is fabricat
   assert.equal(controller.getState().bookmarks.length, 0);
   assert.equal(controller.getState().results.length, 0);
 });
+
+test('migrated disconnected ZIM records never ask online or cache users to reconnect', async t => {
+  const { controller, values } = fixture(t);
+  values.set('settings', { schemaVersion: 1, theme: 'midnight' });
+  values.set('archives', [{ id: 'zim:old', name: '旧知识库', fileName: 'old.zim', size: 100, articleCount: 2, connected: false }]);
+  await controller.start(); await controller.navigate('library');
+  assert.equal(controller.getState().settings.sourceMode, 'online');
+  assert.equal(controller.getState().notice, '');
+  await controller.setSourceMode('offline'); await controller.navigate('library');
+  assert.match(controller.getState().notice, /重新选择同一/);
+});

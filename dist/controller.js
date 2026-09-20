@@ -223,7 +223,7 @@ export class Controller {
             this.state.archives = this.state.archives.map(item => ({ ...item, connected: this.zim.connected(item.id) }));
             this.state.busy = false;
             this.state.notice = response.notice || '';
-            if (!online && !this.state.notice && this.state.archives.length && !this.state.archives.some(item => item.connected))
+            if (this.state.settings.sourceMode === 'offline' && !this.state.notice && this.state.archives.length && !this.state.archives.some(item => item.connected))
                 this.state.notice = '当前页面未连接文件，请到知库重新选择同一 .zim；无需重新下载。';
             if (record && this.state.query)
                 await this.recordHistory();
