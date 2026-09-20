@@ -1,5 +1,5 @@
 import { validDate } from '../context/extractor.js';
-import { ZimEngine } from '../zim/engine.js';
+import { ZimEngine, ZimTimeoutError } from '../zim/engine.js';
 export function archiveDate(fileName) {
     const match = fileName.match(/_(\d{4})-(\d{2})[a-z]?\.zim$/i);
     if (!match)
@@ -49,28 +49,40 @@ export class ZimProvider {
             throw error;
         }
     }
-    cancelSearch() { this.searchEpoch++; }
+    cancelSearch() { this.searchEpoch++; this.engine?.cancelSearch(); }
     detach() { this.generation++; this.cancelSearch(); this.engine?.close(); this.engine = null; this.archive = null; this.cache = null; }
     async isAvailable() { return true; }
-    connected(id) { return this.archive?.id === id && Boolean(this.engine?.isOpen()); }
+    connected(id) { return this.archive?.id === id && Boolean(this.engine?.recoverable()); }
     async search(request) {
+        this.cancelSearch();
         const epoch = ++this.searchEpoch;
         const empty = { results: [], total: 0, suggestions: [] };
         const archive = this.archive, engine = this.engine;
         if (!archive || !engine || !request.query.trim())
             return empty;
-        if (!engine.isOpen())
-            throw new Error('资料库连接已失效，请到知库重新选择同一 .zim 文件。');
+        if (!engine.recoverable())
+            throw new Error('当前页面已没有该文件的访问权，请重新选择同一 .zim 文件，无需重新下载。');
         if (!archiveVisible(archive, request.context))
             return { ...empty, notice: '当前世界时间不能使用这份资料库快照。可在设置中切换到现代查阅或关闭严格时间线；这不代表资料是历史版本。' };
         if (request.types?.length && !request.types.includes('article'))
             return { ...empty, notice: 'ZIM 保留来源原有分类，不推断人物/游戏等类型；请选“全部”或“原文词条”。' };
         const query = termQuery(request.query);
         if (!this.cache || this.cache.query !== query) {
-            // Bounded title lookup + native Xapian index. Never enumerate the archive.
-            const outcomes = await Promise.allSettled([engine.suggest(query, { limit: 100 }), engine.search(query, { limit: 30 })]);
+            // Useful title results must not wait behind a potentially expensive full-text operation.
+            const title = await Promise.allSettled([engine.suggest(query, { limit: 100 })]);
             if (epoch !== this.searchEpoch)
                 return empty;
+            if (title[0].status === 'rejected' && title[0].reason instanceof ZimTimeoutError)
+                throw title[0].reason;
+            const titleHits = title[0].status === 'fulfilled' ? title[0].value.filter(hit => literalMatch(hit.title, query)) : [];
+            const body = titleHits.length
+                ? { status: 'fulfilled', value: [] }
+                : (await Promise.allSettled([engine.search(query, { limit: 30 })]))[0];
+            const outcomes = [title[0], body];
+            if (epoch !== this.searchEpoch)
+                return empty;
+            if (body.status === 'rejected' && body.reason instanceof ZimTimeoutError)
+                throw body.reason;
             if (outcomes.every(item => item.status === 'rejected'))
                 throw outcomes[1].reason;
             const rows = new Map();
@@ -102,7 +114,9 @@ export class ZimProvider {
                             const position = body.toLocaleLowerCase().indexOf(query.toLocaleLowerCase());
                             snippet = position >= 0 ? body.slice(Math.max(0, position - 70), position + query.length + 130).replace(/\s+/g, ' ') : '';
                         }
-                        catch {
+                        catch (error) {
+                            if (error instanceof ZimTimeoutError)
+                                throw error;
                             continue;
                         }
                     }
@@ -118,6 +132,8 @@ export class ZimProvider {
                 }
             }
             const warnings = outcomes.flatMap((outcome, index) => outcome.status === 'rejected' ? [index === 1 ? '全文索引不可用，本次仅按标题查找' : '标题索引不可用，本次仅查全文索引'] : []);
+            if (titleHits.length)
+                warnings.push('本轮展示词条标题匹配；没有标题匹配时才检索正文。');
             if (outcomes[1].status === 'fulfilled' && outcomes[1].value.length === 30)
                 warnings.push('已核对前 30 个全文候选；未遍历整库，更多结果可用更具体的词查找');
             const sorted = [...rows.values()].sort((a, b) => b.score - a.score);

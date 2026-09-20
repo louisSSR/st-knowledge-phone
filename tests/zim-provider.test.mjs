@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { ZimProvider, archiveDate, archiveVisible, termQuery } from '../dist/providers/zim.js';
-import { ZimEngine } from '../dist/zim/engine.js';
+import { ZimEngine, ZimTimeoutError } from '../dist/zim/engine.js';
 import { isRetiredPack } from '../dist/library/source-policy.js';
 
 const context = { worldDate: '2026-09-20', location: [], strictTimeline: true, chatKey: 'qa' };
@@ -29,6 +29,7 @@ function fixture(t, { titles = () => [], fulltext = () => [], metadata = () => (
     return { uuid: file.name, articleCount: 8302, name: file.name, size: file.size, ...extra };
   });
   t.mock.method(ZimEngine.prototype, 'isOpen', function () { return opened.has(this); });
+  t.mock.method(ZimEngine.prototype, 'recoverable', function () { return opened.has(this); });
   t.mock.method(ZimEngine.prototype, 'suggest', async function (query, options) {
     calls.push({ kind: 'titles', file: files.get(this).name, query, options });
     return titles(query, files.get(this));
@@ -75,8 +76,8 @@ test('natural questions retain the actual term, including nested politeness and 
   ]) assert.equal(termQuery(input), expected, input);
 });
 
-test('exact original titles outrank prefix and body hits and duplicate paths are merged', async t => {
-  const { provider } = fixture(t, {
+test('exact original titles return without dispatching potentially stalled fulltext work', async t => {
+  const { provider, calls } = fixture(t, {
     titles: () => [hit('名词解释', 'prefix'), hit('名词', 'exact')],
     fulltext: () => [hit('俄语语法', 'body', '名词用于表示事物。'), hit('名词', 'exact', '原文的名词解释。')],
   });
@@ -87,7 +88,9 @@ test('exact original titles outrank prefix and body hits and duplicate paths are
   assert.match(response.results[0].reason, /精确/);
   assert.equal(response.results.filter(row => row.entry.id === 'exact').length, 1);
   assert.equal(response.results[0].packId, archive.id);
-  assert.equal(response.results.find(row => row.entry.id === 'body').entry.summary, '名词用于表示事物。');
+  assert.equal(calls.filter(call => call.kind === 'fulltext').length, 0);
+  assert.equal(response.results.some(row => row.entry.id === 'body'), false);
+  assert.match(response.notice, /标题/);
   assert.ok(response.results.every(row => !row.entry.source.name.includes('原创')));
 });
 
@@ -191,13 +194,14 @@ test('in-flight results from a replaced archive cannot populate the new cache', 
 });
 
 test('cancelled search does not start stale article reads or cache an empty successful response', async t => {
-  const pending = deferred();
+  const pending = deferred(), entered = deferred();
   let first = true;
   const { provider, calls } = fixture(t, {
-    fulltext: () => { if (first) { first = false; return pending.promise; } return [hit('斗地主', 'current')]; },
+    fulltext: () => { if (first) { first = false; entered.resolve(); return pending.promise; } return [hit('斗地主', 'current')]; },
   });
   await provider.attach(sample());
   const stale = provider.search(request('斗地主'));
+  await entered.promise;
   provider.cancelSearch();
   pending.resolve([hit('欧洲中世纪', 'stale-needs-body-check')]);
   assert.equal((await stale).total, 0);
@@ -264,7 +268,7 @@ test('index failures are disclosed and two failed indexes do not look like an em
   await provider.attach(sample());
   const result = await provider.search(request('名词'));
   assert.equal(result.total, 1);
-  assert.match(result.notice, /全文索引不可用/);
+  assert.match(result.notice, /标题匹配/);
   await assert.rejects(provider.search(request('全部失败')), /index failed/);
 });
 
@@ -281,4 +285,11 @@ test('retirement policy covers all ten previously shipped project packs without 
   }
   assert.equal(isRetiredPack('user-knowledge'), false);
   assert.equal(isRetiredPack('zim:external-source'), false);
+});
+
+test('stage-specific fulltext and source-read timeout messages are not swallowed as empty results', async t => {
+  const failure = new ZimTimeoutError('st-search', 90_000);
+  const { provider } = fixture(t, { fulltext: () => { throw failure; } });
+  await provider.attach(sample());
+  await assert.rejects(provider.search(request('斗地主')), error => error === failure);
 });

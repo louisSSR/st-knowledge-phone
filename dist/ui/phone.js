@@ -119,7 +119,7 @@ export function mountPhone(shadow, controller, onClose) {
             activeReader = null;
             content.replaceChildren();
             if (state.busy || !state.ready)
-                content.append(el('div', 'loading', state.ready ? '正在整理资料…' : '正在打开你的书架…'));
+                content.append(el('div', 'loading', state.ready ? '正在读取来源资料…' : '正在打开知库…'));
             if (state.reader) {
                 activeReader = readerView(ctx);
                 activeReaderContent = state.reader.content;

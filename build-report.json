@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.0",
-  "modules": 34,
-  "bytes": 159035,
-  "gzipBytes": 54152,
+  "version": "0.3.0",
+  "modules": 36,
+  "bytes": 195322,
+  "gzipBytes": 65490,
   "archiveEngine": {
     "version": "OpenZIM javascript-libzim v0.95",
     "engineJsBytes": 136633,

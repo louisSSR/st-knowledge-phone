@@ -6,13 +6,37 @@ import { createArchiveReader } from './archive-reader.js';
 function sourceNote(ctx: ViewContext): HTMLElement {
   const reader = ctx.state.reader!;
   const source = reader.result.entry.source;
+  const online = source.kind !== 'offline';
   const note = el('dl', 'source-note');
   const rows = [
     ['来源', `${source.name} · ${reader.result.packName}`],
-    ['资料版本', reader.format === 'html' ? String(reader.result.entry.metadata.snapshotBasis || '快照时间未知') : source.updatedAt || '未标注'],
+    [online ? '来源更新时间' : '资料版本', online ? source.updatedAt || '来源未提供'
+      : reader.format === 'html' ? String(reader.result.entry.metadata.snapshotBasis || '快照时间未知') : source.updatedAt || '未标注'],
     ['使用许可', source.license || '未标注'],
   ];
-  rows.forEach(([label, value]) => note.append(el('dt', '', label), el('dd', '', value)));
+  if (online) {
+    const fetched = reader.result.entry.metadata.fetchedAt;
+    const date = typeof fetched === 'number' || typeof fetched === 'string' ? new Date(fetched) : null;
+    rows.splice(1, 0, ['阅读方式', source.kind === 'cache' ? '本机已读缓存，未联网刷新' : '联网取得的来源原文'],
+      ['本地获取时间', date && Number.isFinite(date.getTime()) ? date.toLocaleString('zh-CN') : '未记录']);
+  }
+  rows.forEach(([label, value]) => {
+    const description = el('dd', '', value);
+    const licenseUrl = reader.result.entry.metadata.licenseUrl;
+    if (label === '使用许可' && typeof licenseUrl === 'string') {
+      try {
+        const url = new URL(licenseUrl);
+        if (url.protocol === 'https:' && !url.username && !url.password) {
+          const link = el('a', '', value);
+          link.href = url.href;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          description.replaceChildren(link);
+        }
+      } catch { /* Keep the supplied license label when its URL is invalid. */ }
+    }
+    note.append(el('dt', '', label), description);
+  });
   if (source.url) {
     try {
       const url = new URL(source.url);
@@ -36,7 +60,8 @@ export function readerView(ctx: ViewContext): { element: HTMLElement; dispose():
   const back = button('', () => ctx.controller.closeReader(), 'reader-back');
   back.append(icon('back'), document.createTextNode('返回列表'));
   back.dataset.focusKey = 'reader-back';
-  page.append(back, el('span', 'result-kind', `${cardRenderers[result.entry.type].label} / 离线阅读`));
+  const kind = result.entry.source.kind;
+  page.append(back, el('span', 'result-kind', `${cardRenderers[result.entry.type].label} / ${kind === 'online' ? '联网原文' : kind === 'cache' ? '已读缓存' : '离线阅读'}`));
   const title = el('h2', '', result.entry.title);
   title.tabIndex = -1;
   title.dataset.readerTitle = '';
@@ -51,7 +76,7 @@ export function readerView(ctx: ViewContext): { element: HTMLElement; dispose():
     const saved = bookmarked(next, result);
     save.replaceChildren(icon(saved ? 'check' : 'bookmark'), document.createTextNode(saved ? '已收藏' : '收藏这一页'));
     save.setAttribute('aria-pressed', String(saved));
-    timeline.textContent = next.state.context.strictTimeline ? '符合当前时间筛选' : '自由查阅';
+    timeline.textContent = kind !== 'offline' ? '现代知识参考 · 未作历史核验' : next.state.context.strictTimeline ? '符合当前时间筛选' : '自由查阅';
   }
   update(ctx);
   actions.append(save);

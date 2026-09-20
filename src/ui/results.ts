@@ -2,7 +2,7 @@ import type { EntryType, KnowledgeEntry, SearchResult } from '../core/types.js';
 import type { ViewContext } from './view-types.js';
 import { button, el, emptyState, iconButton } from './dom.js';
 import { isRetiredPack } from '../library/source-policy.js';
-import { searchForm } from './home.js';
+import { searchForm, sourceModeSwitch } from './home.js';
 
 interface CardRenderer { label: string; detail(entry: KnowledgeEntry): string[]; }
 const metadata = (entry: KnowledgeEntry, keys: string[]): string[] => keys.flatMap(key => {
@@ -33,10 +33,11 @@ function resultCard(ctx: ViewContext, result: SearchResult): HTMLElement {
   const { entry } = result;
   const renderer = cardRenderers[entry.type];
   const card = el('article', 'result-card');
-  const open = button('', () => ctx.run(ctx.controller.read(result)), 'result-open');
+  const open = button('', () => ctx.run(entry.source.kind === 'cache' ? ctx.controller.readCached(result) : ctx.controller.read(result)), 'result-open');
   open.dataset.focusKey = `result:${result.packId}:${entry.id}`;
   open.setAttribute('aria-label', `阅读：${entry.title}`);
-  open.append(el('span', 'result-kind', `${renderer.label} / 离线资料`));
+  const sourceLabel = entry.source.kind === 'online' ? '联网原文' : entry.source.kind === 'cache' ? '已读缓存' : '离线资料';
+  open.append(el('span', 'result-kind', `${renderer.label} / ${sourceLabel}`));
   open.append(el('h3', '', entry.title));
   if (entry.summary) open.append(el('p', '', entry.summary));
   if (result.reason) open.append(el('span', 'result-detail', result.reason));
@@ -78,7 +79,7 @@ function pagination(ctx: ViewContext, bookmarks = false): HTMLElement {
   const row = el('div', 'pagination');
   const go = (offset: number): void => {
     if (bookmarks) ctx.navigate('bookmarks', offset);
-    else ctx.search(ctx.state.query, ctx.state.types, offset);
+    else ctx.search(ctx.state.query, ctx.state.settings.sourceMode === 'online' ? [] : ctx.state.types, offset);
   };
   const previous = button('上一页', () => go(Math.max(0, ctx.offset - 12)), 'button small subtle');
   const next = button('下一页', () => go(ctx.offset + 12), 'button small subtle');
@@ -90,16 +91,25 @@ function pagination(ctx: ViewContext, bookmarks = false): HTMLElement {
 
 export function searchView(ctx: ViewContext): HTMLElement {
   const page = el('div');
-  page.append(searchForm(ctx), filters(ctx));
-  if (!ctx.state.archives.length && !ctx.state.packs.some(pack => !isRetiredPack(pack.id)) && !ctx.state.busy) {
-    page.append(emptyState('先为书架添一点知识', '连接现成的 ZIM 资料库，即可使用库内索引查词和阅读原文。', button('前往知库', () => ctx.navigate('library'), 'button primary')));
+  const online = ctx.state.settings.sourceMode === 'online';
+  page.append(sourceModeSwitch(ctx), searchForm(ctx));
+  if (online) page.append(el('p', 'settings-caption', '查询词会发送到中文维基百科，聊天内容不会发送。这里查阅现代知识，未按剧情年代核验史实。'));
+  else page.append(filters(ctx));
+  if (!online && !ctx.state.archives.length && !ctx.state.packs.some(pack => !isRetiredPack(pack.id)) && !ctx.state.busy) {
+    page.append(emptyState('还没有离线资料', '连接已有的 ZIM 资料库，或切换到联网科普直接查找百科原文。', button('前往知库', () => ctx.navigate('library'), 'button primary')));
+    return page;
+  }
+  if (!ctx.state.query && !ctx.state.busy) {
+    page.append(emptyState('从一个名词开始', online ? '输入想了解的词，例如“斗地主”或“光合作用”。无需下载资料库。' : '输入词条名称，在已连接的资料中查找。'));
     return page;
   }
   const meta = el('div', 'results-meta');
-  meta.append(el('span', '', `${ctx.state.query ? '当前检索结果' : '可展示'} ${ctx.state.total} 条`), el('span', '', ctx.state.context.strictTimeline ? '已按当前世界筛选' : '自由查阅'));
+  meta.append(el('span', '', `${ctx.state.query ? '当前检索结果' : '可展示'} ${ctx.state.total} 条`), el('span', '', online ? '现代知识参考' : ctx.state.context.strictTimeline ? '已按当前世界筛选' : '自由查阅'));
   page.append(meta);
   if (ctx.state.results.length) page.append(resultList(ctx));
-  else if (!ctx.state.busy) page.append(emptyState('这次还没找到', '这个库可能没有该词条。试试名词本身，检查库的覆盖范围、连接状态和快照时间；不会用相似但无关的文章充数。'));
+  else if (!ctx.state.busy) page.append(emptyState('这次还没找到', online
+    ? '试试名词本身或常用别称。如果上方提示网络不可用，可到知库打开已读缓存。'
+    : '这个库可能没有该词条。试试名词本身，检查库的覆盖范围、连接状态和快照时间。'));
   if (ctx.state.suggestions.length) {
     const suggestions = el('div', 'suggestions');
     suggestions.setAttribute('aria-label', '相关搜索');
@@ -113,12 +123,12 @@ export function searchView(ctx: ViewContext): HTMLElement {
 export function bookmarksView(ctx: ViewContext): HTMLElement {
   const page = el('div');
   const heading = el('div', 'page-intro');
-  heading.append(el('h2', '', '收藏夹'), el('p', '', '为以后留一页。这里的资料也遵守当前世界的时间与地点。'));
+  heading.append(el('h2', '', '收藏夹'), el('p', '', '为以后留一页。联网百科作为现代知识参考；离线资料遵守世界时间筛选。'));
   page.append(heading);
   if (ctx.state.results.length) {
     page.append(resultList(ctx));
     if (ctx.state.total > 12) page.append(pagination(ctx, true));
   }
-  else page.append(emptyState('还没有可展示的收藏', '在搜索结果或阅读页轻点书签。跨越世界时间后，部分收藏可能暂时不可见。', button('去搜索', () => ctx.run(ctx.controller.navigate('search')), 'button primary')));
+  else page.append(emptyState('还没有可展示的收藏', '在搜索结果或阅读页轻点书签。跨越世界时间后，部分离线资料收藏可能暂时不可见。', button('去搜索', () => ctx.run(ctx.controller.navigate('search')), 'button primary')));
   return page;
 }

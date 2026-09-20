@@ -1,5 +1,5 @@
 export type EntryType = 'game_rule' | 'historical_event' | 'sports_match' | 'store' | 'brand' | 'product' | 'person' | 'place' | 'article';
-export interface SourceInfo { name: string; url?: string; updatedAt: string; license: string; kind: 'offline'; }
+export interface SourceInfo { name: string; url?: string; updatedAt: string; license: string; kind: 'offline' | 'online' | 'cache'; }
 export interface KnowledgeEntry {
   id: string; type: EntryType; title: string; aliases: string[]; summary: string;
   contentRef: string; tags: string[]; location: string[];
@@ -38,7 +38,7 @@ export interface ChatSettings {
   schemaVersion: 1; mode: 'story' | 'custom' | 'modern'; customDate: string;
   location: string; strictTimeline: boolean; context: ContextState;
 }
-export interface Settings { schemaVersion: 1; theme: string; }
+export interface Settings { schemaVersion: 1; theme: string; sourceMode: 'online' | 'offline'; }
 export interface HistoryItem {
   schemaVersion: 1; id: string; query: string; worldDate: string | null; worldline: string;
   source: 'manual'; viewed: string[]; createdAt: number;
@@ -51,8 +51,8 @@ export interface HostAdapter {
   dispose(): void;
 }
 export interface PhoneState {
-  ready: boolean; busy: boolean; notice: string; hostLabel: string; chatKey: string;
-  settings: Settings; chat: ChatSettings; context: SearchContext; packs: PackManifest[]; archives: ArchiveInfo[];
+  ready: boolean; busy: boolean; notice: string; hostLabel: string; chatKey: string; canRetryArchive: boolean;
+  settings: Settings; chat: ChatSettings; context: SearchContext; packs: PackManifest[]; archives: ArchiveInfo[]; cachedPages: SearchResult[];
   query: string; types: EntryType[]; results: SearchResult[]; total: number; suggestions: string[];
   page: 'home' | 'search' | 'library' | 'bookmarks' | 'history' | 'settings';
   reader: { result: SearchResult; content: string; format?: 'html'; path?: string; hash?: string } | null;
@@ -64,7 +64,9 @@ export interface PhoneController {
   navigate(page: PhoneState['page'], offset?: number): Promise<void>;
   search(query: string, types?: EntryType[], offset?: number): Promise<void>;
   read(result: SearchResult): Promise<void>; closeReader(): void;
+  readCached(result: SearchResult): Promise<void>; setSourceMode(mode: Settings['sourceMode']): Promise<void>;
   attachArchive(file: File): Promise<void>; detachArchive(id: string): Promise<void>;
+  retryArchive(): Promise<void>;
   readArchivePath(packId: string, path: string): Promise<void>;
   readArchiveResource(packId: string, path: string): Promise<{ mimeType: string; data: Uint8Array }>;
   install(file: File): Promise<void>; installSample(): Promise<void>; uninstall(id: string): Promise<void>;

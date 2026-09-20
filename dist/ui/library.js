@@ -66,6 +66,11 @@ function archivePanel(ctx) {
         input.value = '';
     });
     label.append(input);
+    if (ctx.state.canRetryArchive) {
+        const retry = button('重试连接刚才的文件', () => ctx.run(ctx.controller.retryArchive()), 'button primary full');
+        retry.disabled = ctx.state.busy;
+        panel.append(retry, el('p', 'settings-caption', '已保留刚才选择的文件，无需再次下载或选择。'));
+    }
     panel.append(label, el('p', 'settings-caption', '文件内容在本机读取，不上传。重新打开浏览器后可能需要重新选择文件。'));
     const sources = el('div', 'stack');
     for (const [title, url] of [
@@ -104,14 +109,47 @@ function importPanel(ctx) {
 export function libraryView(ctx) {
     const page = el('div');
     const intro = el('div', 'page-intro');
-    intro.append(el('h2', '', '我的知库'), el('p', '', '连接已有的知识库，检索并阅读来源原文。'));
+    intro.append(el('h2', '', '我的知库'), el('p', '', '查阅成熟来源，并保留你已经读过的原文。'));
     page.append(intro);
-    page.append(archivePanel(ctx), sectionHeading('本地知识库', `${ctx.state.archives.length} 个`));
+    const online = el('section', 'pack');
+    online.append(el('span', 'pill', '联网科普来源'), el('h3', '', '中文维基百科'), el('p', '', '输入词语即可搜索并阅读来源原文，无需先下载资料库。只发送你主动查询的词，不发送聊天内容。'));
+    const lookup = button(ctx.state.settings.sourceMode === 'online' ? '前往百科搜索' : '切换到联网科普', () => ctx.run((async () => {
+        if (ctx.state.settings.sourceMode !== 'online')
+            await ctx.controller.setSourceMode('online');
+        await ctx.controller.navigate('search');
+    })()), 'button small primary');
+    lookup.disabled = ctx.state.busy;
+    online.append(lookup, el('p', 'settings-caption', '现代百科知识未作剧情年代核验；来源缺少的内容不会由模型补写。'));
+    page.append(online, sectionHeading('已读缓存', `${ctx.state.cachedPages.length} 篇`));
+    const cached = el('div', 'stack');
+    for (const result of ctx.state.cachedPages) {
+        const read = button('', () => ctx.run(ctx.controller.readCached(result)), 'pack cached-page');
+        read.setAttribute('aria-label', `阅读缓存：${result.entry.title}`);
+        read.dataset.focusKey = `cached:${result.packId}:${result.entry.id}`;
+        read.style.textAlign = 'left';
+        read.style.overflowWrap = 'anywhere';
+        const fetched = result.entry.metadata.fetchedAt;
+        const date = typeof fetched === 'number' || typeof fetched === 'string' ? new Date(fetched) : null;
+        const dateLabel = date && Number.isFinite(date.getTime()) ? date.toLocaleString('zh-CN') : '未记录';
+        read.append(el('span', 'pill', '本机已读缓存'), el('h3', '', result.entry.title), el('p', '', `${result.entry.source.name} · 获取于 ${dateLabel}`), el('small', '', '打开缓存正文 · 不联网刷新'));
+        read.disabled = ctx.state.busy;
+        cached.append(read);
+    }
+    if (!ctx.state.cachedPages.length)
+        cached.append(emptyState('读过的原文会留在这里', '打开联网百科正文后，可从这里再次阅读已保存的页面。断网时也能打开已有缓存。'));
+    page.append(cached);
+    const offline = el('details', 'import-panel');
+    offline.open = ctx.state.settings.sourceMode === 'offline' || ctx.state.canRetryArchive;
+    offline.append(el('summary', '', `可选 · 离线知识库（${ctx.state.archives.length} 个）`), el('p', 'settings-caption', '需要断网检索大量资料时，可连接已下载的 ZIM 文件。联网科普和已读缓存不需要安装它。'));
+    const chooseOffline = button('使用离线资料搜索', () => ctx.run(ctx.controller.setSourceMode('offline')), 'button small subtle');
+    chooseOffline.disabled = ctx.state.busy || ctx.state.settings.sourceMode === 'offline';
+    offline.append(chooseOffline, archivePanel(ctx), sectionHeading('本地知识库', `${ctx.state.archives.length} 个`));
     const archives = el('div', 'stack');
     ctx.state.archives.forEach(archive => archives.append(archiveCard(ctx, archive)));
     if (!ctx.state.archives.length)
         archives.append(emptyState('尚未连接知识库', '从上方选择现成的 .zim 文件，即可开始查找原文。'));
-    page.append(archives);
+    offline.append(archives);
+    page.append(offline);
     const advanced = el('details', 'import-panel');
     advanced.append(el('summary', '', `高级 · 自定义与旧版资料（${ctx.state.packs.length} 个）`));
     advanced.append(el('p', 'settings-caption', '已安装内容继续保留。开发样本和历史摘录与正式原文来源分开显示。'));

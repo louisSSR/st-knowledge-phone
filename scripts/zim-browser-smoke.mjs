@@ -52,8 +52,9 @@ try {
   }
   baseline = errors.length;
   await page.getByRole('button', { name: '打开掌上知库', exact: true }).click(); await ready();
+  await page.getByRole('button', { name: '离线资料', exact: true }).click(); await ready();
   await attach();
-  assert.match(await page.locator('.pack').first().innerText(), /8,302 篇文章/);
+  assert.match(await page.getByText('已连接 · 本地文件', { exact: true }).locator('..').innerText(), /8,302 篇文章/);
   done('official 94.40 MiB / 8,302 article archive opens through real UI');
   if (!host) {
     await search('扑克'); assert.equal(await page.locator('.result-card').count(), 0);

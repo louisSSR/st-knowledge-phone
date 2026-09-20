@@ -4,15 +4,20 @@ import { MAX_PACK_BYTES, parsePack } from './library/pack.js';
 import { isVisible } from './search/filters.js';
 import { SearchService } from './search/service.js';
 import { ZimProvider, archiveVisible } from './providers/zim.js';
+import { ZimTimeoutError } from './zim/engine.js';
 import { isRetiredPack } from './library/source-policy.js';
 import { LocalLibraryProvider } from './providers/local.js';
+import { OnlineProvider, ONLINE_PACK_ID, normalizeOnlinePath } from './providers/online.js';
+import { cachedResult } from './library/online-cache.js';
 import { chatStorageKey, defaultChat, normalizeChat, normalizeSettings, searchContext, visibleHistory, worldline } from './settings/settings.js';
 export class Controller {
     host;
     storage = new PhoneStorage();
     local = new LocalLibraryProvider();
     zim = new ZimProvider();
+    online = new OnlineProvider(this.storage);
     archiveRevision = 0;
+    pendingArchiveFile;
     service = new SearchService([this.zim, this.local]);
     listeners = new Set();
     unsubscribe;
@@ -29,8 +34,8 @@ export class Controller {
         this.host = host;
         const chat = defaultChat();
         this.state = {
-            ready: false, busy: false, notice: '', hostLabel: host.label, chatKey: '', settings: normalizeSettings(),
-            chat, context: searchContext(chat, ''), packs: [], archives: [], query: '', types: [], results: [], total: 0, suggestions: [],
+            ready: false, busy: false, notice: '', hostLabel: host.label, chatKey: '', canRetryArchive: false, settings: normalizeSettings(),
+            chat, context: searchContext(chat, ''), packs: [], archives: [], cachedPages: [], query: '', types: [], results: [], total: 0, suggestions: [],
             page: 'home', reader: null, history: [], bookmarks: [],
         };
     }
@@ -62,6 +67,7 @@ export class Controller {
             if (!this.initialized) {
                 this.state.settings = normalizeSettings(await this.storage.getValue('settings'));
                 this.state.packs = await this.storage.listPacks();
+                await this.refreshCache();
                 const archives = await this.storage.getValue('archives');
                 this.state.archives = Array.isArray(archives) ? archives.map(item => ({ ...item, connected: false })) : [];
                 await this.switchChat(this.host.snapshot());
@@ -104,6 +110,7 @@ export class Controller {
     }
     clearResults() {
         this.zim.cancelSearch();
+        this.online.cancelSearch();
         this.requestId++;
         this.state.results = [];
         this.state.suggestions = [];
@@ -158,13 +165,13 @@ export class Controller {
         this.state.context = searchContext(this.state.chat, snapshot.chatKey);
         this.state.history = visibleHistory(this.history, this.state.context);
         const contextChanged = before !== worldline(this.state.context);
-        if (contextChanged)
+        if (contextChanged && this.state.settings.sourceMode === 'offline')
             this.clearResults();
         await this.storage.setValue(chatStorageKey(snapshot.chatKey), structuredClone(this.state.chat));
         if (this.disposed || revision !== this.chatRevision)
             return;
         this.emit();
-        if (contextChanged && this.active && this.state.ready && ['search', 'bookmarks', 'library'].includes(this.state.page))
+        if (contextChanged && this.state.settings.sourceMode === 'offline' && this.active && this.state.ready && ['search', 'bookmarks', 'library'].includes(this.state.page))
             void this.navigate(this.state.page);
     }
     async navigate(page, offset = 0) {
@@ -178,8 +185,10 @@ export class Controller {
             await this.loadBookmarks(offset);
         else if (page === 'search')
             await this.search(this.state.query, this.state.types);
-        else if (page === 'library')
+        else if (page === 'library') {
+            await this.refreshCache();
             await this.runSearch('', [], 0, false);
+        }
     }
     async search(query, types = [], offset = 0) {
         if (!this.state.ready)
@@ -188,6 +197,8 @@ export class Controller {
         await this.runSearch(query, types, offset, offset === 0);
     }
     async runSearch(query, types, offset, record) {
+        this.online.cancelSearch();
+        this.zim.cancelSearch();
         const id = ++this.requestId;
         const key = this.state.chatKey;
         this.state.query = query.trim().slice(0, 200);
@@ -199,7 +210,11 @@ export class Controller {
         this.state.suggestions = [];
         this.emit();
         try {
-            const response = await this.service.search({ query: this.state.query, context: this.state.context, types, offset, limit: 12 });
+            const online = this.state.settings.sourceMode === 'online' && this.state.page === 'search';
+            // Online reference lookup deliberately contains no chat identity, text, location or inferred date.
+            const response = online
+                ? await this.online.search({ query: this.state.query, context: { worldDate: null, location: [], strictTimeline: false, chatKey: '' }, offset, limit: 12 })
+                : await this.service.search({ query: this.state.query, context: this.state.context, types, offset, limit: 12 });
             if (id !== this.requestId || !this.active || key !== this.state.chatKey)
                 return;
             this.state.results = response.results;
@@ -208,8 +223,8 @@ export class Controller {
             this.state.archives = this.state.archives.map(item => ({ ...item, connected: this.zim.connected(item.id) }));
             this.state.busy = false;
             this.state.notice = response.notice || '';
-            if (this.state.archives.length && !this.state.archives.some(item => item.connected))
-                this.state.notice = '请到知库重新选择 .zim 文件以恢复连接；不会重新下载或复制资料。';
+            if (!online && !this.state.notice && this.state.archives.length && !this.state.archives.some(item => item.connected))
+                this.state.notice = '当前页面未连接文件，请到知库重新选择同一 .zim；无需重新下载。';
             if (record && this.state.query)
                 await this.recordHistory();
             if (id === this.requestId)
@@ -231,6 +246,13 @@ export class Controller {
     async read(result) {
         if (!this.state.ready)
             return;
+        if (result.packId === ONLINE_PACK_ID) {
+            if (result.entry.source.kind === 'cache')
+                await this.readCached(result);
+            else
+                await this.readOnline(result);
+            return;
+        }
         const key = this.state.chatKey;
         const id = ++this.requestId;
         try {
@@ -264,6 +286,8 @@ export class Controller {
     }
     async attachArchive(file) {
         const revision = ++this.archiveRevision;
+        this.pendingArchiveFile = file;
+        this.state.canRetryArchive = false;
         this.clearResults();
         this.state.busy = true;
         this.state.notice = '正在打开库内索引，不复制整库…';
@@ -272,6 +296,7 @@ export class Controller {
             const info = await this.zim.attach(file);
             if (this.disposed || revision !== this.archiveRevision)
                 return;
+            this.pendingArchiveFile = undefined;
             this.clearResults();
             this.state.archives = [info, ...this.state.archives.filter(item => item.id !== info.id).map(item => ({ ...item, connected: false }))].slice(0, 12);
             await this.storage.setValue('archives', this.state.archives.map(item => ({ ...item, connected: false })));
@@ -282,9 +307,17 @@ export class Controller {
             this.emit();
         }
         catch (error) {
-            if (revision === this.archiveRevision)
+            if (revision === this.archiveRevision) {
+                this.state.canRetryArchive = error instanceof ZimTimeoutError;
+                if (!this.state.canRetryArchive)
+                    this.pendingArchiveFile = undefined;
                 this.error(error);
+            }
         }
+    }
+    async retryArchive() {
+        if (this.pendingArchiveFile && !this.state.busy)
+            await this.attachArchive(this.pendingArchiveFile);
     }
     async detachArchive(id) {
         if (this.zim.connected(id)) {
@@ -298,6 +331,10 @@ export class Controller {
         this.emit();
     }
     async readArchivePath(packId, path) {
+        if (packId === ONLINE_PACK_ID) {
+            await this.readOnline(path);
+            return;
+        }
         const id = ++this.requestId, key = this.state.chatKey;
         const hashAt = path.indexOf('#');
         const hash = hashAt < 0 ? '' : path.slice(hashAt);
@@ -346,7 +383,75 @@ export class Controller {
             throw new Error('当前世界时间不允许读取此资源。');
         return this.zim.read(packId, path);
     }
-    closeReader() { this.requestId++; this.state.reader = null; this.state.busy = false; this.emit(); }
+    closeReader() { this.online.cancelSearch(); this.requestId++; this.state.reader = null; this.state.busy = false; this.emit(); }
+    async refreshCache() {
+        this.state.cachedPages = (await this.online.cache.list()).map(cachedResult);
+    }
+    async readOnline(input) {
+        if (!this.state.ready)
+            return;
+        this.online.cancelSearch();
+        const id = ++this.requestId, key = this.state.chatKey;
+        const path = typeof input === 'string' ? input : input.entry.contentRef;
+        const hashAt = path.indexOf('#'), hash = hashAt >= 0 ? path.slice(hashAt) : '';
+        this.state.busy = true;
+        this.state.notice = '';
+        this.emit();
+        try {
+            const page = await this.online.read(input);
+            if (id !== this.requestId || !this.active || key !== this.state.chatKey)
+                return;
+            await this.showOnlinePage(page, hash, id, key);
+        }
+        catch (error) {
+            if (id === this.requestId)
+                this.error(error);
+        }
+    }
+    async readCached(result) {
+        if (!this.state.ready || result.packId !== ONLINE_PACK_ID)
+            return;
+        this.online.cancelSearch();
+        const id = ++this.requestId, key = this.state.chatKey;
+        this.state.busy = true;
+        this.state.notice = '';
+        this.emit();
+        try {
+            const page = await this.online.cache.get(normalizeOnlinePath(result.entry.contentRef));
+            if (id !== this.requestId || !this.active || key !== this.state.chatKey)
+                return;
+            if (!page)
+                throw new Error('这篇原文缓存已被清理，请联网重新打开来源词条。');
+            await this.showOnlinePage({ result: cachedResult(page), content: page.content, cached: true,
+                notice: '正在阅读本地已读缓存；获取时间见来源信息，内容不是实时版本。' }, '', id, key);
+        }
+        catch (error) {
+            if (id === this.requestId)
+                this.error(error);
+        }
+    }
+    async showOnlinePage(page, hash, id, key) {
+        await this.refreshCache();
+        if (id !== this.requestId || !this.active || key !== this.state.chatKey)
+            return;
+        const history = this.history.find(row => row.query === this.state.query && row.worldline === worldline(this.state.context));
+        if (history) {
+            history.viewed = [...new Set([...history.viewed, `${page.result.packId}/${page.result.entry.id}`])].slice(0, 20);
+            await this.storage.setValue(chatStorageKey(key, 'history'), this.history);
+            if (id !== this.requestId || !this.active || key !== this.state.chatKey)
+                return;
+        }
+        this.state.reader = { result: page.result, content: page.content, format: 'html',
+            path: `/wiki/${encodeURIComponent(page.result.entry.id.replace(/ /g, '_'))}`, hash };
+        this.state.busy = false;
+        this.state.notice = page.notice ?? '正在阅读来源原文，已存入本地缓存。当前版本未按剧情年代核验。';
+        this.emit();
+    }
+    async setSourceMode(mode) {
+        if (!this.state.ready || !['online', 'offline'].includes(mode))
+            return;
+        await this.saveSettings({ ...this.state.settings, sourceMode: mode }, this.state.chat);
+    }
     async changeLibrary(action) {
         this.state.busy = true;
         this.state.notice = '';
@@ -387,13 +492,13 @@ export class Controller {
         const revision = this.chatRevision;
         try {
             const key = `${result.packId}/${result.entry.id}`;
-            if (isRetiredPack(result.packId) || !isVisible(result.entry, this.state.context))
+            if (isRetiredPack(result.packId) || (result.packId !== ONLINE_PACK_ID && !isVisible(result.entry, this.state.context)))
                 throw new Error('当前时间线无法收藏这份资料。');
             const exists = this.state.bookmarks.some(bookmark => bookmark.key === key);
             if (!exists && this.state.bookmarks.length >= 200)
                 throw new Error('初版每个聊天最多收藏 200 条，请先移除部分收藏。');
             const bookmarks = exists ? this.state.bookmarks.filter(bookmark => bookmark.key !== key) : [
-                ...this.state.bookmarks, { schemaVersion: 1, key, packId: result.packId, entryId: result.entry.id, createdAt: Date.now(), ...(result.packId.startsWith('zim:') ? { result } : {}) },
+                ...this.state.bookmarks, { schemaVersion: 1, key, packId: result.packId, entryId: result.entry.id, createdAt: Date.now(), ...(result.packId.startsWith('zim:') || result.packId === ONLINE_PACK_ID ? { result } : {}) },
             ];
             this.state.bookmarks = bookmarks;
             this.emit();
@@ -417,6 +522,8 @@ export class Controller {
             const rows = await Promise.all(this.state.bookmarks.slice(0, 200).map(async (bookmark) => {
                 if (isRetiredPack(bookmark.packId))
                     return null;
+                if (bookmark.packId === ONLINE_PACK_ID)
+                    return bookmark.result ?? null;
                 if (bookmark.packId.startsWith('zim:')) {
                     const result = bookmark.result;
                     return result && isVisible(result.entry, context) ? result : null;
@@ -481,6 +588,8 @@ export class Controller {
         this.chatRevision++;
         this.archiveRevision++;
         this.zim.detach();
+        this.online.dispose();
+        this.pendingArchiveFile = undefined;
         this.unsubscribe?.();
         this.local.dispose();
         this.storage.dispose();

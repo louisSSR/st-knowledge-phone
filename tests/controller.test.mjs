@@ -2,7 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Controller } from '../dist/controller.js';
 import { PhoneStorage } from '../dist/library/storage.js';
+import { ZimProvider } from '../dist/providers/zim.js';
+import { ZimTimeoutError } from '../dist/zim/engine.js';
 import { LocalLibraryProvider } from '../dist/providers/local.js';
+import { OnlineProvider, ONLINE_PACK_ID } from '../dist/providers/online.js';
 import { chatStorageKey, defaultChat } from '../dist/settings/settings.js';
 
 function deferred() {
@@ -13,6 +16,7 @@ function deferred() {
 
 function fixture(t, initial = { chatKey: 'A', messages: ['世界时间：2020-01-01\n地点：东京'], label: 'A' }) {
   const values = new Map();
+  values.set('settings', { schemaVersion: 1, theme: 'midnight', sourceMode: 'offline' });
   const delays = new Map();
   const searchRequests = [];
   const listeners = new Set();
@@ -173,4 +177,89 @@ test('reopening then leaving a pending chat cannot overwrite its saved custom se
   assert.deepEqual(env.values.get(chatStorageKey('B')), storedB);
   assert.equal(env.subscriptionCount(), 1);
   assert.equal(controller.getState().context.worldDate, '2022-01-01');
+});
+
+test('an initial archive timeout retains the selected File for retry without another picker', async t => {
+  const { controller } = fixture(t);
+  await controller.start();
+  const file = { name: 'fixture_2026-07.zim', size: 100 };
+  const selected = [];
+  t.mock.method(ZimProvider.prototype, 'attach', async candidate => {
+    selected.push(candidate);
+    if (selected.length === 1) throw new ZimTimeoutError('init', 120_000);
+    return { id: 'zim:retry', name: file.name, fileName: file.name, size: 100, articleCount: 2, date: '2026-07-31', connected: true };
+  });
+  await controller.attachArchive(file);
+  assert.equal(controller.getState().canRetryArchive, true);
+  assert.match(controller.getState().notice, /超时/);
+  await controller.retryArchive();
+  assert.deepEqual(selected, [file, file]);
+  assert.equal(controller.getState().canRetryArchive, false);
+  assert.equal(controller.getState().archives[0].id, 'zim:retry');
+});
+
+const onlineResult = () => ({ packId: ONLINE_PACK_ID, packName: '中文维基百科', score: 1000, entry: {
+  id: '鬥地主', title: '鬥地主', aliases: ['斗地主'], type: 'article', summary: '来源摘要', contentRef: '鬥地主',
+  tags: [], location: [], dates: {}, source: { name: '中文维基百科', url: 'https://zh.wikipedia.org/w/index.php?oldid=123',
+    updatedAt: '', license: 'CC BY-SA 4.0', kind: 'online' }, metadata: { fetchedAt: '2026-09-20T00:00:00Z', revision: 123 },
+} });
+
+test('fresh and pre-v0.3 settings default online; startup never queries and manual search strips all chat context', async t => {
+  const { controller, values } = fixture(t);
+  values.set('settings', { schemaVersion: 1, theme: 'midnight' });
+  const requests = [];
+  t.mock.method(OnlineProvider.prototype, 'search', async request => {
+    requests.push(structuredClone(request)); return { results: [onlineResult()], total: 1, suggestions: [] };
+  });
+  await controller.start();
+  assert.equal(controller.getState().settings.sourceMode, 'online');
+  assert.equal(requests.length, 0);
+  await controller.search('斗地主');
+  assert.equal(requests.length, 1);
+  assert.deepEqual(requests[0].context, { worldDate: null, location: [], strictTimeline: false, chatKey: '' });
+  assert.equal(requests[0].query, '斗地主');
+  assert.equal(controller.getState().results[0].entry.title, '鬥地主');
+});
+
+test('switching to offline discards a delayed online result and persists the selected source', async t => {
+  const { controller, values } = fixture(t);
+  const delay = deferred();
+  t.mock.method(OnlineProvider.prototype, 'search', async () => { await delay.promise; return { results: [onlineResult()], total: 1, suggestions: [] }; });
+  await controller.start(); await controller.setSourceMode('online');
+  const search = controller.search('斗地主');
+  await controller.setSourceMode('offline');
+  delay.resolve(); await search;
+  assert.equal(values.get('settings').sourceMode, 'offline');
+  assert.deepEqual(controller.getState().results, []);
+  assert.equal(controller.getState().busy, false);
+});
+
+test('cache-only reading opens original HTML under historical context without network, and reports evicted entries', async t => {
+  const { controller, values } = fixture(t);
+  let onlineReads = 0;
+  t.mock.method(OnlineProvider.prototype, 'read', async () => { onlineReads++; throw new Error('Unexpected network path'); });
+  const result = onlineResult();
+  values.set('webcache:wikipedia-zh:v1', { schemaVersion: 1, pages: [{ schemaVersion: 1, path: '鬥地主', aliases: ['斗地主'], result,
+    content: '<h2>术语</h2><p>来源原文</p>', fetchedAt: '2026-09-20T00:00:00Z', url: result.entry.source.url, revision: 123, source: 'wikipedia-zh' }] });
+  await controller.start(); await controller.readCached(result);
+  assert.equal(onlineReads, 0);
+  assert.equal(controller.getState().reader.result.entry.source.kind, 'cache');
+  assert.match(controller.getState().notice, /不是实时/);
+  assert.match(controller.getState().reader.content, /<h2>术语/);
+  controller.closeReader(); values.delete('webcache:wikipedia-zh:v1');
+  await controller.readCached(result);
+  assert.equal(controller.getState().reader, null);
+  assert.match(controller.getState().notice, /已被清理/);
+  assert.equal(onlineReads, 0);
+});
+
+test('online bookmarks remain per chat and no historical source date is fabricated', async t => {
+  const env = fixture(t), { controller } = env;
+  await controller.start(); await controller.toggleBookmark(onlineResult()); await controller.navigate('bookmarks');
+  assert.equal(controller.getState().results.length, 1);
+  assert.deepEqual(controller.getState().results[0].entry.dates, {});
+  env.emit('chat', { chatKey: 'B', messages: ['世界时间：1999-01-01'], label: 'B' });
+  await waitForState(controller, state => state.chatKey === 'B' && state.ready);
+  assert.equal(controller.getState().bookmarks.length, 0);
+  assert.equal(controller.getState().results.length, 0);
 });

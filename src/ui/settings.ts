@@ -25,6 +25,7 @@ function select(name: string, value: string, options: [string, string][]): HTMLS
 
 function timeSettings(ctx: ViewContext): HTMLElement {
   const group = el('div', 'setting-group');
+  group.append(el('h3', '', '离线资料的世界时间'), el('p', 'settings-caption', '以下筛选仅用于离线库与自定义资料。联网百科和已读缓存提供现代知识参考，不据此宣称符合剧情年代。'));
   const mode = select('mode', ctx.state.chat.mode, [
     ['story', '跟随剧情'], ['custom', '自定义世界日期'], ['modern', '现代模式 · 今天'],
   ]);
@@ -63,24 +64,16 @@ function timeSettings(ctx: ViewContext): HTMLElement {
   strict.dataset.focusKey = 'strictTimeline';
   const strictLabel = el('label', 'check-field');
   const copy = el('span');
-  copy.append(el('strong', '', '严格遵循世界时间'), el('small', '', '过滤尚不可知的内容，以及在此时此地无效的资料。'));
+  copy.append(el('strong', '', '离线资料严格遵循世界时间'), el('small', '', '过滤快照晚于当前日期的资料；这不等于核验了每个条目的历史版本。'));
   strictLabel.append(strict, copy);
   group.append(strictLabel);
   return group;
 }
 
-function offlineSetting(): HTMLElement {
+function sourceSetting(ctx: ViewContext): HTMLElement {
   const group = el('div', 'setting-group');
-  const row = el('div', 'online-off');
-  row.append(el('span', '', '在线模型增强'));
-  const toggle = el('button', '', 'OFF');
-  toggle.type = 'button';
-  toggle.disabled = true;
-  toggle.setAttribute('role', 'switch');
-  toggle.setAttribute('aria-label', '在线模型增强，不提供启用');
-  toggle.setAttribute('aria-checked', 'false');
-  row.append(toggle);
-  group.append(row, el('p', 'settings-caption', '使用本地资料库的原有索引，不调用模型，也不上传聊天。大库快照不等于历史版本，严格时间线按快照日期保守过滤。'));
+  const sourceMode = select('sourceMode', ctx.state.settings.sourceMode, [['online', '联网科普 · 中文维基百科'], ['offline', '离线资料 · 本机知识库']]);
+  group.append(field('搜索来源', sourceMode), el('p', 'settings-caption', '联网科普仅在你搜索或打开词条时请求来源，不发送聊天内容。已读正文缓存在本机；离线模式使用已有资料。两种模式都不调用模型生成百科。'));
   return group;
 }
 
@@ -92,7 +85,7 @@ export function settingsView(ctx: ViewContext): HTMLElement {
   const form = el('form', 'settings-form');
   const theme = select('theme', ctx.state.settings.theme, availableThemes().map(item => [item.id, item.name]));
   form.append(field('外观主题', theme, '午夜书房 · 墨紫与薄金 / 彩色棋局 · 原创彩色棋盘'));
-  form.append(timeSettings(ctx), offlineSetting());
+  form.append(sourceSetting(ctx), timeSettings(ctx));
   const save = el('button', 'button primary full', '保存设置');
   save.type = 'submit';
   save.disabled = ctx.state.busy;
@@ -109,7 +102,8 @@ export function settingsView(ctx: ViewContext): HTMLElement {
       location: String(data.get('location') ?? '').trim(),
       strictTimeline: data.has('strictTimeline'),
     };
-    ctx.run(ctx.controller.saveSettings({ ...ctx.state.settings, theme: String(data.get('theme')) }, chat));
+    ctx.run(ctx.controller.saveSettings({ ...ctx.state.settings, theme: String(data.get('theme')),
+      sourceMode: data.get('sourceMode') === 'offline' ? 'offline' : 'online' }, chat));
   });
   page.append(form);
   return page;

@@ -9,7 +9,7 @@ export function defaultChat(): ChatSettings {
   return { schemaVersion: 1, mode: 'story', customDate: '2008-07-18', location: '', strictTimeline: true, context: emptyContext() };
 }
 export function normalizeSettings(value?: Settings): Settings {
-  return { schemaVersion: 1, theme: typeof value?.theme === 'string' ? value.theme : 'midnight' };
+  return { schemaVersion: 1, theme: typeof value?.theme === 'string' ? value.theme : 'midnight', sourceMode: value?.sourceMode === 'offline' ? 'offline' : 'online' };
 }
 export function normalizeChat(value?: ChatSettings): ChatSettings {
   if (!value || value.schemaVersion !== 1) return defaultChat();

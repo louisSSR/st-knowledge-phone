@@ -7,6 +7,7 @@ const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 const MAX_CSS_BYTES = 256 * 1024;
 const MAX_TOTAL_BYTES = 12 * 1024 * 1024;
 const ROOT = 'https://archive.invalid/';
+const WIKIPEDIA = 'https://zh.wikipedia.org';
 const CSP = "default-src 'none'; script-src 'none'; style-src 'unsafe-inline'; img-src blob:; font-src 'none'; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
 const TAGS = new Set('a abbr address article aside b bdi bdo blockquote br caption cite code col colgroup dd del details dfn div dl dt em figcaption figure footer h1 h2 h3 h4 h5 h6 header hgroup hr i img ins kbd li main mark nav ol p pre q rp rt ruby s samp section small span strong sub summary sup table tbody td tfoot th thead time tr u ul var wbr math mrow mi mn mo ms mtext mspace msup msub msubsup mfrac msqrt mroot mfenced mtable mtr mtd mover munder munderover semantics annotation mstyle mpadded mphantom menclose mmultiscripts mprescripts none mlabeledtr mlongdiv mscarries mscarry msgroup msline msrow mstack'.split(' '));
 const ATTRIBUTES = new Set('id class title lang dir alt width height colspan rowspan scope headers open close datetime start reversed value align name aria-label aria-hidden aria-describedby role display mathvariant stretchy fence separator separators accent accentunder columnalign rowalign columnspan rowspacing columnspacing rowlines columnlines scriptlevel displaystyle mathcolor mathbackground mathsize notation bevelled linethickness minsize maxsize voffset depth lspace rspace encoding'.split(' '));
@@ -37,6 +38,25 @@ function archiveLocation(raw: string, path: string): Location | null {
     const result = decodeURIComponent(url.pathname.slice(1));
     if (!result || result.includes('\0')) return null;
     return { path: result, hash: url.hash };
+  } catch { return null; }
+}
+
+function wikipediaPath(path: string): string {
+  const value = path.startsWith('/wiki/') ? path : `/wiki/${encodeURIComponent(path.replace(/^\.?\//, ''))}`;
+  return new URL(value, WIKIPEDIA).pathname;
+}
+
+/** Only the public article path stays inside the reader; other destinations remain explicit links. */
+function wikipediaLocation(raw: string, path: string): Location | null {
+  const value = raw.trim();
+  if (!value || /[\u0000-\u001f\u007f\\]/.test(value)) return null;
+  try {
+    const url = new URL(value, new URL(wikipediaPath(path), WIKIPEDIA));
+    if (url.protocol !== 'https:' || url.username || url.password) return null;
+    if (url.origin === WIKIPEDIA && url.pathname.startsWith('/wiki/') && !url.search) {
+      return { path: url.pathname, hash: url.hash };
+    }
+    return { external: url.href, hash: '' };
   } catch { return null; }
 }
 
@@ -90,9 +110,14 @@ function safeCSS(text: string): string {
 export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; dispose(): void } {
   const reader = ctx.state.reader!;
   const packId = reader.result.packId;
-  const currentPath = reader.path ?? String(reader.result.entry.metadata.archivePath ?? '');
+  const online = reader.result.entry.source.kind !== 'offline';
+  const rawPath = reader.path ?? String(reader.result.entry.metadata.archivePath ?? reader.result.entry.title);
+  const currentPath = online ? wikipediaPath(rawPath) : rawPath;
+  const locate = (raw: string): Location | null => online ? wikipediaLocation(raw, currentPath) : archiveLocation(raw, currentPath);
   const element = el('section', 'archive-reader');
-  const policy = el('p', 'settings-caption', '正在读取本地知识库原文。原页面的脚本、表单和互动组件已停用；外部链接会明确打开新网页。');
+  const policy = el('p', 'settings-caption', online
+    ? `${reader.result.entry.source.kind === 'cache' ? '正在阅读本机已读缓存。' : '正在阅读来源百科正文。'}文中百科链接可继续查词；点击未缓存词条时需要联网。图片和外部资源不自动加载，原页面脚本与互动组件已停用。`
+    : '正在读取本地知识库原文。原页面的脚本、表单和互动组件已停用；外部链接会明确打开新网页。');
   const status = el('p', 'settings-caption');
   status.setAttribute('role', 'status');
   element.append(policy, status);
@@ -103,7 +128,7 @@ export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; d
   let hashFrameId = 0;
   let cleanupDocument = (): void => {};
   const iframe = el('iframe');
-  iframe.title = `${reader.result.entry.title} · 知识库原文`;
+  iframe.title = `${reader.result.entry.title} · 来源原文`;
   iframe.setAttribute('sandbox', 'allow-same-origin');
   iframe.setAttribute('referrerpolicy', 'no-referrer');
   iframe.style.cssText = 'display:block;width:100%;height:480px;min-height:320px;border:1px solid #d4d7d5;border-radius:10px;background:#fcfcfb;';
@@ -111,9 +136,9 @@ export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; d
   const jobs: Array<{ kind: 'image' | 'css'; path: string; key?: string }> = [];
   function updateStatus(): void {
     if (disposed) return;
-    const notes = [images ? `本页图片：已读取 ${loadedImages} / ${images}` : '本页原文未提供可读取的图片引用。'];
+    const notes = [images ? online ? `本页 ${images} 张图片未联网加载` : `本页图片：已读取 ${loadedImages} / ${images}` : '本页原文未提供可读取的图片引用。'];
     if (failedImages) notes.push(`${failedImages} 张图片未能从本地知识库读取`);
-    if (omittedImages) notes.push(`${omittedImages} 张图片因外部来源或资源限额未加载`);
+    if (omittedImages && !online) notes.push(`${omittedImages} 张图片因外部来源或资源限额未加载`);
     if (skippedStyles) notes.push(`${skippedStyles} 份样式未加载，已使用阅读排版`);
     if (mathCount) notes.push(`${mathCount} 个公式使用原文 MathML 呈现，图像回退不重复加载`);
     status.textContent = notes.join(' · ');
@@ -140,8 +165,8 @@ export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; d
   const inlineCSS: string[] = [];
   for (const style of [...template.content.querySelectorAll('style')].slice(0, 6)) inlineCSS.push(safeCSS(style.textContent ?? ''));
   for (const link of [...template.content.querySelectorAll('link[rel~="stylesheet"]')].slice(0, 6)) {
-    const location = archiveLocation(link.getAttribute('href') ?? '', currentPath);
-    if (location?.path) jobs.push({ kind: 'css', path: location.path });
+    const location = locate(link.getAttribute('href') ?? '');
+    if (!online && location?.path) jobs.push({ kind: 'css', path: location.path });
     else skippedStyles++;
   }
   template.content.querySelectorAll('script,style,link,base,meta,title,iframe,frame,frameset,object,embed,applet,portal,template,noscript,svg,canvas,audio,video,source,track,input,button,select,textarea').forEach(node => node.remove());
@@ -164,7 +189,7 @@ export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; d
       if (declarations) node.setAttribute('style', declarations);
     }
     if (tag === 'a' && href) {
-      const location = archiveLocation(href, currentPath);
+      const location = locate(href);
       if (location) {
         node.setAttribute('href', '#');
         if (location.external) {
@@ -179,17 +204,18 @@ export function createArchiveReader(ctx: ViewContext): { element: HTMLElement; d
     }
     if (tag === 'img') {
       images++;
-      const location = archiveLocation(src ?? '', currentPath);
+      const location = locate(src ?? '');
       const key = `image-${images}`;
       node.setAttribute('data-kp-image', key);
-      if (location?.path && imageJobs < 48) {
+      if (!online && location?.path && imageJobs < 48) {
         jobs.push({ kind: 'image', path: location.path, key });
         imageJobs++;
       } else {
         omittedImages++;
         const replacement = document.createElement('span');
         replacement.className = 'kp-image-unavailable';
-        replacement.textContent = node.getAttribute('alt') ? `图片未加载：${node.getAttribute('alt')}` : '图片未加载：外部引用、缺少资源路径或超出本页限额。';
+        replacement.textContent = node.getAttribute('alt') ? `图片未加载：${node.getAttribute('alt')}`
+          : online ? '图片未加载：此阅读方式不自动请求图片。' : '图片未加载：外部引用、缺少资源路径或超出本页限额。';
         node.replaceWith(replacement);
       }
     }
