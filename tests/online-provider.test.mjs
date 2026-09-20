@@ -97,10 +97,17 @@ test('a failed or malformed read is never cached as an article', async () => {
 
 test('source redirect aliases survive reading and remain searchable offline', async () => {
   const { provider } = fixture(url => url.searchParams.get('action') === 'parse' ? json(parse())
-    : url.searchParams.get('list') ? json({ query: { search: [{ title: '鬥地主', pageid: 7 }] } })
+    : url.searchParams.get('list') ? json({ query: { search: [{ title: '鬥地主', pageid: 7, timestamp }] } })
       : json({ query: { pages: [{ title: '鬥地主', pageid: 7, lastrevid: 123 }] } }));
   const response = await provider.search(request('斗地主'));
-  await provider.read(response.results[0]);
+  const read = await provider.read(response.results[0]);
+  assert.equal(read.result.entry.source.updatedAt, timestamp, 'matching source revision preserves its modification time');
+  response.results[0].entry.metadata.revision = 122;
+  const changed = await provider.read(response.results[0]);
+  assert.equal(changed.result.entry.source.updatedAt, '', 'a different parsed revision must not inherit an earlier search timestamp');
+  response.results[0].entry.metadata.revision = 0;
+  const unknown = await provider.read(response.results[0]);
+  assert.equal(unknown.result.entry.source.updatedAt, '', 'an unknown search revision does not establish modification time');
   assert.equal((await provider.cache.search('斗地主'))[0].entry.title, '鬥地主');
 });
 

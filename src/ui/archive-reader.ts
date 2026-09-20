@@ -51,7 +51,9 @@ function wikipediaLocation(raw: string, path: string): Location | null {
   const value = raw.trim();
   if (!value || /[\u0000-\u001f\u007f\\]/.test(value)) return null;
   try {
-    const url = new URL(value, new URL(wikipediaPath(path), WIKIPEDIA));
+    // MediaWiki's ./Title references use its /wiki/ base, including on subpage articles.
+    const reference = value.startsWith('./') ? `/wiki/${value.slice(2)}` : value;
+    const url = new URL(reference, new URL(wikipediaPath(path), WIKIPEDIA));
     if (url.protocol !== 'https:' || url.username || url.password) return null;
     if (url.origin === WIKIPEDIA && url.pathname.startsWith('/wiki/') && !url.search) {
       return { path: url.pathname, hash: url.hash };

@@ -197,7 +197,8 @@ export class OnlineProvider {
                 throw new Error('来源没有返回完整词条正文');
             const fetchedAt = new Date(this.now()).toISOString();
             const result = resultFromHit({ title: page.title, pageid: page.pageid, lastrevid: page.revid,
-                timestamp: typeof input === 'string' ? undefined : input.entry.source.updatedAt }, fetchedAt, 1000, '来源原文');
+                timestamp: typeof input !== 'string' && page.revid > 0 && input.entry.metadata.revision === page.revid
+                    ? input.entry.source.updatedAt : undefined }, fetchedAt, 1000, '来源原文');
             result.entry.summary = sourceText(page.text).slice(0, 240);
             result.entry.aliases = [...new Set([path, ...(typeof input === 'string' ? [] : input.entry.aliases)])]
                 .filter(alias => alias !== page.title);
