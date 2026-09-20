@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.KNOWLEDGE_PHONE_PLAYWRIGHT || 'playwright');
 const host = process.argv.includes('--host');
-const base = process.env.KNOWLEDGE_PHONE_PREVIEW || (host ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:4182');
+const base = process.env.KNOWLEDGE_PHONE_PREVIEW || (host ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:4179');
 const evidence = path.resolve('evidence/online');
 const proxy = process.env.KNOWLEDGE_PHONE_PROXY;
 const marker = 'KP_PRIVATE_CHAT_MARKER_20260920';

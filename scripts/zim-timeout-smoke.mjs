@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.KNOWLEDGE_PHONE_PLAYWRIGHT || 'playwright');
 const file = path.resolve(process.argv[2] || 'evidence/zim/wikibooks_zh_all_nopic_2026-07.zim');
-const base = process.env.KNOWLEDGE_PHONE_PREVIEW || 'http://127.0.0.1:4182';
+const base = process.env.KNOWLEDGE_PHONE_PREVIEW || 'http://127.0.0.1:4179';
 const evidence = path.resolve('evidence/zim');
 await mkdir(evidence, { recursive: true });
 const browser = await chromium.launch({ headless: true, ...(process.env.KNOWLEDGE_PHONE_CHROME ? { executablePath: process.env.KNOWLEDGE_PHONE_CHROME } : {}) });
